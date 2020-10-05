@@ -5,8 +5,8 @@
 %% PARAMETERS
 
     name_mode = 1; % 1. p_sequence, 2. p_cER, 3. specific Hz
-    date = 20190821;
-    recnum = 11;
+    date = 20190823;
+    recnum = 10;
     flow_rate = 450; % [L/min], only for name_mode = 2
     eq_ratio = 0.72; % [-], only for name_mode = 2
     specific_f = 100; % [Hz], only for name_mode = 3
@@ -25,11 +25,11 @@
     RMS_width = 0.2; % [sec]
     cam_frames = 21838;
 
-    for num = 0:1:recnum
+    for num = 1:1:recnum
 
 %% READ DATA
 
-      dir = sprintf('D:/Analysis/pressure/%d/calc/',date);
+      dir = sprintf('H:/Analysis/pressure/%d/calc/',date);
       if name_mode == 1
         rfn = sprintf('pressure_%d.xlsx',num);
       elseif name_mode == 2
@@ -37,13 +37,13 @@
       elseif name_mode == 3
         rfn = sprintf('pressure_speaker_%dHz_%dV_%ds_%d.xlsx',specific_f,speaker_v,speaker_t,num);
       end
-%       trig = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));
-      trig = xlsread(append(dir,rfn), sprintf('C2:C%d',fs*samp_time+1));
-%       upv = xlsread(append(dir,rfn), sprintf('B2:B%d',fs*samp_time+1));
-      upv = xlsread(append(dir,rfn), sprintf('B2:B%d',fs*samp_time+1));
+%       trig = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));   
+%       upv = xlsread(append(dir,rfn), sprintf('B2:B%d',fs*samp_time+1));     
 %       dpv = xlsread(append(dir,rfn), sprintf('C2:C%d',fs*samp_time+1));
-      dpv = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));
 %       spv = xlsread(append(dir,rfn), sprintf('D2:D%d',fs*samp_time+1));
+      trig = xlsread(append(dir,rfn), sprintf('C2:C%d',fs*samp_time+1));
+      upv = xlsread(append(dir,rfn), sprintf('B2:B%d',fs*samp_time+1));
+      dpv = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));
 
 %% OUTPUT FILE
 
@@ -158,7 +158,7 @@
       ax.XMinorTick = 'on';
       ax.YMinorTick = 'on';
       ax.XLim = [0 samp_time];
-      ax.YLim = [-0.40 0.40];
+      ax.YLim = [-0.60 0.60];
 
       xlabel('\it \fontname{Times New Roman} t \rm[sec]')
       ylabel('\it \fontname{Times New Roman} p'' \rm[kPa]')
@@ -168,10 +168,10 @@
       plot(taxis,ppu,'^r')
       hold on
 
-      plot([trig_time trig_time],[-0.40 0.40],'g','LineWidth',1.5)
+      plot([trig_time trig_time],[-0.60 0.60],'g','LineWidth',1.5)
       hold on
 
-      plot([cam_start_time cam_start_time],[-0.40 0.40],'g','LineWidth',1.5)
+      plot([cam_start_time cam_start_time],[-0.60 0.60],'g','LineWidth',1.5)
       hold off
       pbaspect([sqrt(2) 1 1]);
 
