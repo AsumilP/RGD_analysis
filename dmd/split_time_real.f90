@@ -18,7 +18,7 @@
 !c--------------------------------------------------c
   implicit none
 
-  character(8) :: date = "20200823"
+  character(8), parameter :: date = "20200823"
   integer, parameter :: nx = 191
   integer, parameter :: nx_cut = 191
   integer, parameter :: nx_start = 1
@@ -30,44 +30,63 @@
   integer, parameter :: deal_end_frame = 21838
   integer, parameter :: by_frame_size = 1
   integer, parameter :: dt = 50d-6 ! [s]
-  integer, parameter :: cond = 1
+  integer, parameter :: cond_start = 1
+  integer, parameter :: cond_end = 1
+  integer, parameter :: components = 2 ! 1.u, 2.v, 3.w
 
   character(*), parameter :: path_of_i = '/home/yatagi/mnt/velofield/'//date//'/piv/comblps/'
-  character(*), parameter :: path_of_o = '/home/yatagi/analysis/piv_output/velofield/dmd/'//date//'20190821/data_files/'
+  character(*), parameter :: path_of_o = '/home/yatagi/analysis/piv_output/velofield/dmd/'//date//'/data_files/'
 
   character(*) :: fni*200
   character(*) :: fno*200
   character(*) :: file_name_in*200
   character(*) :: file_name_out*200
-  real(8) :: start_time,end_time,number_splited
+  real(8) :: start_time,end_time, number_splited
   real(8):: craw(nx,ny,by_frame_size)
   real(8):: craw_cut(nx_cut,ny_cut,by_frame_size)
-  integer :: i,j,k,l,m
+  integer :: i, j, k, l, m
 
-  start_time=dt*deal_start_frame
-  end_time=dt*deal_end_frame
-  number_splited=(deal_end_frame-deal_start_frame+1)/by_frame_size
+  start_time = dt*deal_start_frame
+  end_time = dt*deal_end_frame
+  number_splited = (deal_end_frame-deal_start_frame+1)/by_frame_size
 
-  print *,'start_time [s] =',start_time
-  print *,'end_time [s] =',end_time
-  print *,'The number of splitted data =',number_splited
+  print *,'start_time [s] =', start_time
+  print *,'end_time [s] =', end_time
+  print *,'The number of splitted data =', number_splited
 !-------------------------------------------------------------------------------
-  do m=1,cond
-    print *,'Condition number =',m
+  do m = cond_start, cond_end
+    print *,'Condition number =', m
   !-----------------input-------------------
-    write(file_name_in,"('spiv_fbsc_',i2.2,'_vcl.dat')"),m
-    fni=path_of_i//file_name_in
-    open(10,file=fni,form='binary')
+    if (components == 1) then
+      write(file_name_in,"('spiv_fbsc_',i2.2,'_ucl.dat')"), m
+    else if (components == 2) then
+      write(file_name_in,"('spiv_fbsc_',i2.2,'_vcl.dat')"), m
+    else if (components == 3) then
+      write(file_name_in,"('spiv_fbsc_',i2.2,'_wcl.dat')"), m
+    end if
 
-    do l=1,number_splited
-      write(file_name_out,"('spiv_fbsc_',i2.2,'_vcl_',i5.5,'.dat')"),m,l
-      fno=path_of_o//file_name_out
+    fni = path_of_i//file_name_in
+    open(10, file=fni, form='binary')
+
+    do l = 1, number_splited
+      if (components == 1) then
+        ! write(file_name_out,"('spiv_fbsc_all',i2.2,'_ucl_',i5.5,'.dat')"), m, l
+        write(file_name_out,"('spiv_fbsc_trans',i2.2,'_ucl_',i5.5,'.dat')"), m, l
+      else if (components == 2) then
+        ! write(file_name_out,"('spiv_fbsc_all',i2.2,'_vcl_',i5.5,'.dat')"), m, l
+        write(file_name_out,"('spiv_fbsc_trans',i2.2,'_vcl_',i5.5,'.dat')"), m, l
+      else if (components == 3) then
+        ! write(file_name_out,"('spiv_fbsc_all',i2.2,'_wcl_',i5.5,'.dat')"), m, l
+        write(file_name_out,"('spiv_fbsc_trans',i2.2,'_wcl_',i5.5,'.dat')"), m, l
+      end if
+
+      fno = path_of_o//file_name_out
       read(10) craw
 
-      do k=1,by_frame_size
-        do j=1,ny_cut
-          do i=1,nx_cut
-            craw_cut(i,j,k)=craw(nx_start+i-1,ny_start+j-1,k)
+      do k = 1, by_frame_size
+        do j = 1, ny_cut
+          do i = 1, nx_cut
+            craw_cut(i,j,k) = craw(nx_start+i-1, ny_start+j-1, k)
           enddo
         enddo
       enddo
