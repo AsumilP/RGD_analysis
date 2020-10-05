@@ -4,9 +4,9 @@
 
 %% PARAMETERS
 
-    name_mode = 3; % 1. p_sequence, 2. p_cER, 3. specific Hz
-    date = 20200908;
-    recnum = 5;
+    name_mode = 1; % 1. p_sequence, 2. p_cER, 3. specific Hz
+    date = 20190821;
+    recnum = 11;
     flow_rate = 450; % [L/min], only for name_mode = 2
     eq_ratio = 0.72; % [-], only for name_mode = 2
     specific_f = 100; % [Hz], only for name_mode = 3
@@ -14,7 +14,7 @@
     speaker_t = 15; % [s], only for name_mode = 3
     
     fs = 20e3; % Sampling Rate [Hz]
-    samp_time = 15; % [sec]
+    samp_time = 10; % [sec]
     trigV = 8; % [V]
     Prof_Upper = 20/10; % [kPa/V]
     Prof_Down = 0.5; % [kPa/V]
@@ -25,11 +25,11 @@
     RMS_width = 0.2; % [sec]
     cam_frames = 21838;
 
-    for num = 1:1:recnum
+    for num = 0:1:recnum
 
 %% READ DATA
 
-      dir = sprintf('H:/Analysis/pressure/%d/calc/',date);
+      dir = sprintf('D:/Analysis/pressure/%d/calc/',date);
       if name_mode == 1
         rfn = sprintf('pressure_%d.xlsx',num);
       elseif name_mode == 2
@@ -37,10 +37,13 @@
       elseif name_mode == 3
         rfn = sprintf('pressure_speaker_%dHz_%dV_%ds_%d.xlsx',specific_f,speaker_v,speaker_t,num);
       end
-      trig = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));
+%       trig = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));
+      trig = xlsread(append(dir,rfn), sprintf('C2:C%d',fs*samp_time+1));
+%       upv = xlsread(append(dir,rfn), sprintf('B2:B%d',fs*samp_time+1));
       upv = xlsread(append(dir,rfn), sprintf('B2:B%d',fs*samp_time+1));
-      dpv = xlsread(append(dir,rfn), sprintf('C2:C%d',fs*samp_time+1));
-      spv = xlsread(append(dir,rfn), sprintf('D2:D%d',fs*samp_time+1));
+%       dpv = xlsread(append(dir,rfn), sprintf('C2:C%d',fs*samp_time+1));
+      dpv = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));
+%       spv = xlsread(append(dir,rfn), sprintf('D2:D%d',fs*samp_time+1));
 
 %% OUTPUT FILE
 
