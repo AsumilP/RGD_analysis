@@ -18,21 +18,22 @@
 !c--------------------------------------------------c
   implicit none
 
-  integer, parameter :: nx=191
-  integer, parameter :: nx_cut=191
-  integer, parameter :: nx_start=1
-  integer, parameter :: ny=121
-  integer, parameter :: ny_cut=98
-  integer, parameter :: ny_start=4
-  integer, parameter :: nz=21838
-  integer, parameter :: deal_start_frame=1
-  integer, parameter :: deal_end_frame=21838
-  integer, parameter :: by_frame_size=1
-  integer, parameter :: dt=50d-6 ! [s]
-  integer, parameter :: cond= 1
+  character(8) :: date = "20200823"
+  integer, parameter :: nx = 191
+  integer, parameter :: nx_cut = 191
+  integer, parameter :: nx_start = 1
+  integer, parameter :: ny = 121
+  integer, parameter :: ny_cut = 98
+  integer, parameter :: ny_start = 4
+  integer, parameter :: nz = 21838
+  integer, parameter :: deal_start_frame = 1
+  integer, parameter :: deal_end_frame = 21838
+  integer, parameter :: by_frame_size = 1
+  integer, parameter :: dt = 50d-6 ! [s]
+  integer, parameter :: cond = 1
 
-  character(*), parameter :: path_of_i = '/home/yatagi/mnt/velofield/20190821/piv/comblps/'
-  character(*), parameter :: path_of_o = '/home/yatagi/analysis/piv_output/velofield/cold_dmd/20190821/data_files/'
+  character(*), parameter :: path_of_i = '/home/yatagi/mnt/velofield/'//date//'/piv/comblps/'
+  character(*), parameter :: path_of_o = '/home/yatagi/analysis/piv_output/velofield/dmd/'//date//'20190821/data_files/'
 
   character(*) :: fni*200
   character(*) :: fno*200
