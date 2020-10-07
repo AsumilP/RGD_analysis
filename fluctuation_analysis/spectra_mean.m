@@ -14,14 +14,14 @@
     fft_mean_tlength = 5; % [s]
 
     date = 20200908;
-    num = 1;
+    num = 30;
     flow_rate = 0; % [L/min], signal_type = 1,2
     eq_ratio = 0.00; % signal_type = 1,2
     speaker_voltage = 1; % [V], signal_type = 3
     speaker_duration = 7.5; % [s], signal_type = 3
     speaker_lf = 0; % [Hz], signal_type = 3
     speaker_hf = 350; % [Hz], signal_type = 3
-    lduct = 582; % [mm], signal_type = 3
+    lduct = 1185; % [mm], signal_type = 3
 
     calc_start_time = 0; % [s], trans_start_time
     calc_fin_time = 15; % [s], trans_fin_time
