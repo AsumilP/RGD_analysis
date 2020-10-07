@@ -4,7 +4,7 @@
 
 %% PARAMETERS
 
-    signal_type = 4; % 1. p_sequence, 2. p_cER, 3. speaker, 4. p_noinput
+    signal_type = 3; % 1. p_sequence, 2. p_cER, 3. speaker, 4. p_noinput
     up_or_dwn = 2; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
 
     fft_dbl_type = 1; % 1. ^v^v 2. ^vv^ 3. ^v
@@ -13,7 +13,7 @@
     fft_mean_type = 1;
     fft_mean_tlength = 5; % [s]
 
-    date = 20200828;
+    date = 20200908;
     num = 1;
     flow_rate = 0; % [L/min], signal_type = 1,2
     eq_ratio = 0.00; % signal_type = 1,2
@@ -21,7 +21,7 @@
     speaker_duration = 7.5; % [s], signal_type = 3
     speaker_lf = 0; % [Hz], signal_type = 3
     speaker_hf = 350; % [Hz], signal_type = 3
-    lduct = 1185; % [mm], signal_type = 3
+    lduct = 582; % [mm], signal_type = 3
 
     calc_start_time = 0; % [s], trans_start_time
     calc_fin_time = 15; % [s], trans_fin_time
@@ -172,7 +172,7 @@
 
     if (signal_type == 2) || (signal_type == 3) || (signal_type == 4)
 
-      [abs_calc_fft,fps,div_nlength] = fft_meanspec(signal_calc,Fs,fft_mean_tlength,0,fft_dbl_type,fft_mean_type);
+      [abs_calc_fft,av_angle_fft,fps,div_nlength] = fft_meanspec(signal_calc,Fs,fft_mean_tlength,0,fft_dbl_type,fft_mean_type);
 
       fileID = fopen(fnps,'w');
       fwrite(fileID,abs_calc_fft,'double');
@@ -180,8 +180,8 @@
 
     else
 
-      [abs_btrans_fft,fps,div_nlength] = fft_meanspec(signal_btrans,Fs,fft_mean_tlength,0,fft_dbl_type,fft_mean_type);
-      [abs_atrans_fft,fps,div_nlength] = fft_meanspec(signal_atrans,Fs,fft_mean_tlength,0,fft_dbl_type,fft_mean_type);
+      [abs_btrans_fft,av_angle_fft,fps,div_nlength] = fft_meanspec(signal_btrans,Fs,fft_mean_tlength,0,fft_dbl_type,fft_mean_type);
+      [abs_atrans_fft,av_angle_fft,fps,div_nlength] = fft_meanspec(signal_atrans,Fs,fft_mean_tlength,0,fft_dbl_type,fft_mean_type);
 
       fileID = fopen(fnpsb,'w');
       fwrite(fileID,abs_btrans_fft,'double');
