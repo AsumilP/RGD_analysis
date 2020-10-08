@@ -4,25 +4,26 @@
 
 %% PARAMETERS
 
-    flow_rate1 = 400; % [L/min]
+    flow_rate1 = 500; % [L/min]
     step1 = 'trans1';
     
-    flow_rate2 = 400; % [L/min]
+    flow_rate2 = 500; % [L/min]
     step2 = 'trans2';
     
-    flow_rate3 = 400; % [L/min]
+    flow_rate3 = 500; % [L/min]
     step3 = 'trans3';
     
     dir = 'G:/dmd_averaged/';
+    velo = 'v';
 
 %% READ
 
-    fg_m_fil_in1 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step1,'.dat'),flow_rate1);
-    norm_dm_fil_in1 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step1,'.dat'),flow_rate1);
-    fg_m_fil_in2 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step2,'.dat'),flow_rate2);
-    norm_dm_fil_in2 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step2,'.dat'),flow_rate2);
-    fg_m_fil_in3 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step3,'.dat'),flow_rate3);
-    norm_dm_fil_in3 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step3,'.dat'),flow_rate3);
+    fg_m_fil_in1 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step1,'_',velo,'.dat'),flow_rate1);
+    norm_dm_fil_in1 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step1,'_',velo,'.dat'),flow_rate1);
+    fg_m_fil_in2 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step2,'_',velo,'.dat'),flow_rate2);
+    norm_dm_fil_in2 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step2,'_',velo,'.dat'),flow_rate2);
+    fg_m_fil_in3 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step3,'_',velo,'.dat'),flow_rate3);
+    norm_dm_fil_in3 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step3,'_',velo,'.dat'),flow_rate3);
     
     fileID = fopen(fg_m_fil_in1,'r');
     fg1 = fread(fileID,[1 inf],'double');
@@ -69,7 +70,7 @@
      % ax.XScale = 'log';
      % ax.YScale = 'log';
      ax.XLim = [20 300];
-     ax.YLim = [4 50];
+     ax.YLim = [4 100];
      ax.FontSize = 20;
      ax.FontName = 'Times New Roman';
      ax.TitleFontSizeMultiplier = 2;
