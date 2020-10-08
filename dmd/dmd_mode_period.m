@@ -3,16 +3,20 @@ clc
 close all
 
 %% Parameters 1
-    date = '20190821'; %date
-    con_num = 1;%condition number
-    div_file = 1;
-    m = 57; %mode number
+
+    date = '20190819'; %date
+    con_num = 5;%condition number
+    step = 'trans3';
+    div = 'u1_3';
+    
+    m = 425; %mode number
     div_theta = 10;
-    col_min = -10;
-    col_max = 10;
+    col_min = -2;
+    col_max = 2;
 %     vis='gray';
 
 %% Parameters 2
+
     nx = 191;
     ny = 98;
     vec_spc_x = 8;
@@ -31,36 +35,13 @@ close all
     wy(2,1)=ymax;
 
 %% READ FILES
+
     for i = con_num
+        
         i2 = i;
         I = 0;
-        if div_file==1
-          filepath = strcat('G:/Analysis/piv_output/cold_dmd/',date,'/%02u/averaging/01_13/mode/');
-        elseif div_file==2
-          filepath = strcat('G:/Analysis/piv_output/cold_dmd/',date,'/%02u/averaging/02_13/mode/');
-        elseif div_file==3
-          filepath = strcat('G:/Analysis/piv_output/cold_dmd/',date,'/%02u/averaging/03_13/mode/');
-        elseif div_file==4
-          filepath = strcat('G:/Analysis/piv_output/cold_dmd/',date,'/%02u/averaging/04_13/mode/');
-        elseif div_file==5
-          filepath = strcat('G:/Analysis/piv_output/cold_dmd/',date,'/%02u/averaging/05_13/mode/');
-        elseif div_file==6
-          filepath = strcat('G:/Analysis/piv_output/cold_dmd/',date,'/%02u/averaging/06_13/mode/');
-        elseif div_file==7
-          filepath = strcat('G:/Analysis/piv_output/cold_dmd/',date,'/%02u/averaging/07_13/mode/');
-        elseif div_file==8
-          filepath = strcat('G:/Analysis/piv_output/cold_dmd/',date,'/%02u/averaging/08_13/mode/');
-        elseif div_file==9
-          filepath = strcat('G:/Analysis/piv_output/cold_dmd/',date,'/%02u/averaging/09_13/mode/');
-        elseif div_file==10
-          filepath = strcat('G:/Analysis/piv_output/cold_dmd/',date,'/%02u/averaging/10_13/mode/');
-        elseif div_file==11
-          filepath = strcat('G:/Analysis/piv_output/cold_dmd/',date,'/%02u/averaging/11_13/mode/');
-        elseif div_file==12
-          filepath = strcat('G:/Analysis/piv_output/cold_dmd/',date,'/%02u/averaging/12_13/mode/');
-        elseif div_file==13
-          filepath = strcat('G:/Analysis/piv_output/cold_dmd/',date,'/%02u/averaging/13_13/mode/');
-        end
+        
+        filepath = strcat('G:/',date,'/%02u/averaging/',step,'/',div,'/mode/');
 
         filename1 = 'real_mode_%04u.dat';
         filename1 = sprintf(strcat(filepath,filename1),i2,m);
