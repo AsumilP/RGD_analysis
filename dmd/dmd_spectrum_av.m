@@ -9,86 +9,86 @@ clc
   id = 2; %1: norm, 2: norm (considering damp)
   average_width = 20;
   
-  flow_rate = 500;
+  flow_rate = 400;
   step = 'trans3';
-  num_data = 15;
+  num_data = 18;
   
   filepath_out = strcat('G:/dmd_averaged/');
 
 %% FILE INFORMATION
 %
   date_1 = '20190819'; %1
-  cond_1 = 5;
+  cond_1 = 3;
   % div_1='01_13';
   div_1='u1_3';
 
   date_2 = '20190819'; %2
-  cond_2 = 5;
+  cond_2 = 3;
   div_2 = 'u2_3';
 
   date_3 = '20190819'; %3
-  cond_3 = 5;
+  cond_3 = 3;
   div_3 = 'u3_3';
 %
-  date_4 = '20190820'; %4
-  cond_4 = 1;
+  date_4 = '20190823'; %4
+  cond_4 = 6;
   div_4 = 'u1_3';
 
-  date_5 = '20190820'; %5
-  cond_5 = 1;
+  date_5 = '20190823'; %5
+  cond_5 = 6;
   div_5 = 'u2_3';
 
-  date_6 = '20190820'; %6
-  cond_6 = 1;
+  date_6 = '20190823'; %6
+  cond_6 = 6;
   div_6 = 'u3_3';
 %
-  date_7 = '20190820'; %7
-  cond_7 = 2;
+  date_7 = '20190823'; %7
+  cond_7 = 7;
   div_7 = 'u1_3';
 
-  date_8 = '20190820'; %8
-  cond_8 = 2;
+  date_8 = '20190823'; %8
+  cond_8 = 7;
   div_8 = 'u2_3';
 
-  date_9 = '20190820'; %9
-  cond_9 = 2;
+  date_9 = '20190823'; %9
+  cond_9 = 7;
   div_9 = 'u3_3';
 %
-  date_10 = '20190821'; %10
-  cond_10 = 2;
+  date_10 = '20190823'; %10
+  cond_10 = 8;
   div_10 = 'u1_3';
 
-  date_11 = '20190821'; %11
-  cond_11 = 2;
+  date_11 = '20190823'; %11
+  cond_11 = 8;
   div_11 = 'u2_3';
 
-  date_12 = '20190821'; %12
-  cond_12 = 2;
+  date_12 = '20190823'; %12
+  cond_12 = 8;
   div_12 = 'u3_3';
 %
-  date_13 = '20190821'; %13
-  cond_13 = 3;
+  date_13 = '20190823'; %13
+  cond_13 = 9;
   div_13 = 'u1_3';
   
-  date_14 = '20190821'; %13
-  cond_14 = 3;
+  date_14 = '20190823'; %13
+  cond_14 = 9;
   div_14 = 'u2_3';
   
-  date_15 = '20190821'; %13
-  cond_15 = 3;
+  date_15 = '20190823'; %13
+  cond_15 = 9;
   div_15 = 'u3_3';
-% %
-%   date_16 = '20190821'; %13
-%   cond_16 = 7;
-%   div_16 = 'u1_3';
-%   
-%   date_17 = '20190821'; %13
-%   cond_17 = 7;
-%   div_17 = 'u2_3';
-%   
-%   date_18 = '20190821'; %13
-%   cond_18 = 7;
-%   div_18 = 'u3_3';
+%
+  date_16 = '20190823'; %13
+  cond_16 = 10;
+  div_16 = 'u1_3';
+  
+  date_17 = '20190823'; %13
+  cond_17 = 10;
+  div_17 = 'u2_3';
+  
+  date_18 = '20190823'; %13
+  cond_18 = 10;
+  div_18 = 'u3_3';
 % %
 %   date_19 = '20190821'; %13
 %   cond_19 = 9;
@@ -363,45 +363,45 @@ clc
   norm(:,:,15) = fscanf(fileID,'%f');
   fclose(fileID);
   
-% % 16
-%   filepath_16 = strcat('G:/',date_16,'/%02u/averaging/',step,'/',div_16,'/mode/');
-%   ifilename_16 = sprintf(strcat(filepath_16,ifilename_fg),cond_16);
-%   fileID = fopen(ifilename_16,'r');
-%   fg = fscanf(fileID,'%f',[2 Inf]);
-%   fclose(fileID);
-%   fg_v(:,:,16) = fg';
-% 
-%   ifilename_16 = sprintf(strcat(filepath_16,ifilename_norm),cond_16);
-%   fileID = fopen(ifilename_16,'r');
-%   norm(:,:,16) = fscanf(fileID,'%f');
-%   fclose(fileID);
-%   
-% % 17
-%   filepath_17 = strcat('G:/',date_17,'/%02u/averaging/',step,'/',div_17,'/mode/');
-%   ifilename_17 = sprintf(strcat(filepath_17,ifilename_fg),cond_17);
-%   fileID = fopen(ifilename_17,'r');
-%   fg = fscanf(fileID,'%f',[2 Inf]);
-%   fclose(fileID);
-%   fg_v(:,:,17) = fg';
-% 
-%   ifilename_17 = sprintf(strcat(filepath_17,ifilename_norm),cond_17);
-%   fileID = fopen(ifilename_17,'r');
-%   norm(:,:,17) = fscanf(fileID,'%f');
-%   fclose(fileID);
-%   
-% % 18
-%   filepath_18 = strcat('G:/',date_18,'/%02u/averaging/',step,'/',div_18,'/mode/');
-%   ifilename_18 = sprintf(strcat(filepath_18,ifilename_fg),cond_18);
-%   fileID = fopen(ifilename_18,'r');
-%   fg = fscanf(fileID,'%f',[2 Inf]);
-%   fclose(fileID);
-%   fg_v(:,:,18) = fg';
-% 
-%   ifilename_18 = sprintf(strcat(filepath_18,ifilename_norm),cond_18);
-%   fileID = fopen(ifilename_18,'r');
-%   norm(:,:,18) = fscanf(fileID,'%f');
-%   fclose(fileID);
-%   
+% 16
+  filepath_16 = strcat('G:/',date_16,'/%02u/averaging/',step,'/',div_16,'/mode/');
+  ifilename_16 = sprintf(strcat(filepath_16,ifilename_fg),cond_16);
+  fileID = fopen(ifilename_16,'r');
+  fg = fscanf(fileID,'%f',[2 Inf]);
+  fclose(fileID);
+  fg_v(:,:,16) = fg';
+
+  ifilename_16 = sprintf(strcat(filepath_16,ifilename_norm),cond_16);
+  fileID = fopen(ifilename_16,'r');
+  norm(:,:,16) = fscanf(fileID,'%f');
+  fclose(fileID);
+  
+% 17
+  filepath_17 = strcat('G:/',date_17,'/%02u/averaging/',step,'/',div_17,'/mode/');
+  ifilename_17 = sprintf(strcat(filepath_17,ifilename_fg),cond_17);
+  fileID = fopen(ifilename_17,'r');
+  fg = fscanf(fileID,'%f',[2 Inf]);
+  fclose(fileID);
+  fg_v(:,:,17) = fg';
+
+  ifilename_17 = sprintf(strcat(filepath_17,ifilename_norm),cond_17);
+  fileID = fopen(ifilename_17,'r');
+  norm(:,:,17) = fscanf(fileID,'%f');
+  fclose(fileID);
+  
+% 18
+  filepath_18 = strcat('G:/',date_18,'/%02u/averaging/',step,'/',div_18,'/mode/');
+  ifilename_18 = sprintf(strcat(filepath_18,ifilename_fg),cond_18);
+  fileID = fopen(ifilename_18,'r');
+  fg = fscanf(fileID,'%f',[2 Inf]);
+  fclose(fileID);
+  fg_v(:,:,18) = fg';
+
+  ifilename_18 = sprintf(strcat(filepath_18,ifilename_norm),cond_18);
+  fileID = fopen(ifilename_18,'r');
+  norm(:,:,18) = fscanf(fileID,'%f');
+  fclose(fileID);
+  
 % % 19
 %   filepath_19 = strcat('G:/',date_19,'/%02u/averaging/',step,'/',div_19,'/mode/');
 %   ifilename_19 = sprintf(strcat(filepath_19,ifilename_fg),cond_19);
@@ -646,9 +646,6 @@ clc
       fg_combine = vertcat(fg_combine,fg_v(:,:,i+2));
       norm_combine = vertcat(norm_combine,norm(:,1,i+2));
   end
-      
-%   fg_combine = vertcat(fg_v(:,:,1),fg_v(:,:,2),fg_v(:,:,3),fg_v(:,:,4),fg_v(:,:,5),fg_v(:,:,6),fg_v(:,:,7),fg_v(:,:,8),fg_v(:,:,9),fg_v(:,:,10),fg_v(:,:,11),fg_v(:,:,12),fg_v(:,:,13));
-%   norm_combine=vertcat(norm(:,1,1),norm(:,1,2),norm(:,1,3),norm(:,1,4),norm(:,1,5),norm(:,1,6),norm(:,1,7),norm(:,1,8),norm(:,1,9),norm(:,1,10),norm(:,1,11),norm(:,1,12),norm(:,1,13));
 
 %% SORT
 

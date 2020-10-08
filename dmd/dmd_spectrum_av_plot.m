@@ -4,13 +4,13 @@
 
 %% PARAMETERS
 
-    flow_rate1 = 500; % [L/min]
+    flow_rate1 = 400; % [L/min]
     step1 = 'trans1';
     
-    flow_rate2 = 500; % [L/min]
+    flow_rate2 = 400; % [L/min]
     step2 = 'trans2';
     
-    flow_rate3 = 500; % [L/min]
+    flow_rate3 = 400; % [L/min]
     step3 = 'trans3';
     
     dir = 'G:/dmd_averaged/';
@@ -69,7 +69,7 @@
      % ax.XScale = 'log';
      % ax.YScale = 'log';
      ax.XLim = [20 300];
-     ax.YLim = [4 40];
+     ax.YLim = [4 50];
      ax.FontSize = 20;
      ax.FontName = 'Times New Roman';
      ax.TitleFontSizeMultiplier = 2;
@@ -82,10 +82,10 @@
      ylabel('|\it{\lambda}_{j}^{m}| ||\it{\bf{v}}_j||')
      hold on
      
-     loglog(fg2,norm2,'-sr','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(norm2))
+     loglog(fg2,norm2,'-sb','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(norm2))
      hold on
      
-     loglog(fg3,norm3,'-vb','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(norm3))
+     loglog(fg3,norm3,'-vr','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(norm3))
      
 %      legend('400L/min, stable','400L/min, oscillation','450L/min, stable','450L/min, oscillation','500L/min, stable','500L/min, oscillation','FontSize',20,'Location','northwest')
      hold off
