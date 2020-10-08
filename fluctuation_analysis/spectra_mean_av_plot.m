@@ -6,7 +6,7 @@
     data_species = 3; % 1, 2, 3
     signal_type = 3; % 1. p_sequence, 2. p_cER, 3. speaker
     noise_sub = 0; %1. Yes, 0: No
-    up_or_dwn = 2; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
+    up_or_dwn = 1; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
 
 %%
     ndata_noise = 5;
@@ -651,6 +651,6 @@
 
      end
 
-     legend('582mm','883mm','1185mm','FontSize',20,'Location','southwest')
+     legend('582mm','883mm','1185mm','FontSize',20,'Location','northwest')
      hold off
      pbaspect([sqrt(2) 1 1]);
