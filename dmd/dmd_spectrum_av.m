@@ -6,11 +6,11 @@ clc
 
   dt = 50*10^(-6); %[s]
   increment = 6;
-  id = 1; %1: norm, 2: norm (considering damp)
-  average_width = 4;
+  id = 2; %1: norm, 2: norm (considering damp)
+  average_width = 20;
   
   flow_rate = 500;
-  step = 'trans1';
+  step = 'trans3';
   num_data = 15;
   
   filepath_out = strcat('G:/dmd_averaged/');
