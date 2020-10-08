@@ -4,7 +4,7 @@
 
 %% PARAMETERS
     data_species = 3; % 1, 2, 3
-    signal_type = 3; % 1. p_sequence, 2. p_cER, 3. speaker
+    signal_type = 1; % 1. p_sequence, 2. p_cER, 3. speaker
     noise_sub = 0; %1. Yes, 0: No
     up_or_dwn = 1; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
 
@@ -68,33 +68,34 @@
 %%
     elseif data_species == 3
 
-      ndata1 = 31;
-      flow_rate1 = 0; % [L/min]
-      eq_ratio1 = 0.00;
+      ndata1 = 6;
+      flow_rate1 = 400; % [L/min]
+      eq_ratio1 = 0.68;
       speaker_duration1 = 7.5; % [s], signal_type = 3
       lduct1 = 582; % [mm], signal_type = 3
 
-      ndata2 = 30;
-      flow_rate2 = 0; % [L/min]
-      eq_ratio2 = 0.00;
+      ndata2 = 16;
+      flow_rate2 = 450; % [L/min]
+      eq_ratio2 = 0.68;
       speaker_duration2 = 7.5; % [s], signal_type = 3
       lduct2 = 883; % [mm], signal_type = 3
 
-      ndata3 = 30;
-      flow_rate3 = 0; % [L/min]
-      eq_ratio3 = 0.00;
+      ndata3 = 8;
+      flow_rate3 = 500; % [L/min]
+      eq_ratio3 = 0.68;
       speaker_duration3 = 7.5; % [s], signal_type = 3
       lduct3 = 1185; % [mm], signal_type = 3
 
       date = 20200908;
-      fft_mean_tlength = 5; % [s]
+      fft_mean_tlength = 1; % [s]
       speaker_voltage = 1; % [V], signal_type = 3
       speaker_lf = 0; % [Hz], signal_type = 3
       speaker_hf = 350; % [Hz], signal_type = 3
       fs = 20e3;
       div_nlength = fs*fft_mean_tlength;
 
-      dir = sprintf('H:/Analysis/pressure/%d/calc/',date);
+      % dir = sprintf('H:/Analysis/pressure/%d/calc/',date);
+      dir = sprintf('H:/Analysis/pressure/PS_trans_calc/');
       % dir = sprintf('E:/chem_output/chem_intensity/%d/',date);
       % dir = sprintf('E:/piv_output/v_oscillation/');
       
@@ -590,10 +591,10 @@
 %% FIGURE
 
     figure('Position', [50 50 960 735],'Color','white');
-    loglog(faxis,psb_av1,'-vr','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psb_av1))
+    loglog(faxis,psb_av1,'-vr','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(psb_av1))
     hold on
     if signal_type == 1
-        loglog(faxis,psa_av1,'-^r','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psa_av1))
+        loglog(faxis,psa_av1,'-^r','MarkerSize',8,'MarkerFaceColor','r','MarkerIndices',1:1:length(psa_av1))
     end
 
     ax = gca;
@@ -630,27 +631,28 @@
        loglog(faxis,psb_av2,'-sb','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psb_av2))
        hold on
        if signal_type == 1
-           loglog(faxis,psa_av2,'-<b','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psa_av2))
+           loglog(faxis,psa_av2,'-<b','MarkerSize',8,'MarkerFaceColor','b','MarkerIndices',1:2:length(psa_av2))
            hold on
        end
 
      elseif data_species == 3
 
-       loglog(faxis,psb_av2,'-sb','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psb_av2))
+       loglog(faxis,psb_av2,'-sb','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(psb_av2))
        hold on
        if signal_type == 1
-           loglog(faxis,psa_av2,'-<b','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psa_av2))
+           loglog(faxis,psa_av2,'-<b','MarkerSize',8,'MarkerFaceColor','b','MarkerIndices',1:1:length(psa_av2))
            hold on
        end
-       loglog(faxis,psb_av3,'-dk','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psb_av3))
+       loglog(faxis,psb_av3,'-dk','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(psb_av3))
        hold on
        if signal_type == 1
-           loglog(faxis,psa_av3,'->k','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psa_av3))
+           loglog(faxis,psa_av3,'->k','MarkerSize',8,'MarkerFaceColor','k','MarkerIndices',1:1:length(psa_av3))
            hold on
        end
 
      end
 
-     legend('582mm','883mm','1185mm','FontSize',20,'Location','northwest')
+     % legend('582mm','883mm','1185mm','FontSize',20,'Location','northwest')
+     legend('400L/min, stable','400L/min, oscillation','450L/min, stable','450L/min, oscillation','500L/min, stable','500L/min, oscillation','FontSize',20,'Location','northwest')
      hold off
      pbaspect([sqrt(2) 1 1]);
