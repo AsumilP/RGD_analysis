@@ -87,7 +87,7 @@
       lduct3 = 1185; % [mm], signal_type = 3
 
       date = 20200908;
-      fft_mean_tlength = 1; % [s]
+      fft_mean_tlength = 5; % [s]
       speaker_voltage = 1; % [V], signal_type = 3
       speaker_lf = 0; % [Hz], signal_type = 3
       speaker_hf = 350; % [Hz], signal_type = 3
@@ -590,10 +590,10 @@
 %% FIGURE
 
     figure('Position', [50 50 960 735],'Color','white');
-    loglog(faxis,psb_av1,'-vk','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psb_av1))
+    loglog(faxis,psb_av1,'-vr','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psb_av1))
     hold on
     if signal_type == 1
-        loglog(faxis,psa_av1,'-^k','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psa_av1))
+        loglog(faxis,psa_av1,'-^r','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psa_av1))
     end
 
     ax = gca;
@@ -612,7 +612,7 @@
      % ax.XScale = 'log';
      % ax.YScale = 'log';
      ax.XLim = [20 300];
-     ax.YLim = [5 300];
+     ax.YLim = [1 10000];
      ax.FontSize = 20;
      ax.FontName = 'Times New Roman';
      ax.TitleFontSizeMultiplier = 2;
@@ -642,15 +642,15 @@
            loglog(faxis,psa_av2,'-<b','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psa_av2))
            hold on
        end
-       loglog(faxis,psb_av3,'-dr','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psb_av3))
+       loglog(faxis,psb_av3,'-dk','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psb_av3))
        hold on
        if signal_type == 1
-           loglog(faxis,psa_av3,'->r','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psa_av3))
+           loglog(faxis,psa_av3,'->k','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:2:length(psa_av3))
            hold on
        end
 
      end
 
-%      legend('FontSize',23)
+     legend('582mm','883mm','1185mm','FontSize',20,'Location','southwest')
      hold off
      pbaspect([sqrt(2) 1 1]);

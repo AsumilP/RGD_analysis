@@ -4,28 +4,28 @@
 
 %% PARAMETERS
 
-    signal_type = 3; % 1. p_sequence, 2. p_cER, 3. speaker, 4. p_noinput
-    up_or_dwn = 2; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
+    signal_type = 1; % 1. p_sequence, 2. p_cER, 3. speaker, 4. p_noinput
+    up_or_dwn = 1; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
 
-    fft_dbl_type = 1; % 1. ^v^v 2. ^vv^ 3. ^v
+    fft_dbl_type = 2; % 1. ^v^v 2. ^vv^ 3. ^v
     hpsfreq = 20;
     lpsfreq = 300;
     fft_mean_type = 1;
-    fft_mean_tlength = 5; % [s]
+    fft_mean_tlength = 1; % [s]
 
-    date = 20200908;
-    num = 30;
-    flow_rate = 0; % [L/min], signal_type = 1,2
-    eq_ratio = 0.00; % signal_type = 1,2
+    date = 20190823;
+    num = 10;
+    flow_rate = 400; % [L/min], signal_type = 1,2
+    eq_ratio = 0.68; % signal_type = 1,2
     speaker_voltage = 1; % [V], signal_type = 3
     speaker_duration = 7.5; % [s], signal_type = 3
     speaker_lf = 0; % [Hz], signal_type = 3
     speaker_hf = 350; % [Hz], signal_type = 3
     lduct = 1185; % [mm], signal_type = 3
 
-    calc_start_time = 0; % [s], trans_start_time
-    calc_fin_time = 15; % [s], trans_fin_time
-    calc_data_length = 15; % [s] >= fft_mean_tlength, signal_type = 1
+    calc_start_time = 2.9299; % [s], trans_start_time
+    calc_fin_time = 3.225; % [s], trans_fin_time
+    calc_data_length = 1; % [s] >= fft_mean_tlength, signal_type = 1
 
 %% PARAMETERS, fixed
 
@@ -33,7 +33,7 @@
 
       Fs = 20e3;
       Sts = 1/Fs; % [sec]
-      pres_samp_time = 15; % [sec]
+      pres_samp_time = 10; % [sec] NEED TO BE CHANGED
       datasize = Fs*pres_samp_time;
       calc_start_point = floor(calc_start_time/Sts)
       calc_fin_point = floor(calc_fin_time/Sts)
@@ -152,7 +152,7 @@
 
     if (signal_type == 2) || (signal_type == 3) || (signal_type == 4) % single data-series
 
-      for t = 1:(calc_fin_time-calc_start_time)*Fs
+      for t = 1:floor((calc_fin_time-calc_start_time)*Fs)
         signal_calc(t,1) = signal_bps(calc_start_point+t);
       end
 
