@@ -13,8 +13,8 @@
     flow_rate3 = 500; % [L/min]
     step3 = 'trans3';
     
-    dir = 'G:/dmd_averaged/';
-    velo = 'v';
+    dir = 'G:/Analysis/piv_output/dmd/dmd_averaged/';
+    velo = 'u';
 
 %% READ
 
@@ -88,6 +88,6 @@
      
      loglog(fg3,norm3,'-vr','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(norm3))
      
-%      legend('400L/min, stable','400L/min, oscillation','450L/min, stable','450L/min, oscillation','500L/min, stable','500L/min, oscillation','FontSize',20,'Location','northwest')
+     legend('t = -0.15 - 0.10s, 500L/min','t = -0.20 - 0.05s, 500L/min','t = -0.25 - 0.00s, 500L/min','FontSize',20,'Location','northwest')
      hold off
      pbaspect([sqrt(2) 1 1]);
