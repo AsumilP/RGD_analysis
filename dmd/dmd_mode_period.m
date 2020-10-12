@@ -9,13 +9,13 @@ close all
     id = 2; %1: norm, 2: norm (considering damp)
     date = '20190819'; %1
     cond = 5;
-    step = 'trans1';
-    div = 'v1_3';
-    serach_freq = 86;
+    step = 'trans3';
+    div = 'u3_3';
+    serach_freq = 206;
 
     div_theta = 10;
-    col_min = -3;
-    col_max = 3;
+    col_min = -1;
+    col_max = 1;
 %     vis='gray';
 
 %% Parameters 2
@@ -226,10 +226,10 @@ close all
 %% MAKE FIGURE
         fig = figure;
         fig.Color = 'white';
-        fig.Position = [1 1 800*(1+sqrt(5))/2 800];
+        fig.Position = [1 1 850*(1+sqrt(5))/2 650];
         IMAGE = imagesc(wx,wy,B(:,:),[col_min col_max]);
         % IMAGE = imagesc(C,[col_min col_max]);
-        ax=gca;
+        ax = gca;
         load('MyColormap_for_w','mymap')
         colormap(ax,mymap)
         % colormap(ax,vis)
@@ -252,10 +252,12 @@ close all
 
         xlabel('\it \fontname{Times New Roman} x \rm[mm]')
         ylabel('\it \fontname{Times New Roman} y \rm[mm]')
-        set(gca,'XMinorTick','off','YMinorTick','off','FontName','Times New Roman','FontSize',20,'LineWidth',2.0,'Color','k')
+        set(gca,'XMinorTick','on','YMinorTick','on','FontName','Times New Roman','FontSize',20,'LineWidth',2.0,'Color','k')
 
         xlim([-60 60])
         ylim([ymin ymax])
+        
+        pbaspect([2 1 1]);
 
         frame = getframe(fig);
         im{j} = frame2im(frame);
