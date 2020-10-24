@@ -4,24 +4,26 @@
 
 %% PARAMETERS
 
-    name_mode = 1; % 1. p_sequence, 2. p_cER, 3. specific Hz
-    date = 20190823;
-    recnum = 10;
-    flow_rate = 450; % [L/min], only for name_mode = 2
-    eq_ratio = 0.72; % [-], only for name_mode = 2
+    name_mode = 2; % 1. p_sequence, 2. p_cER, 3. specific Hz
+    date = 20200901;
+    recnum = 1;
+    sw_num = 60; % [-], vane angle, only for name_mode = 2
+    flow_rate = 500; % [L/min], only for name_mode = 2
+    eq_ratio = 0.80; % [-], only for name_mode = 2
+    duct_l = 1185; % [mm], only for name_mode = 2
     specific_f = 100; % [Hz], only for name_mode = 3
     speaker_v = 1; % [V], only for name_mode = 3
     speaker_t = 15; % [s], only for name_mode = 3
     
     fs = 20e3; % Sampling Rate [Hz]
-    samp_time = 10; % [sec]
+    samp_time = 15; % [sec]
     trigV = 8; % [V]
     Prof_Upper = 20/10; % [kPa/V]
     Prof_Down = 0.5; % [kPa/V]
 
     fft_dbl_type = 2; % 1. ^v^v 2. ^vv^ 3. ^v
     hpsfreq = 20; % [Hz]
-    lpsfreq = 300; % [Hz]
+    lpsfreq = 3000; % [Hz]
     RMS_width = 0.2; % [sec]
     cam_frames = 21838;
 
@@ -29,21 +31,23 @@
 
 %% READ DATA
 
-      dir = sprintf('H:/Analysis/pressure/%d/calc/',date);
+%       dir = sprintf('H:/Analysis/pressure/%d/calc/',date);
+      dir = sprintf('C:/Users/yatagi/Desktop/sw%d_cER/%d/calc/',sw_num,date);
+      
       if name_mode == 1
         rfn = sprintf('pressure_%d.xlsx',num);
       elseif name_mode == 2
-        rfn = sprintf('pressure_%d_%.2f_cER.xlsx',flow_rate,eq_ratio);
+        rfn = sprintf('pressure_d%d_%d_%.2f_cER.xlsx',duct_l,flow_rate,eq_ratio);
       elseif name_mode == 3
         rfn = sprintf('pressure_speaker_%dHz_%dV_%ds_%d.xlsx',specific_f,speaker_v,speaker_t,num);
       end
-%       trig = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));   
-%       upv = xlsread(append(dir,rfn), sprintf('B2:B%d',fs*samp_time+1));     
-%       dpv = xlsread(append(dir,rfn), sprintf('C2:C%d',fs*samp_time+1));
-%       spv = xlsread(append(dir,rfn), sprintf('D2:D%d',fs*samp_time+1));
-      trig = xlsread(append(dir,rfn), sprintf('C2:C%d',fs*samp_time+1));
-      upv = xlsread(append(dir,rfn), sprintf('B2:B%d',fs*samp_time+1));
-      dpv = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));
+      trig = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));   
+      upv = xlsread(append(dir,rfn), sprintf('B2:B%d',fs*samp_time+1));     
+      dpv = xlsread(append(dir,rfn), sprintf('C2:C%d',fs*samp_time+1));
+      spv = xlsread(append(dir,rfn), sprintf('D2:D%d',fs*samp_time+1));
+%       trig = xlsread(append(dir,rfn), sprintf('C2:C%d',fs*samp_time+1));
+%       upv = xlsread(append(dir,rfn), sprintf('B2:B%d',fs*samp_time+1));
+%       dpv = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));
 
 %% OUTPUT FILE
 
@@ -55,10 +59,10 @@
         fnurms = sprintf('PUpper_primerms_hps%d_lps%d_%d_%02u.dat',hpsfreq,lpsfreq,date,num);
         fndrms = sprintf('PDown_primerms_hps%d_lps%d_%d_%02u.dat',hpsfreq,lpsfreq,date,num);
       elseif name_mode == 2
-        fnubps = sprintf('PUpper_hps%d_lps%d_%d_%.2f_cER.dat',hpsfreq,lpsfreq,flow_rate,eq_ratio);
-        fndbps = sprintf('PDown_hps%d_lps%d_%d_%.2f_cER.dat',hpsfreq,lpsfreq,flow_rate,eq_ratio);
-        fnurms = sprintf('PUpper_primerms_hps%d_lps%d_%d_%.2f_cER.dat',hpsfreq,lpsfreq,flow_rate,eq_ratio);
-        fndrms = sprintf('PDown_primerms_hps%d_lps%d_%d_%.2f.dat',hpsfreq,lpsfreq,flow_rate,eq_ratio);
+        fnubps = sprintf('PUpper_d%d_hps%d_lps%d_%d_%.2f_cER.dat',duct_l,hpsfreq,lpsfreq,flow_rate,eq_ratio);
+        fndbps = sprintf('PDown_d%d_hps%d_lps%d_%d_%.2f_cER.dat',duct_l,hpsfreq,lpsfreq,flow_rate,eq_ratio);
+        fnurms = sprintf('PUpper_d%d_primerms_hps%d_lps%d_%d_%.2f_cER.dat',duct_l,hpsfreq,lpsfreq,flow_rate,eq_ratio);
+        fndrms = sprintf('PDown_d%d_primerms_hps%d_lps%d_%d_%.2f.dat',duct_l,hpsfreq,lpsfreq,flow_rate,eq_ratio);
       elseif name_mode == 3
         fnubps = sprintf('PUpper_speaker_hps%d_lps%d_%dHz_%dV_%ds_%d.dat',hpsfreq,lpsfreq,specific_f,speaker_v,speaker_t,num);
         fndbps = sprintf('PDown_speaker_hps%d_lps%d_%dHz_%dV_%ds_%d.dat',hpsfreq,lpsfreq,specific_f,speaker_v,speaker_t,num);
@@ -150,7 +154,7 @@
 
       ax.XColor = 'k';
       ax.YColor = 'k';
-      ax.FontSize = 25;
+      ax.FontSize = 20;
       ax.FontName = 'Times New Roman';
       ax.TitleFontSizeMultiplier = 2;
       ax.Box = 'on';
@@ -162,7 +166,7 @@
 
       xlabel('\it \fontname{Times New Roman} t \rm[sec]')
       ylabel('\it \fontname{Times New Roman} p'' \rm[kPa]')
-      set(gca,'FontName','Times New Roman','FontSize',30)
+      set(gca,'FontName','Times New Roman','FontSize',20)
       hold on
 
       plot(taxis,ppu,'^r')
@@ -185,7 +189,7 @@
 
       ax.XColor = 'k';
       ax.YColor = 'k';
-      ax.FontSize = 25;
+      ax.FontSize = 20;
       ax.FontName = 'Times New Roman';
       ax.TitleFontSizeMultiplier = 2;
       ax.Box = 'on';
@@ -197,7 +201,7 @@
 
       xlabel('\it \fontname{Times New Roman} t \rm[sec]')
       ylabel('\it \fontname{Times New Roman} p''_{rms} \rm[kPa]')
-      set(gca,'FontName','Times New Roman','FontSize',30)
+      set(gca,'FontName','Times New Roman','FontSize',20)
       hold on
 
       plot(taxis_rms,p_rms_upper,'^r')
