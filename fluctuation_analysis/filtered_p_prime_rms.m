@@ -5,11 +5,11 @@
 %% PARAMETERS
 
     name_mode = 2; % 1. p_sequence, 2. p_cER, 3. specific Hz
-    date = 20201015;
+    date = 20201021;
     recnum = 1;
     sw_num = 60; % [-], vane angle, only for name_mode = 2
-    flow_rate = 290; % [L/min], only for name_mode = 2
-    eq_ratio = 0.72; % [-], only for name_mode = 2
+    flow_rate = 470; % [L/min], only for name_mode = 2
+    eq_ratio = 0.80; % [-], only for name_mode = 2
     duct_l = 582; % [mm], only for name_mode = 2
     specific_f = 100; % [Hz], only for name_mode = 3
     speaker_v = 1; % [V], only for name_mode = 3
@@ -23,7 +23,7 @@
 
     fft_dbl_type = 2; % 1. ^v^v 2. ^vv^ 3. ^v
     hpsfreq = 20; % [Hz]
-    lpsfreq = 300; % [Hz]
+    lpsfreq = 3000; % [Hz]
     RMS_width = 0.2; % [sec]
     cam_frames = 21838;
 
@@ -31,8 +31,8 @@
 
 %% READ DATA
 
-%       dir = sprintf('H:/Analysis/pressure/%d/calc/',date);
-      dir = sprintf('C:/Users/yatagi/Desktop/sw%d_cER/%d/calc/',sw_num,date);
+      dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
+%       dir = sprintf('C:/Users/yatagi/Desktop/sw%d_cER/%d/calc/',sw_num,date);
       
       if name_mode == 1
         rfn = sprintf('pressure_%d.xlsx',num);
