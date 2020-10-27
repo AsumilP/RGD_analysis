@@ -13,11 +13,11 @@
     fft_mean_type = 1;
     fft_mean_tlength = 1; % [s]
 
-    date = 20200826;
+    date = 20201021;
     num = 1;
-    flow_rate = 250; % [L/min], signal_type = 1,2
-    eq_ratio = 0.70; % signal_type = 1,2
-    lduct = 1185; % [mm], signal_type = 2,3
+    flow_rate = 470; % [L/min], signal_type = 1,2
+    eq_ratio = 0.80; % signal_type = 1,2
+    lduct = 582; % [mm], signal_type = 2,3
     speaker_voltage = 1; % [V], signal_type = 3
     speaker_duration = 7.5; % [s], signal_type = 3
     speaker_lf = 0; % [Hz], signal_type = 3
@@ -26,6 +26,8 @@
     calc_start_time = 0; % [s], trans_start_time
     calc_fin_time = 15; % [s], trans_fin_time
     calc_data_length = 1; % [s] >= fft_mean_tlength, signal_type = 1
+    
+    figex = '.fig'; % fig, png
 
 %% PARAMETERS, fixed
 
@@ -44,7 +46,7 @@
     end
 
 %% READ
-
+%
     if signal_type == 1
       if up_or_dwn == 1
 
@@ -71,30 +73,32 @@
         fnaxis = append(dir,fnaxis);
 
       end
-
+%
     elseif signal_type == 2
       if up_or_dwn == 1
 
-        dir = sprintf('H:/Analysis/pressure/%d/calc/',date);
-        fnubps = sprintf('PUpper_hps%d_lps%d_%d_%.2f_cER.dat',hpsfreq,lpsfreq,flow_rate,eq_ratio);
-        fnups = sprintf('PUpper_PS_%d_%.2f_tlen%g_%d_%02u_cER.dat',flow_rate,eq_ratio,fft_mean_tlength,date,num);
+        dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
+        fnubps = sprintf('PUpper_d%d_hps%d_lps%d_%d_%.2f_cER.dat',lduct,hpsfreq,lpsfreq,flow_rate,eq_ratio);
+        fnups = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_%d_%02u_cER.dat',lduct,hpsfreq,lpsfreq,flow_rate,eq_ratio,fft_mean_tlength,date,num);
         fnaxis = sprintf('PS_faxis_pressure_tlen%g_cER.dat',fft_mean_tlength);
+        fign = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_%d_%02u_cER',lduct,hpsfreq,lpsfreq,flow_rate,eq_ratio,fft_mean_tlength,date,num);
         fni = append(dir,fnubps);
         fnps = append(dir,fnups);
         fnaxis = append(dir,fnaxis);
 
       elseif up_or_dwn == 2
 
-        dir = sprintf('H:/Analysis/pressure/%d/calc/',date);
-        fndbps = sprintf('PDown_hps%d_lps%d_%d_%.2f_cER.dat',hpsfreq,lpsfreq,flow_rate,eq_ratio);
-        fndps = sprintf('PDown_PS_%d_%.2f_tlen%g_%d_%02u_cER.dat',flow_rate,eq_ratio,fft_mean_tlength,date,num);
+        dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
+        fndbps = sprintf('PDown_d%d_hps%d_lps%d_%d_%.2f_cER.dat',lduct,hpsfreq,lpsfreq,flow_rate,eq_ratio);
+        fndps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_%d_%02u_cER.dat',lduct,hpsfreq,lpsfreq,flow_rate,eq_ratio,fft_mean_tlength,date,num);
         fnaxis = sprintf('PS_faxis_pressure_tlen%g_cER.dat',fft_mean_tlength);
+        fign = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_%d_%02u_cER',lduct,hpsfreq,lpsfreq,flow_rate,eq_ratio,fft_mean_tlength,date,num);
         fni = append(dir,fndbps);
         fnps = append(dir,fndps);
         fnaxis = append(dir,fnaxis);
 
       end
-
+%
     elseif signal_type == 3
       if up_or_dwn == 1
 
@@ -117,7 +121,7 @@
         fnaxis = append(dir,fnaxis);
 
       end
-
+%
     elseif signal_type == 4
       if up_or_dwn == 1
 
@@ -140,11 +144,11 @@
         fnaxis = append(dir,fnaxis);
 
       end
-
+%
     elseif signal_type == 5
 
     end
-
+%
     fid = fopen(fni,'r');
     signal_bps = fread(fid,datasize,'double');
     fclose(fid);
@@ -236,3 +240,4 @@
     ylabel('\it \fontname{Times New Roman}P \rm[kPa,m/s,-]');
     hold off
     pbaspect([sqrt(2) 1 1]);
+    saveas(gcf, strcat(dir,fign,figex));
