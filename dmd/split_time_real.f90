@@ -26,8 +26,8 @@
   integer, parameter :: ny_cut = 98
   integer, parameter :: ny_start = 4
   integer, parameter :: nz = 21838
-  integer, parameter :: deal_start_frame = 5535
-  integer, parameter :: deal_end_frame = 12535
+  integer, parameter :: deal_start_frame = 12535
+  integer, parameter :: deal_end_frame = 15535
   integer, parameter :: dt = 50d-6 ! [s]
   integer, parameter :: cond_start = 10
   integer, parameter :: cond_end = 10
