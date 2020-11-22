@@ -4,7 +4,7 @@
 
 %% PARAMETERS
 
-    signal_type = 2; % 1. p_sequence, 2. p_cER, 3. speaker, 4. p_noinput
+    signal_type = 3; % 1. p_sequence, 2. p_cER, 3. speaker, 4. p_noinput
     up_or_dwn = 1; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
 
     fft_dbl_type = 2; % 1. ^v^v 2. ^vv^ 3. ^v

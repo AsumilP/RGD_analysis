@@ -11,11 +11,12 @@
 
      fft_dbl_type = 1; % 1. ^v^v 2. ^vv^ 3. ^v
      hpsfreq = 20; % [Hz]
-     lpsfreq = 300; % [Hz]
+     lpsfreq = 300; % [Hz],, should be less than speaker_hf
      fchange_hpsfreq = 0; % [Hz]
      fchange_lpsfreq = 2; % [Hz]
-     fft_mean_type = 1;
+     fft_mean_type = 2;
      fft_mean_tlength = 1; % [s]
+     fft_increment = 0;
 
      date = 20200908;
      recnum = 31;
@@ -34,7 +35,7 @@
 
 %% READ DATA
 
-        dir = sprintf('H:/Analysis/pressure/%d/calc/',date);
+        dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
         if input_sw == 1
             rfn = sprintf('pressure_speaker_%d-%dHz_%dV_%gs_d%d_%d.xlsx',speaker_lf, speaker_hf, speaker_voltage, speaker_duration, lduct, num);
         elseif input_sw == 0
@@ -163,9 +164,9 @@
 
 %% POWER SPECTRA
 
-        [abs_freq_ppu, av_ang_ppu, fps, div_nlength] = fft_meanspec(ppu, fs_pres, fft_mean_tlength, 0, fft_dbl_type, fft_mean_type);
-        [abs_freq_ppd, av_ang_ppd, fps, div_nlength] = fft_meanspec(ppd, fs_pres, fft_mean_tlength, 0, fft_dbl_type, fft_mean_type);
-        [abs_freq_spv, av_ang_spv, fps, div_nlength] = fft_meanspec(spv, fs_pres, fft_mean_tlength, 0, fft_dbl_type, fft_mean_type);
+        [abs_freq_ppu, av_ang_ppu, fps, div_nlength] = fft_meanspec(ppu, fs_pres, fft_mean_tlength, fft_increment, fft_dbl_type, fft_mean_type);
+        [abs_freq_ppd, av_ang_ppd, fps, div_nlength] = fft_meanspec(ppd, fs_pres, fft_mean_tlength, fft_increment, fft_dbl_type, fft_mean_type);
+        [abs_freq_spv, av_ang_spv, fps, div_nlength] = fft_meanspec(spv, fs_pres, fft_mean_tlength, fft_increment, fft_dbl_type, fft_mean_type);
 
         fileID = fopen(fnpups,'w');
         fwrite(fileID,abs_freq_ppu,'double');

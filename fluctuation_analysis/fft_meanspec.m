@@ -19,7 +19,7 @@ elseif psmode == 2
     % thining out
     div_nlength = floor(1+(tlength*fs-1)/(div_inc+1));
     div_num = nlength - (div_inc+1)*(div_nlength-1);
-    for k = 1: divnum
+    for k = 1: div_num
         signal_div = signal(k:(div_inc+1):k+(div_inc+1)*(div_nlength-1));
         [signal_fft, f] = fft_spec(signal_div, fs/(div_inc+1), fftmode);
         abs_signal_fft = abs_signal_fft + abs(signal_fft)/div_num;
