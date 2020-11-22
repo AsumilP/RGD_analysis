@@ -11,7 +11,7 @@
 
      fft_dbl_type = 1; % 1. ^v^v 2. ^vv^ 3. ^v
      hpsfreq = 20; % [Hz]
-     lpsfreq = 300; % [Hz],, should be less than speaker_hf
+     lpsfreq = 3000; % [Hz],, should be less than speaker_hf
      fchange_hpsfreq = 0; % [Hz]
      fchange_lpsfreq = 2; % [Hz]
 
@@ -115,11 +115,15 @@
 
 %% SPEAKER-FREQUENCY-CHANGE
 
-        [fchange] = trace_frequency(spv,fs_pres,taxis_all,speaker_hf,speaker_lf,fchange_lpsfreq,fchange_hpsfreq,fft_dbl_type);
+        if input_sw == 1
 
-        fileID = fopen(fnspvfc,'w');
-        fwrite(fileID,fchange,'double');
-        fclose(fileID);
+          [fchange] = trace_frequency(spv,fs_pres,taxis_all,speaker_hf,speaker_lf,fchange_lpsfreq,fchange_hpsfreq,fft_dbl_type);
+
+          fileID = fopen(fnspvfc,'w');
+          fwrite(fileID,fchange,'double');
+          fclose(fileID);
+
+        end
 
 %% FIGURE, PRESSURE FLUCTUATION
 
@@ -184,95 +188,11 @@
 
 %% FIGURE, SPEAKER-FREQUENCY-CHANGE
 
-        if fig_vis == 1
-
-          figure('Position',[50 50 960 735],'Color','white');
-          plot(taxis_all,fchange,'-k')
-
-          ax = gca;
-          ax.Box = 'on';
-          ax.LineWidth = 2.0;
-          ax.XMinorTick = 'on';
-          ax.YMinorTick = 'on';
-
-          xtickformat('%.f')
-          ytickformat('%.f')
-
-          xlim([0 pres_samp_time]);
-          ylim([speaker_lf speaker_hf+50]);
-
-          xlabel('\it \fontname{Times New Roman} t \rm[sec]')
-          ylabel('\it \fontname{Times New Roman} f \rm[Hz]')
-          set(gca,'FontName','Times New Roman','FontSize',20)
-          pbaspect([sqrt(2) 1 1]);
-          saveas(gcf,strcat(dir,figf,figex));
-          close;
-
-        end
-
-    end
-
-%% AVERAGED DISTRIBUTION f-p'
-
-    if input_sw == 1
-
-      ppurms = zeros(lpsfreq - hpsfreq +1, nnc, 1);
-      ppdrms = zeros(lpsfreq - hpsfreq +1, nnc, 1);
-      nn = zeros(lpsfreq - hpsfreq +1, nnc, 1);
-      f = hpsfreq:1:lpsfreq;
-      f = f';
-
-      for num = 1:recnum
-
-        fnpu = sprintf('ppu_spk_%d-%dHz_%dV_%gs_d%d_hps%d-lps%d_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration,lduct,hpsfreq,lpsfreq,num);
-        fnpu = append(dir,fnpu);
-        fnpd = sprintf('ppd_spk_%d-%dHz_%dV_%gs_d%d_hps%d-lps%d_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration,lduct,hpsfreq,lpsfreq,num);
-        fnpd = append(dir,fnpd);
-        fnspvfc = sprintf('fchange_spk_%d-%dHz_%dV_%gs_d%d_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration,lduct,num);
-        fnspvfc = append(dir,fnspvfc);
-
-        fid = fopen(fnpu,'r');
-        ppu = fread(fid,pres_datasize,'double');
-        fclose(fid);
-        fid = fopen(fnpd,'r');
-        ppd = fread(fid,pres_datasize,'double');
-        fclose(fid);
-        fid = fopen(fnspvfc,'r');
-        fchange = fread(fid,pres_datasize,'double');
-        fclose(fid);
-
-        for k = 1:pres_datasize
-          for l = 1:1:lpsfreq - hpsfreq + 1
-            if (fchange(k) >= l + hpsfreq - 1.5 ) && (fchange(k) < l + hpsfreq - 0.5 )
-              nn(l, num) = nn(l, num) + 1;
-              ppun(l,nn(l, num)) = ppu(k);
-              ppdn(l,nn(l, num)) = ppd(k);
-            end
-          end
-        end
-
-        for l = 1:1:lpsfreq - hpsfreq +1
-          ppurms(l, num) = rms(ppun(l,:)-mean(ppun(l,:)));
-          ppdrms(l, num) = rms(ppdn(l,:)-mean(ppdn(l,:)));
-        end
-
-      end
-
-      ppurms_av = mean(ppurms(:, :),2);
-      ppdrms_av = mean(ppdrms(:, :),2);
-
-    end
-
-%% FIGURE, AVERAGED DISTRIBUTION f-p'rms
-
         if input_sw == 1
+          if fig_vis == 1
 
-            figure('Position', [50 50 960 735],'Color','white');
-%             loglog(f,ppurms_av,'-^','MarkerSize',8,'MarkerFaceColor','w','Color','r')
-            semilogx(f,ppurms_av,'-^','MarkerSize',8,'MarkerFaceColor','w','Color','r')
-            hold on
-%             loglog(f,ppdrms_av,'-v','MarkerSize',8,'MarkerFaceColor','w','Color','b')
-            semilogx(f,ppdrms_av,'-v','MarkerSize',8,'MarkerFaceColor','w','Color','b')
+            figure('Position',[50 50 960 735],'Color','white');
+            plot(taxis_all,fchange,'-k')
 
             ax = gca;
             ax.Box = 'on';
@@ -281,18 +201,108 @@
             ax.YMinorTick = 'on';
 
             xtickformat('%.f')
-            ytickformat('%.2f')
+            ytickformat('%.f')
 
-            xlim([hpsfreq lpsfreq]);
-            ylim([0.001 0.2]);
+            xlim([0 pres_samp_time]);
+            ylim([speaker_lf speaker_hf+50]);
 
-            xlabel('\it \fontname{Times New Roman} f \rm[Hz]')
-            ylabel('\it \fontname{Times New Roman} p''_{rms} \rm[kPa]')
+            xlabel('\it \fontname{Times New Roman} t \rm[sec]')
+            ylabel('\it \fontname{Times New Roman} f \rm[Hz]')
             set(gca,'FontName','Times New Roman','FontSize',20)
-            legend({'Upstream','Downstream'},'Location','northeast')
-            hold off
             pbaspect([sqrt(2) 1 1]);
-            saveas(gcf, strcat(dir, figfp, figex));
-%             close;
+            saveas(gcf,strcat(dir,figf,figex));
+            close;
 
+          end
         end
+
+     end
+
+%% AVERAGED DISTRIBUTION f-p'
+
+     if input_sw == 1
+         
+       ppurms = zeros(lpsfreq - hpsfreq +1,nnc,1);
+       ppdrms = zeros(lpsfreq - hpsfreq +1,nnc,1);
+       nn = zeros(lpsfreq - hpsfreq +1,nnc,1);
+       f = hpsfreq:1:lpsfreq;
+       f = f';
+
+       for num = 1:recnum
+
+         fnpu = sprintf('ppu_spk_%d-%dHz_%dV_%gs_d%d_hps%d-lps%d_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration,lduct,hpsfreq,lpsfreq,num);
+         fnpu = append(dir,fnpu);
+         fnpd = sprintf('ppd_spk_%d-%dHz_%dV_%gs_d%d_hps%d-lps%d_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration,lduct,hpsfreq,lpsfreq,num);
+         fnpd = append(dir,fnpd);
+         fnspvfc = sprintf('fchange_spk_%d-%dHz_%dV_%gs_d%d_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration,lduct,num);
+         fnspvfc = append(dir,fnspvfc);
+
+         fid = fopen(fnpu,'r');
+         ppu = fread(fid,pres_datasize,'double');
+         fclose(fid);
+         fid = fopen(fnpd,'r');
+         ppd = fread(fid,pres_datasize,'double');
+         fclose(fid);
+         fid = fopen(fnspvfc,'r');
+         fchange = fread(fid,pres_datasize,'double');
+         fclose(fid);
+
+         for k = 1:pres_datasize                
+           for l = 1:1:lpsfreq - hpsfreq + 1
+             if (fchange(k) >= l + hpsfreq - 1.5 ) && (fchange(k) < l + hpsfreq - 0.5 )   
+                 nn(l,num,1) = nn(l,num,1) + 1;
+                 ppun(l,nn(l, num,1)) = ppu(k);
+                 ppdn(l,nn(l, num,1)) = ppd(k);
+             end
+           end
+         end
+
+         for l = 1:1:size(ppun,1)
+           ppurms(l, num) = rms(ppun(l,:)-mean(ppun(l,:)));
+           ppdrms(l, num) = rms(ppdn(l,:)-mean(ppdn(l,:)));
+         end
+         
+         ppun = 0;
+         ppdn = 0;
+
+       end
+       
+       ppurms_av = mean(ppurms(:, :),2);
+       ppdrms_av = mean(ppdrms(:, :),2);
+
+     end
+     
+
+%% FIGURE, AVERAGED DISTRIBUTION f-p'rms
+
+     if input_sw == 1
+
+       figure('Position', [50 50 960 735],'Color','white');
+       loglog(f,ppurms_av,'-^','MarkerSize',8,'MarkerFaceColor','w','Color','r')
+       % semilogx(f,ppurms_av,'-^','MarkerSize',8,'MarkerFaceColor','w','Color','r')
+       hold on
+       loglog(f,ppdrms_av,'-v','MarkerSize',8,'MarkerFaceColor','w','Color','b')
+       % semilogx(f,ppdrms_av,'-v','MarkerSize',8,'MarkerFaceColor','w','Color','b')
+
+       ax = gca;
+       ax.Box = 'on';
+       ax.LineWidth = 2.0;
+       ax.XMinorTick = 'on';
+       ax.YMinorTick = 'on';
+
+       xtickformat('%.f')
+       ytickformat('%.2f')
+
+       xlim([hpsfreq lpsfreq]);
+       ylim([0.001 0.2]);
+
+       xlabel('\it \fontname{Times New Roman} f \rm[Hz]')
+       ylabel('\it \fontname{Times New Roman} p''_{rms} \rm[kPa]')
+       set(gca,'FontName','Times New Roman','FontSize',20)
+       legend({'Upstream','Downstream'},'Location','northeast')
+       hold off
+       pbaspect([sqrt(2) 1 1]);
+       saveas(gcf, strcat(dir, figfp, figex));
+       % close;
+
+     end
