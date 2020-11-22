@@ -16,13 +16,13 @@
      fchange_lpsfreq = 2; % [Hz]
 
      date = 20200908;
-     recnum = 31;
+     recnum = 30;
      input_sw = 1; % 0: noinput
      speaker_voltage = 1; % [V]
-     speaker_duration = 7.5; % [s]
+     speaker_duration = 15; % [s]
      speaker_lf = 0; % [Hz]
      speaker_hf = 350; % [Hz]
-     lduct = 582; % [mm]
+     lduct = 1185; % [mm]
      figex = '.fig'; % fig, png
      fig_vis = 0;
      nnc = 0;
