@@ -11,23 +11,23 @@
 
      fft_dbl_type = 1; % 1. ^v^v 2. ^vv^ 3. ^v
      hpsfreq = 20; % [Hz]
-     lpsfreq = 3000; % [Hz],, should be less than speaker_hf
+     lpsfreq = 315; % [Hz]
      fchange_hpsfreq = 0; % [Hz]
      fchange_lpsfreq = 2; % [Hz]
 
-     date = 20201118;
+     date = 20201117;
      recnum = 10;
      input_sw = 1; % 0: noinput
      speaker_voltage = 1; % [V]
      speaker_duration = 15; % [s]
 %      speaker_lf = 50; %%% [Hz]
 %      speaker_hf = 65; %%% [Hz]
-     lduct = 1185; % [mm]
+     lduct = 0; % [mm]
      figex = '.png'; % fig, png
      fig_vis = 1;
      nnc = 0;
      
-     for speaker_lf = 40:10:450 %%%
+     for speaker_lf = 40:10:300 %%%
          
          speaker_hf = speaker_lf + 15; %%%
 
