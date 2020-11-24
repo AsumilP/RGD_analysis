@@ -24,7 +24,7 @@
 %      speaker_hf = 65; %%% [Hz]
      lduct = 1185; % [mm]
      figex = '.png'; % fig, png
-     fig_vis = 0;
+     fig_vis = 1;
      nnc = 0;
      
      for speaker_lf = 40:10:450 %%%
@@ -65,13 +65,13 @@
 
                 if fig_vis == 1
 
-                    figp = sprintf('p_spk_hps%d-lps%d_%dV_%gs_d%d_%02u',hpsfreq,lpsfreq,speaker_voltage,speaker_duration,lduct,num);
-                    figv = sprintf('v_spk_hps%d-lps%d_%dV_%gs_d%d_%02u',hpsfreq,lpsfreq,speaker_voltage,speaker_duration,lduct,num);
-                    figf = sprintf('f_spk_hps%d-lps%d_%dV_%gs_d%d_%02u',hpsfreq,lpsfreq,speaker_voltage,speaker_duration,lduct,num);
+                    figp = sprintf('p_spk_%d-%dHz_hps%d-lps%d_%dV_%gs_d%d_%02u',speaker_lf,speaker_hf,hpsfreq,lpsfreq,speaker_voltage,speaker_duration,lduct,num);
+                    figv = sprintf('v_spk_%d-%dHz_hps%d-lps%d_%dV_%gs_d%d_%02u',speaker_lf,speaker_hf,hpsfreq,lpsfreq,speaker_voltage,speaker_duration,lduct,num);
+                    figf = sprintf('f_spk_%d-%dHz_hps%d-lps%d_%dV_%gs_d%d_%02u',speaker_lf,speaker_hf,hpsfreq,lpsfreq,speaker_voltage,speaker_duration,lduct,num);
 
                 end
 
-                figfp = sprintf('p_spk_av_hps%d-lps%dHz_%dV_%gs_d%d',hpsfreq,lpsfreq,speaker_voltage,speaker_duration,lduct);
+                figfp = sprintf('p_spk_av_%d-%dHz_hps%d-lps%dHz_%dV_%gs_d%d',speaker_lf,speaker_hf,hpsfreq,lpsfreq,speaker_voltage,speaker_duration,lduct);
 
             elseif  input_sw == 0
 
@@ -107,7 +107,7 @@
 
             [ppu] = band_pass_filter(ppu,fs_pres,lpsfreq,hpsfreq,fft_dbl_type);
             [ppd] = band_pass_filter(ppd,fs_pres,lpsfreq,hpsfreq,fft_dbl_type);
-            [spv] = band_pass_filter(spv,fs_pres,speaker_hf,floor(1/speaker_duration),fft_dbl_type); % f should be more than 1/speaker_duration.
+%             [spv] = band_pass_filter(spv,fs_pres,speaker_hf,floor(1/speaker_duration),fft_dbl_type); % f should be more than 1/speaker_duration.
 
             fileID = fopen(fnpu,'w');
             fwrite(fileID,ppu,'double');
@@ -321,7 +321,7 @@
             hold off
             pbaspect([sqrt(2) 1 1]);
             saveas(gcf, strcat(dir, figfp, figex));
-%             close;
+            close;
 
         end
      
