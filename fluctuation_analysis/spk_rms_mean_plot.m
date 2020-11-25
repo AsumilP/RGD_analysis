@@ -4,7 +4,7 @@
 
 %% PARAMETERS
 
-    up_or_dwn = 1; % 1. upperstream 2. downstream
+    up_or_dwn = 2; % 1. upperstream 2. downstream
     hpsfreq = 20; % [Hz]
     lpsfreq = 315; % [Hz]
     speaker_lf_start = 40; % [Hz]
@@ -77,17 +77,17 @@
             prms4_2 = fread(fid,lpsfreq-hpsfreq+1,'double');
             fclose(fid);
             
-            for i = 2:1:11
+            for i = speaker_lf-hpsfreq+1:1:speaker_lf-hpsfreq+11
                 prms_connected1(i) = prms1_1(i);
                 prms_connected2(i) = prms2_1(i);
                 prms_connected3(i) = prms3_1(i);
                 prms_connected4(i) = prms4_1(i);
             end
-            for i = 12:1:15
-                prms_connected1(i) = (prms1_1(i)+prms1_2(i-10))/2;
-                prms_connected2(i) = (prms2_1(i)+prms2_2(i-10))/2;
-                prms_connected3(i) = (prms3_1(i)+prms3_2(i-10))/2;
-                prms_connected4(i) = (prms4_1(i)+prms4_2(i-10))/2;
+            for i = speaker_lf-hpsfreq+12:1:speaker_lf-hpsfreq+15
+                prms_connected1(i) = (prms1_1(i)+prms1_2(i))/2;
+                prms_connected2(i) = (prms2_1(i)+prms2_2(i))/2;
+                prms_connected3(i) = (prms3_1(i)+prms3_2(i))/2;
+                prms_connected4(i) = (prms4_1(i)+prms4_2(i))/2;
             end
 
         elseif speaker_lf ==  speaker_lf_end
@@ -105,11 +105,11 @@
             prms4_1 = fread(fid,lpsfreq-hpsfreq+1,'double');
             fclose(fid);
             
-            for i = 1:1:10
-                prms_connected1(speaker_lf_end+4+i) = prms1_1(i+5);
-                prms_connected2(speaker_lf_end+4+i) = prms2_1(i+5);
-                prms_connected3(speaker_lf_end+4+i) = prms3_1(i+5);
-                prms_connected4(speaker_lf_end+4+i) = prms4_1(i+5);
+            for i = speaker_lf-hpsfreq+6:1:speaker_lf-hpsfreq+15
+                prms_connected1(i) = prms1_1(i);
+                prms_connected2(i) = prms2_1(i);
+                prms_connected3(i) = prms3_1(i);
+                prms_connected4(i) = prms4_1(i);
             end
             
         else
@@ -140,18 +140,18 @@
             prms4_2 = fread(fid,lpsfreq-hpsfreq+1,'double');
             fclose(fid);
             
-            for i = 1:1:6
-                prms_connected1(speaker_lf-speaker_lf_start+5+i) = prms1_1(5+i);
-                prms_connected2(speaker_lf-speaker_lf_start+5+i) = prms2_1(5+i);
-                prms_connected3(speaker_lf-speaker_lf_start+5+i) = prms3_1(5+i);
-                prms_connected4(speaker_lf-speaker_lf_start+5+i) = prms4_1(5+i);
+            for i = speaker_lf-hpsfreq+6:1:speaker_lf-hpsfreq+11
+                prms_connected1(i) = prms1_1(i);
+                prms_connected2(i) = prms2_1(i);
+                prms_connected3(i) = prms3_1(i);
+                prms_connected4(i) = prms4_1(i);
             end
             
-            for i = 1:1:4
-                prms_connected1(speaker_lf-speaker_lf_start+11+i) = (prms1_1(11+i)+prms1_2(1+i))/2;
-                prms_connected2(speaker_lf-speaker_lf_start+11+i) = (prms2_1(11+i)+prms2_2(1+i))/2;
-                prms_connected3(speaker_lf-speaker_lf_start+11+i) = (prms3_1(11+i)+prms3_2(1+i))/2;
-                prms_connected4(speaker_lf-speaker_lf_start+11+i) = (prms4_1(11+i)+prms4_2(1+i))/2;
+            for i = speaker_lf-hpsfreq+12:1:speaker_lf-hpsfreq+15
+                prms_connected1(i) = (prms1_1(i)+prms1_2(i))/2;
+                prms_connected2(i) = (prms2_1(i)+prms2_2(i))/2;
+                prms_connected3(i) = (prms3_1(i)+prms3_2(i))/2;
+                prms_connected4(i) = (prms4_1(i)+prms4_2(i))/2;
             end
                 
         end
@@ -163,7 +163,11 @@
     f = f';
     
     figure('Position', [50 50 960 735],'Color','white');
-    loglog(f,prms_connected1,'-vr','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(prms_connected1))
+    if up_or_dwn == 1
+        loglog(f,prms_connected1,'-xm','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(prms_connected1))
+        hold on
+    end
+    loglog(f,prms_connected2,'-vr','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(prms_connected2))
 
     ax = gca;
     ax.Box = 'on';
@@ -178,7 +182,7 @@
      % ax.XScale = 'log';
      % ax.YScale = 'log';
      ax.XLim = [20 300];
-%      ax.YLim = [1 10000];
+     ax.YLim = [0.0001 0.1];
      ax.FontSize = 20;
      ax.FontName = 'Times New Roman';
      ax.TitleFontSizeMultiplier = 2;
@@ -190,13 +194,14 @@
      ylabel('\it \fontname{Times New Roman} p''_{rms} \rm[kPa]')
      hold on
      
-     loglog(f,prms_connected2,'-sb','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(prms_connected2))
+     loglog(f,prms_connected3,'-sb','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(prms_connected3))
      hold on
      
-     loglog(f,prms_connected3,'-dk','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(prms_connected3))
-     hold on
-     
-     loglog(f,prms_connected4,'-xm','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(prms_connected4))
-     legend('0mm','582mm','883mm','1185mm','FontSize',20,'Location','northwest')
+     loglog(f,prms_connected4,'-dk','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(prms_connected4))   
+     if up_or_dwn == 1
+         legend('0mm','582mm','883mm','1185mm','FontSize',20,'Location','northwest')
+     elseif up_or_dwn == 2
+         legend('582mm','883mm','1185mm','FontSize',20,'Location','northwest')
+     end
      hold off
      pbaspect([sqrt(2) 1 1]);
