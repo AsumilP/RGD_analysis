@@ -15,21 +15,21 @@
      fchange_hpsfreq = 0; % [Hz]
      fchange_lpsfreq = 2; % [Hz]
 
-     date = 20201117;
-     recnum = 10;
+     date = 20200908;
+     recnum = 30;
      input_sw = 1; % 0: noinput
      speaker_voltage = 1; % [V]
      speaker_duration = 15; % [s]
-%      speaker_lf = 50; %%% [Hz]
-%      speaker_hf = 65; %%% [Hz]
-     lduct = 0; % [mm]
+     speaker_lf = 0; %%% [Hz]
+     speaker_hf = 350; %%% [Hz]
+     lduct = 1185; % [mm]
      figex = '.png'; % fig, png
-     fig_vis = 1;
+     fig_vis = 0;
      nnc = 0;
      
-     for speaker_lf = 40:10:300 %%%
+%      for speaker_lf = 40:10:300 %%%
          
-         speaker_hf = speaker_lf + 15; %%%
+%          speaker_hf = speaker_lf + 15; %%%
 
 %%
         for num = 1:recnum
@@ -311,18 +311,18 @@
             xtickformat('%.f')
             ytickformat('%.2f')
 
-            xlim([hpsfreq lpsfreq]);
+            xlim([hpsfreq 300]);
             ylim([0.001 0.2]);
 
             xlabel('\it \fontname{Times New Roman} f \rm[Hz]')
             ylabel('\it \fontname{Times New Roman} p''_{rms} \rm[kPa]')
             set(gca,'FontName','Times New Roman','FontSize',20)
-            legend({'Upstream','Downstream'},'Location','northeast')
+            legend({'Upstream','Downstream'},'Location','northwest')
             hold off
             pbaspect([sqrt(2) 1 1]);
             saveas(gcf, strcat(dir, figfp, figex));
-            close;
+%             close;
 
         end
      
-    end %%%
+%     end %%%
