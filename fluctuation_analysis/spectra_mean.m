@@ -4,21 +4,21 @@
 
 %% PARAMETERS
 
-    signal_type = 3; % 1. p_sequence, 2. p_cER, 3. speaker, 4. p_noinput
-    up_or_dwn = 2; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
+    signal_type = 2; % 1. p_sequence, 2. p_cER, 3. speaker, 4. p_noinput
+    up_or_dwn = 1; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
 
     fft_dbl_type = 2; % 1. ^v^v 2. ^vv^ 3. ^v
     hpsfreq = 20;
-    lpsfreq = 315;
+    lpsfreq = 3000;
     fft_mean_type = 1;
     fft_mean_tlength = 1; % [s]
 
-    date = 20201118;
+    date = 20201029;
     num_start = 1;
-    num_end = 10;
-    flow_rate = 470; % [L/min], signal_type = 1,2
+    num_end = 1;
+    flow_rate = 500; % [L/min], signal_type = 1,2
     eq_ratio = 0.80; % signal_type = 1,2
-    lduct = 1185; % [mm], signal_type = 2,3
+    lduct = 582; % [mm], signal_type = 2,3
     speaker_voltage = 1; % [V], signal_type = 3
     speaker_duration = 15; % [s], signal_type = 3
 %     speaker_lf = 0; %%% [Hz], signal_type = 3
@@ -52,8 +52,8 @@
 
     end
         
-    for speaker_lf = speaker_lf_start:10:speaker_lf_end %%%
-      speaker_hf = speaker_lf + 15; %%%
+%     for speaker_lf = speaker_lf_start:10:speaker_lf_end %%%
+%       speaker_hf = speaker_lf + 15; %%%
 
       for num = num_start:1:num_end
           
@@ -287,7 +287,7 @@
         close;
 
       end
-    end
+%     end %%%
     
 %% SAVE & FIGURE, Averaged
 
