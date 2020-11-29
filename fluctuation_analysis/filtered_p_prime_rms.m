@@ -5,12 +5,12 @@
 %% PARAMETERS
 
     name_mode = 2; % 1. p_sequence, 2. p_cER, 3. specific Hz
-    date = 20201029;
+    date = 20201120;
     recnum = 1;
-    sw_num = 60; % [-], vane angle, only for name_mode = 2
+    sw_num = 45; % [-], vane angle, only for name_mode = 2
     flow_rate = 500; % [L/min], only for name_mode = 2
-    eq_ratio = 0.80; % [-], only for name_mode = 2
-    duct_l = 582; % [mm], only for name_mode = 2
+    eq_ratio = 0.76; % [-], only for name_mode = 2
+    duct_l = 1185; % [mm], only for name_mode = 2
     specific_f = 100; % [Hz], only for name_mode = 3
     speaker_v = 1; % [V], only for name_mode = 3
     speaker_t = 15; % [s], only for name_mode = 3
