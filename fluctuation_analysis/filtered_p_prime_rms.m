@@ -5,10 +5,10 @@
 %% PARAMETERS
 
     name_mode = 2; % 1. p_sequence, 2. p_cER, 3. specific Hz
-    date = 20201021;
+    date = 20201029;
     recnum = 1;
     sw_num = 60; % [-], vane angle, only for name_mode = 2
-    flow_rate = 470; % [L/min], only for name_mode = 2
+    flow_rate = 500; % [L/min], only for name_mode = 2
     eq_ratio = 0.80; % [-], only for name_mode = 2
     duct_l = 582; % [mm], only for name_mode = 2
     specific_f = 100; % [Hz], only for name_mode = 3
@@ -23,7 +23,7 @@
 
     fft_dbl_type = 2; % 1. ^v^v 2. ^vv^ 3. ^v
     hpsfreq = 20; % [Hz]
-    lpsfreq = 3000; % [Hz]
+    lpsfreq = 300; % [Hz]
     RMS_width = 0.2; % [sec]
     cam_frames = 21838;
 
@@ -103,6 +103,9 @@
       cam_start_time = trig_time - cam_frames*Sts
 
 %% BAND-PASS FILTER, CALCULATION & SAVE
+
+      ppu = ppu - mean(ppu);
+      ppd = ppd - mean(ppd);
 
       [ppu] = band_pass_filter(ppu, fs, lpsfreq, hpsfreq, fft_dbl_type);
       [ppd] = band_pass_filter(ppd, fs, lpsfreq, hpsfreq, fft_dbl_type);
