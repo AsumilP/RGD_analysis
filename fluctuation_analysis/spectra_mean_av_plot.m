@@ -3,10 +3,10 @@
     clc
 
 %% PARAMETERS
-    data_species = 3; % 1, 2, 3, 4, 5, 6
-    signal_type = 3; % 1. p_sequence, 2. p_cER, 3. speaker
+    data_species = 4; % 1, 2, 3, 4, 5, 6
+    signal_type = 3; % 1. p_sequence, 2. p_cER, 3. speaker_chirp
     noise_sub = 0; %1. Yes, 0: No
-    up_or_dwn = 2; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
+    up_or_dwn = 1; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
 
 %%
     ndata_noise = 5;
@@ -74,7 +74,7 @@
 %%
     elseif data_species == 3
 
-      ndata1 = 1;
+      ndata1 = 30;
       flow_rate1 = 0; % [L/min]
       eq_ratio1 = 0;
       hpsfreq1 = 20; % [Hz], signal_type = 2
@@ -82,7 +82,7 @@
       speaker_duration1 = 15; % [s], signal_type = 3
       lduct1 = 582; % [mm], signal_type = 3
 
-      ndata2 = 1;
+      ndata2 = 30;
       flow_rate2 = 0; % [L/min]
       eq_ratio2 = 0;
       hpsfreq2 = 0; % [Hz], signal_type = 2
@@ -90,7 +90,7 @@
       speaker_duration2 = 15; % [s], signal_type = 3
       lduct2 = 883; % [mm], signal_type = 3
 
-      ndata3 = 1;
+      ndata3 = 30;
       flow_rate3 = 0; % [L/min]
       eq_ratio3 = 0;
       hpsfreq3 = 0; % [Hz], signal_type = 2
@@ -101,21 +101,21 @@
       date = 20200908;
       fft_mean_tlength = 1; % [s]
       speaker_voltage = 1; % [V], signal_type = 3
-      speaker_lf = 40; % [Hz], signal_type = 3
-      speaker_hf = 315; % [Hz], signal_type = 3
+      speaker_lf = 0; % [Hz], signal_type = 3
+      speaker_hf = 350; % [Hz], signal_type = 3
       fs = 20e3;
       div_nlength = fs*fft_mean_tlength;
 
       % dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
       % dir = sprintf('G:/Analysis/pressure/PS_trans_calc/');
-      dir = sprintf('G:/Analysis/pressure/PS_spk_calc/');
+      dir = sprintf('G:/Analysis/pressure/PS_chirp_calc/');
       % dir = sprintf('E:/chem_output/chem_intensity/%d/',date);
       % dir = sprintf('E:/piv_output/v_oscillation/');
       
 %%
     elseif data_species == 4
 
-      ndata1 = 1;
+      ndata1 = 30;
       flow_rate1 = 0; % [L/min]
       eq_ratio1 = 0;
       hpsfreq1 = 20; % [Hz], signal_type = 2
@@ -123,7 +123,7 @@
       speaker_duration1 = 15; % [s], signal_type = 3
       lduct1 = 582; % [mm], signal_type = 3
 
-      ndata2 = 1;
+      ndata2 = 30;
       flow_rate2 = 0; % [L/min]
       eq_ratio2 = 0;
       hpsfreq2 = 0; % [Hz], signal_type = 2
@@ -131,7 +131,7 @@
       speaker_duration2 = 15; % [s], signal_type = 3
       lduct2 = 883; % [mm], signal_type = 3
 
-      ndata3 = 1;
+      ndata3 = 30;
       flow_rate3 = 0; % [L/min]
       eq_ratio3 = 0;
       hpsfreq3 = 0; % [Hz], signal_type = 2
@@ -139,7 +139,7 @@
       speaker_duration3 = 15; % [s], signal_type = 3
       lduct3 = 1185; % [mm], signal_type = 3
       
-      ndata4 = 1;
+      ndata4 = 30;
       flow_rate4 = 0; % [L/min]
       eq_ratio4 = 0;
       hpsfreq4 = 0; % [Hz], signal_type = 2
@@ -150,14 +150,14 @@
       date = 20200908;
       fft_mean_tlength = 1; % [s]
       speaker_voltage = 1; % [V], signal_type = 3
-      speaker_lf = 40; % [Hz], signal_type = 3
-      speaker_hf = 315; % [Hz], signal_type = 3
+      speaker_lf = 0; % [Hz], signal_type = 3
+      speaker_hf = 350; % [Hz], signal_type = 3
       fs = 20e3;
       div_nlength = fs*fft_mean_tlength;
 
       % dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
       % dir = sprintf('G:/Analysis/pressure/PS_trans_calc/');
-      dir = sprintf('G:/Analysis/pressure/PS_spk_calc/');
+      dir = sprintf('G:/Analysis/pressure/PS_chirp_calc/');
       % dir = sprintf('E:/chem_output/chem_intensity/%d/',date);
       % dir = sprintf('E:/piv_output/v_oscillation/');
       
@@ -714,11 +714,11 @@
       elseif signal_type == 3
           for i = 1:1:ndata1
               if up_or_dwn == 1
-%                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
-                  fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
+                  fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+%                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
               elseif up_or_dwn == 2
-%                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
-                  fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
+                  fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+%                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
               end
               
               fid = fopen(append(dir,fnps),'r');
@@ -734,11 +734,11 @@
           
           for i = 1:1:ndata2
               if up_or_dwn == 1
-%                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
-                  fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength);
+                  fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
+%                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength);
               elseif up_or_dwn == 2
-%                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
-                  fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength);
+                  fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
+%                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength);
               end
               
               fid = fopen(append(dir,fnps),'r');
@@ -754,11 +754,11 @@
           
           for i = 1:1:ndata3
               if up_or_dwn == 1
-%                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
-                  fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength);
+                  fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
+%                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength);
               elseif up_or_dwn == 2
-%                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
-                  fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength);
+                  fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
+%                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength);
               end
               
               fid = fopen(append(dir,fnps),'r');
@@ -975,11 +975,11 @@
       elseif signal_type == 3
           for i = 1:1:ndata1
               if up_or_dwn == 1
-%                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
-                  fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
+                  fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+%                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
               elseif up_or_dwn == 2
-%                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
-                  fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
+                  fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+%                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
               end
               
               fid = fopen(append(dir,fnps),'r');
@@ -995,11 +995,11 @@
           
           for i = 1:1:ndata2
               if up_or_dwn == 1
-%                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
-                  fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength);
+                  fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
+%                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength);
               elseif up_or_dwn == 2
-%                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
-                  fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength);
+                  fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
+%                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength);
               end
               
               fid = fopen(append(dir,fnps),'r');
@@ -1015,11 +1015,11 @@
           
           for i = 1:1:ndata3
               if up_or_dwn == 1
-%                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
-                  fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength);
+                  fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
+%                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength);
               elseif up_or_dwn == 2
-%                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
-                  fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength);
+                  fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
+%                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength);
               end
               
               fid = fopen(append(dir,fnps),'r');
@@ -1035,11 +1035,11 @@
           
           for i = 1:1:ndata4
               if up_or_dwn == 1
-%                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
-                  fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength);
+                  fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
+%                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength);
               elseif up_or_dwn == 2
-%                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
-                  fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength);
+                  fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
+%                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength);
               end
               
               fid = fopen(append(dir,fnps),'r');
