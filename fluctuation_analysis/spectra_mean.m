@@ -13,12 +13,12 @@
     fft_mean_type = 1;
     fft_mean_tlength = 1; % [s]
 
-    date = 20201029;
+    date = 20201120;
     num_start = 1;
     num_end = 1;
     flow_rate = 500; % [L/min], signal_type = 1,2
-    eq_ratio = 0.80; % signal_type = 1,2
-    lduct = 582; % [mm], signal_type = 2,3
+    eq_ratio = 0.76; % signal_type = 1,2
+    lduct = 1185; % [mm], signal_type = 2,3
     speaker_voltage = 1; % [V], signal_type = 3
     speaker_duration = 15; % [s], signal_type = 3
 %     speaker_lf = 0; %%% [Hz], signal_type = 3
