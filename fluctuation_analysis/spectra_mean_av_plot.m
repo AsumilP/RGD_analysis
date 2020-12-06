@@ -3,8 +3,8 @@
     clc
 
 %% PARAMETERS
-    data_species = 4; % 1, 2, 3, 4, 5, 6
-    signal_type = 3; % 1. p_sequence, 2. p_cER, 3. speaker_chirp
+    data_species = 6; % 1, 2, 3, 4, 5, 6
+    signal_type = 3; % 1. p_sequence, 2. p_cER, 3. speaker_chirp, 4. specific_f, 5. air, 6. BG
     noise_sub = 0; %1. Yes, 0: No
     up_or_dwn = 1; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
 
@@ -227,7 +227,9 @@
       hpsfreq1 = 20; % [Hz], signal_type = 2
       lpsfreq1 = 3000; % [Hz], signal_type = 2
       speaker_duration1 = 7.5; % [s], signal_type = 3
-      lduct1 = 582; % [mm], signal_type = 2, 3
+      specific_f1 = 61; % [Hz], signal_type = 4
+      part1 = 1; % signal_type = 4
+      lduct1 = 582; % [mm], signal_type = 2, 3, 4
 
       ndata2 = 1;
       flow_rate2 = 450; % [L/min]
@@ -235,7 +237,8 @@
       hpsfreq2 = 20; % [Hz], signal_type = 2
       lpsfreq2 = 3000; % [Hz], signal_type = 2
       speaker_duration2 = 7.5; % [s], signal_type = 3
-      lduct2 = 582; % [mm], signal_type = 2, 3
+      specific_f2 = 68; % [Hz], signal_type = 4
+      lduct2 = 582; % [mm], signal_type = 2, 3, 4
 
       ndata3 = 1;
       flow_rate3 = 450; % [L/min]
@@ -243,6 +246,7 @@
       hpsfreq3 = 20; % [Hz], signal_type = 2
       lpsfreq3 = 3000; % [Hz], signal_type = 2
       speaker_duration3 = 7.5; % [s], signal_type = 3
+      specific_f3 = 70; % [Hz], signal_type = 4
       lduct3 = 582; % [mm], signal_type = 3
       
       ndata4 = 1;
