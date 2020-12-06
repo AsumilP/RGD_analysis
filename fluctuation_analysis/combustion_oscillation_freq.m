@@ -3,7 +3,7 @@
     clc
 
 %% PARAMETERS
-    lx = 0.582; % [m]
+    lx = 1.185; % [m]
     ly = 0.12; % [m]
     lz = 0.12; % [m]
     T_room = 20; %[degree C]
@@ -86,7 +86,7 @@
 %     plot([0.4 1.4], [freq_comb_osc(3,1,1) freq_comb_osc(3,1,1)], '-vk', 'LineWidth',1)
     hold off
 
-    legend('T=20, (1,0,0)','T=20, (2,0,0)','T=200, (1,0,0)','T=200, (2,0,0)', 'Location', 'southwest')
+    legend('\it T \rm=293K, (1,0,0)','\it T \rm=293K, (2,0,0)','\it T \rm=473K, (1,0,0)','\it T \rm=473K, (2,0,0)', 'Location', 'southwest')
     pbaspect([sqrt(2) 1 1]);
     saveas(gcf,'combustion_oscillation_freq.fig')
     
