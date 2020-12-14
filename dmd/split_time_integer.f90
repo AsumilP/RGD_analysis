@@ -18,7 +18,7 @@
 !c--------------------------------------------------c
   implicit none
 
-  character(8), parameter :: date = "20190819"
+  character(8), parameter :: date = "20190823"
   integer, parameter :: nx = 1024
   integer, parameter :: nx_cut = 1024
   integer, parameter :: nx_start = 1
@@ -26,11 +26,11 @@
   integer, parameter :: ny_cut = 1024
   integer, parameter :: ny_start = 1
   integer, parameter :: nz = 21839
-  integer, parameter :: deal_start_frame = 15572 - 2500
-  integer, parameter :: deal_end_frame = 15572 + 2500
+  integer, parameter :: deal_start_frame = 16187 - 2500
+  integer, parameter :: deal_end_frame = 16187 + 2500
   integer, parameter :: dt = 100d-6 ! [s]
-  integer, parameter :: cond_start = 1
-  integer, parameter :: cond_end = 1
+  integer, parameter :: cond_start = 10
+  integer, parameter :: cond_end = 10
 
   character(*), parameter :: path_of_i = '/home/yatagi/mnt/'//date//'/'
   character(*), parameter :: path_of_o = '/home/yatagi/analysis/chem_output/dmd/'//date//'/data_files/'
