@@ -4,17 +4,17 @@
 
 %% PARAMETERS
 
-    name_mode = 3; % 1. p_sequence, 2. p_cER, 3. specific Hz, 4. air, 5. BG 
-    date = 20201128;
-    recnum = 5;
+    name_mode = 6; % 1. p_sequence, 2. p_cER, 3. specific Hz, 4. air, 5. BG , 6. cold_specific
+    date = 20201215;
+    recnum = 1;
     sw_num = 45; % [-], vane angle, only for name_mode = 2
-    flow_rate = 450; % [L/min], only for name_mode = 2, 4
+    flow_rate = 500; % [L/min], only for name_mode = 2, 4, 6
     eq_ratio = 0.80; % [-], only for name_mode = 2
-    duct_l = 1185; % [mm], only for name_mode = 2, 4, 5
-%     specific_f = 61; % [Hz], only for name_mode = 3, %%%
-    speaker_v = 1; % [V], only for name_mode = 3
+    duct_l = 1185; % [mm], only for name_mode = 2, 4, 5, 6
+%     specific_f = 61; % [Hz], only for name_mode = 3, 6 %%%
+    speaker_v = 1; % [V], only for name_mode = 3, 6
     speaker_t = 15; % [s], only for name_mode = 3
-    part = 9; % [-], altitude, only for name_mode = 3
+    part = 8; % [-], altitude, only for name_mode = 3
     
     fs = 20e3; % Sampling Rate [Hz]
     samp_time = 15; % [sec]
@@ -28,14 +28,15 @@
     RMS_width = 0.2; % [sec]
     cam_frames = 21838;
     
-    for specific_f = [61 68 70 73 80 85 143 147 149 155 171 188 194 203 232] %%%
+%     for specific_f = [61 68 70 73 80 85 143 147 149 155 171 188 194 203 232] %%%
+    for specific_f = [64 68 85 155 188 203] %%%
 
         for num = 1:1:recnum
 
 %% READ DATA
 
-%             dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
-            dir = sprintf('G:/Analysis/pressure/%d/calc/p%d/',date,part);
+            dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
+%             dir = sprintf('G:/Analysis/pressure/%d/calc/p%d/',date,part);
 %             dir = sprintf('C:/Users/yatagi/Desktop/sw%d_cER/%d/calc/',sw_num,date);
       
             if name_mode == 1
@@ -48,6 +49,8 @@
                 rfn = sprintf('pressure_d%d_air%dL_%0.2d.xlsx',duct_l,flow_rate,num);
             elseif name_mode == 5
                 rfn = sprintf('pressure_d%d_BG_%0.2d.xlsx',duct_l,num);
+            elseif name_mode == 6
+                rfn = sprintf('pressure_speaker_cold_piv_%dHz_%dV_d%d_%d.xlsx',specific_f,speaker_v,duct_l,flow_rate);
             end
             trig = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));   
             upv = xlsread(append(dir,rfn), sprintf('B2:B%d',fs*samp_time+1));     
