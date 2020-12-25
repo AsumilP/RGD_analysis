@@ -6,7 +6,7 @@
  ! integer, parameter:: nzall = 21839
  integer, parameter:: nztmp1 = 200
  integer, parameter:: nztmp2 = 39
- integer, parameter:: cond_start = 1    ! 1 for grid
+ integer, parameter:: cond_start = 2    ! 1 for grid
  integer, parameter:: cond_end = 16    ! 1 for grid
  integer, parameter:: head_size_tmp1 = nx*ny*nztmp1*10
  integer, parameter:: head_size_tmp2 = nx*ny*nztmp1*9
