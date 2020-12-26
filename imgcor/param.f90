@@ -34,10 +34,10 @@
   integer, parameter :: ny_cor = 1024
   !integer, parameter :: nx_cor = 1024   ! pixel resolution (after)
   !integer, parameter :: ny_cor = 980
-  integer, parameter :: imgloc_physorig_x = 145 ! position of physical origin in corrected image
-  integer, parameter :: imgloc_physorig_y = 360
-  !integer, parameter :: nimg_per_file = 1 !imgcor for cold flow
-  integer, parameter :: nimg_per_file = 21839  ! number of image, grid
+  integer, parameter :: imgloc_physorig_x = 124 ! position of physical origin in corrected image
+  integer, parameter :: imgloc_physorig_y = 381
+  integer, parameter :: nimg_per_file = 1 !imgcor for cold flow
+  ! integer, parameter :: nimg_per_file = 21839  ! number of image, grid
   !integer, parameter :: nimg_per_file = 10
   real(8), parameter :: img_res_x = 80d-3  ! [mm/pixel]
   real(8), parameter :: img_res_y = 75d-3  ! [mm/pixel]
@@ -57,25 +57,25 @@
 !!  character(*), parameter:: file_name_head_particle = file_name_head
 
   !! xc
-  character(*), parameter:: path_of_grid_raw = '/home/yatagi/analysis/grid_output/20190825/spiv_bl/' !input file directory
-  character(*), parameter:: path_of_grid_ccc = '/home/yatagi/analysis/grid_output/20190825/spiv_bl/' !output file directory
-  character(*), parameter:: file_name_raw = 'spiv_bl_grid_av.dat'      !input file name
-  character(*), parameter:: file_name_ccc = 'spiv_bl_ccc.dat'     !output file name
-  character(*), parameter:: file_name_ccco = 'spiv_bl_cco.dat' !output file name
+  character(*), parameter:: path_of_grid_raw = '/home/yatagi/mnt/20201221/imgcor/' !input file directory
+  character(*), parameter:: path_of_grid_ccc = '/home/yatagi/mnt/20201221/imgcor/' !output file directory
+  character(*), parameter:: file_name_raw = 'spiv_fr_grid_av.dat'      !input file name
+  character(*), parameter:: file_name_ccc = 'spiv_fr_ccc.dat'     !output file name
+  character(*), parameter:: file_name_ccco = 'spiv_fr_cco.dat' !output file name
 
   !! ls
-  character(*), parameter:: path_of_coe = '/home/yatagi/analysis/grid_output/20190825/spiv_bl/' !output
-  character(*), parameter:: file_name_coe ='spiv_bl_grid_cor.txt'
+  character(*), parameter:: path_of_coe = '/home/yatagi/mnt/20201221/imgcor/' !output
+  character(*), parameter:: file_name_coe ='spiv_fr_grid_cor.txt'
 
   !! imgcor
 
    !!Have to Change whether grid or particle-------------------------------------------------------
   !character(*), parameter:: path_of_particle_raw = '/home/yatagi/analysis/grid_output/20190227/spiv_bl/'!for grid
-  character(*), parameter:: path_of_particle_raw = '/home/yatagi/analysis/rawimg/20190825/spiv_bl/' !for flow
+  character(*), parameter:: path_of_particle_raw = '/home/yatagi/mnt/20201221/imgcor/' !for flow
   !character(*), parameter:: path_of_particle_raw = '/home/yatagi/analysis/piv_output/rmvnoise_particle/20181218/spiv_fr/'
 
-  !character(*), parameter:: file_name_rawi = 'spiv_fr_grid_av' !input file name
-  character(*), parameter:: file_name_rawi = 'spiv_bl_04'  !for cold flow
+  character(*), parameter:: file_name_rawi = 'spiv_fr_grid_av' !input file name
+  ! character(*), parameter:: file_name_rawi = 'spiv_bl_04'  !for cold flow
 
   character(*), parameter:: file_name_rawmean  ='x2_mean'                 !output file name --> mean
    !!end--------------------------------------------------------------------------------------------
@@ -87,12 +87,12 @@
   ! character(*), parameter:: path_of_particle_corrected = '/home/yatagi/analysis/grid_output/20190228/spiv_fr/'
   !character(*), parameter:: path_of_particle_corrected = '/home/yatagi/analysis/chem_output/20181129/'
   !character(*), parameter:: path_of_particle_corrected = '/home/yatagi/analysis/plif_output/20190821/plif_cor/'
-  character(*), parameter:: path_of_particle_corrected = '/home/yatagi/analysis/piv_output/flow_cor/20190825/cor/spiv_bl/'
+  character(*), parameter:: path_of_particle_corrected = '/home/yatagi/mnt/20201221/imgcor/'
   !character(*), parameter:: path_of_particle_corrected = '/home/yatagi/analysis/piv_output/flow_cor/20181218/rmvnoise_cor/spiv_fr/'
 
   !character(*), parameter:: file_name_rawo  = file_name_rawi
-  ! character(*), parameter:: file_name_rawo  = 'spiv_fr_grid_cor' !output name
-  character(*), parameter:: file_name_rawo  = 'spiv_bl_04_cor' !output name
+  character(*), parameter:: file_name_rawo  = 'spiv_fr_grid_cor' !output name
+  ! character(*), parameter:: file_name_rawo  = 'spiv_bl_04_cor' !output name
 
   !character(*), parameter:: file_name_rawi  = file_name_head_particle
   !character(*), parameter:: file_name_rawo  = file_name_head_particle
@@ -100,8 +100,8 @@
   !character(*), parameter:: file_name_rawo  = file_name_head
 
 
-  ! character(*), parameter:: file_ext_rawi  = '.dat' !grid-dat, cold-mraw
-  character(*), parameter:: file_ext_rawi  = '.mraw' !grid-dat, cold-mraw
+  character(*), parameter:: file_ext_rawi  = '.dat' !grid-dat, cold-mraw
+  ! character(*), parameter:: file_ext_rawi  = '.mraw' !grid-dat, cold-mraw
   character(*), parameter:: file_ext_rawo  = '.dat'
 
 
