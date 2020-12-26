@@ -91,9 +91,11 @@ program ls
   crs_idx = 1
   !< todo change it to see all pixels throw error if multiple origin is detected
  ! do j=2, ny-1 !l93 changed in 20181006
-   do j=49, 932
+   do j=82, 930
+   ! do j=250, 815
    ! do i=2, nx-1 !l94 changed in 20181006
-     do i=30, 974
+     do i=48, 925
+     ! do i=169, 839
        if(ccco(i,j)>threshold_o) then
         call local_max(ccco,i,j,nx,ny,islmax)
         if(islmax)then
@@ -115,9 +117,11 @@ program ls
   write(*,*) 'origin:', x_crs_img_tmp(1), y_crs_img_tmp(1)
 
   ! do j=2, ny-1
-   do j=49, 932
+   do j=82, 930
+   ! do j=250, 815
    ! do i=2, nx-1
-     do i=30, 974
+     do i=48, 925
+     ! do i=169, 839
       if(ccc(i,j)>threshold) then
         call local_max(ccc,i,j,nx,ny,islmax)
         if(islmax) then
