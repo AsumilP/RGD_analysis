@@ -1,25 +1,24 @@
     clear all
     close all
+    clc
 
 %% Parameters
 
     nx = 1024;
     ny = 1024;
     nz = 21839;
-    date =20202020;
+    date = '20201218';
     
-    for cond = [1 2 3 4 5]
+    for cond = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16]
 
-        dir_in = strcat('G:/Analysis/piv_output/dmd/',date,'/%02u/averaging/',step,'/',div,'/mode/');
-        dir_out = strcat('G:/Analysis/piv_output/dmd/',date,'/%02u/averaging/',step,'/',div,'/mode/');
-        filename_in = sprintf('pressure_d%d_%d_%.2f_cER.xlsx',duct_l,flow_rate,eq_ratio);
-        filename_out = sprintf('pressure_d%d_%d_%.2f_cER.xlsx',duct_l,flow_rate,eq_ratio);
+        dir_in = strcat('G:/',date,'/raw_old/');
+        dir_out = strcat('G:/',date,'/raw/');
+        filename_in = sprintf('spiv_bl_%02u.mraw',cond);
+        filename_out = sprintf('spiv_bl_%02u.dat',cond);
 
 %% Matrix
 
         Pixels = nx*ny;
-        I = zeros(Pixels,frames,'uint8');
-        bcout = zeros(Pixels,'uint16');
   
 %% Read
 
