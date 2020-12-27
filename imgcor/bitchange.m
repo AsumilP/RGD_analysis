@@ -7,14 +7,17 @@
     nx = 1024;
     ny = 1024;
     nz = 21839;
-    date = '20201218';
+%     nz = 300;
+    date = '20201223';
     
-    for cond = [3 4 5 6 7 8 9 10 11 12 13 14 15 16]
+    for cond = [1 2 3 4 5 6 7]
 
         dir_in = strcat('G:/',date,'/raw_old/');
         dir_out = strcat('G:/',date,'/raw/');
         filename_in = sprintf('spiv_bl_%02u.mraw',cond);
         filename_out = sprintf('spiv_bl_%02u.dat',cond);
+%         filename_in = sprintf('spiv_bl_grid.mraw');
+%         filename_out = sprintf('spiv_bl_grid.dat');
 
 %% Read & Calc.
 
