@@ -16,27 +16,21 @@
         filename_in = sprintf('spiv_bl_%02u.mraw',cond);
         filename_out = sprintf('spiv_bl_%02u.dat',cond);
 
-%% Matrix
+%% Read & Calc.
 
         Pixels = nx*ny;
-  
-%% Read
-
         fid = fopen(append(dir_in,filename_in),'r');
 
         for m = 1:1:nz
             I = fread(fid,Pixels,'uint8');
-            for n = 1:1:Pixels
-                bcout(n) = I(n);
-            end
         
             if m == 1
                 fid2 = fopen(append(dir_out,filename_out),'w');
-                fwrite(fid2,bcout,'uint16');
+                fwrite(fid2,I,'uint16');
                 fclose(fid2);
             else
                 fid3 = fopen(append(dir_out,filename_out),'a');
-                fwrite(fid3,bcout,'uint16');
+                fwrite(fid3,I,'uint16');
                 fclose(fid3);
             end
         
