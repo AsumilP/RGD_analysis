@@ -1,26 +1,24 @@
     clear all
     close all
+    clc
 
 %% Parameters
 
     nx = 1024;
     ny = 1024;
-    nz = 21839;
-    date =20202020;
+    nz = 10;
+    date = '20201218';
     
-    for cond = [1 2 3 4 5]
+    for cond = [1]
 
-        dir_in1 = strcat('G:/Analysis/piv_output/dmd/',date,'/%02u/averaging/',step,'/',div,'/mode/');
-        dir_in2 = strcat('G:/Analysis/piv_output/dmd/',date,'/%02u/averaging/',step,'/',div,'/mode/');
-        filename_in1 = sprintf('pressure_d%d_%d_%.2f_cER.xlsx',duct_l,flow_rate,eq_ratio);
-        filename_in2 = sprintf('pressure_d%d_%d_%.2f_cER.xlsx',duct_l,flow_rate,eq_ratio);
+        dir_in1 = strcat('G:/',date,'/raw_old/');
+        dir_in2 = strcat('G:/',date,'/raw/');
+        filename_in1 = sprintf('spiv_bl_%02u.mraw',cond);
+        filename_in2 = sprintf('spiv_bl_%02u.dat',cond);
 
 %% Matrix
 
         Pixels = nx*ny;
-        I = zeros(Pixels,frames,'uint8');
-        bcout = zeros(Pixels,'uint16');
-        dif_max = zeros(nz,'double');
   
 %% Read & Calc.
 
@@ -39,7 +37,7 @@
  %% Plot
  
         figure('Position', [50 50 960 735],'Color','white');
-        plot(1:nz,dif_max,'vk')
+        plot(1:nz,dif_max,'-vk')
 
         ax = gca;
         xtickformat('%d')
