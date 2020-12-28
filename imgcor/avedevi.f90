@@ -61,8 +61,8 @@
   ! write(file_name_in,"('chem_grid.mraw')")
   ! write(file_name_in,"('plif_noise.mraw')")
   ! write(file_name_in,"('spiv_bl_grid.mraw')")
-  ! write(file_name_in,"('spiv_br_grid.mraw')")
-  write(file_name_in,"('spiv_fl_grid.mraw')")
+  write(file_name_in,"('spiv_br_grid.mraw')")
+  ! write(file_name_in,"('spiv_fl_grid.mraw')")
   ! write(file_name_in,"('spiv_fr_grid.mraw')")
 
    ! write(file_name_in,"('spiv_fr_',i2.2,'.mraw')"),l
@@ -72,22 +72,22 @@
   ! write(file_name_ave_out,"('chem_grid_av.dat')")
   ! write(file_name_ave_out,"('plif_noise_av.dat')")
   ! write(file_name_ave_out,"('spiv_bl_grid_av.dat')")
-  ! write(file_name_ave_out,"('spiv_br_grid_av.dat')")
-  write(file_name_ave_out,"('spiv_fl_grid_av.dat')")
+  write(file_name_ave_out,"('spiv_br_grid_av.dat')")
+  ! write(file_name_ave_out,"('spiv_fl_grid_av.dat')")
   ! write(file_name_ave_out,"('spiv_fr_grid_av.dat')")
 
   ! write(file_name_devi_out,"('chem_grid_devi.dat')")
   ! write(file_name_devi_out,"('plif_noise_devi.dat')")
   ! write(file_name_devi_out,"('spiv_bl_grid_devi.dat')")
-  ! write(file_name_devi_out,"('spiv_br_grid_devi.dat')")
-  write(file_name_devi_out,"('spiv_fl_grid_devi.dat')")
+  write(file_name_devi_out,"('spiv_br_grid_devi.dat')")
+  ! write(file_name_devi_out,"('spiv_fl_grid_devi.dat')")
   ! write(file_name_devi_out,"('spiv_fr_grid_devi.dat')")
 
   ! write(file_name_emph_out,"('chem_grid_emph.dat')")
   ! write(file_name_emph_out,"('plif_noise_emph.dat')")
   ! write(file_name_emph_out,"('spiv_bl_grid_emph.dat')")
-  ! write(file_name_emph_out,"('spiv_br_grid_emph.dat')")
-  write(file_name_emph_out,"('spiv_fl_grid_emph.dat')")
+  write(file_name_emph_out,"('spiv_br_grid_emph.dat')")
+  ! write(file_name_emph_out,"('spiv_fl_grid_emph.dat')")
   ! write(file_name_emph_out,"('spiv_fr_grid_emph.dat')")
 
   ! write(file_name_ave_out,"('spiv_fr_',i2.2,'_av.dat')"),l
