@@ -73,12 +73,12 @@
   character(*), parameter:: file_name_ccco = 'spiv_br_cco.dat' !output file name
 
   !! ls
-  character(*), parameter:: path_of_coe = '/home/yatagi/grid_cor/20201223/br/' !output
-  ! character(*), parameter:: path_of_coe = '/home/yatagi/mnt/20201223/imgcor/' !output
+  ! character(*), parameter:: path_of_coe = '/home/yatagi/grid_cor/20201223/br/' !output
+  character(*), parameter:: path_of_coe = '/home/yatagi/mnt/20201223/imgcor/grid/' !output
   ! character(*), parameter:: file_name_coe ='chem_grid_cor.txt'
+  character(*), parameter:: file_name_coe ='spiv_fl_grid_cor.txt'
   ! character(*), parameter:: file_name_coe ='spiv_fl_grid_cor.txt'
-  ! character(*), parameter:: file_name_coe ='spiv_fl_grid_cor.txt'
-  character(*), parameter:: file_name_coe ='spiv_br_grid_cor.txt'
+  ! character(*), parameter:: file_name_coe ='spiv_br_grid_cor.txt'
 
   !! imgcor
 
@@ -89,7 +89,7 @@
 
   ! character(*), parameter:: file_name_rawi = 'chem_grid_av' !input file name
   ! character(*), parameter:: file_name_rawi = 'spiv_fr_grid_av' !input file name
-  character(*), parameter:: file_name_rawi = 'spiv_br_07'  !for cold flow
+  character(*), parameter:: file_name_rawi = 'spiv_fl_06'  !for cold flow
 
   character(*), parameter:: file_name_rawmean  ='x2_mean'                 !output file name --> mean
    !!end--------------------------------------------------------------------------------------------
@@ -106,7 +106,7 @@
 
   !character(*), parameter:: file_name_rawo  = file_name_rawi
   ! character(*), parameter:: file_name_rawo  = 'chem_grid_cor' !output name
-  character(*), parameter:: file_name_rawo  = 'spiv_br_07_cor' !output name
+  character(*), parameter:: file_name_rawo  = 'spiv_fl_06_cor' !output name
 
   !character(*), parameter:: file_name_rawi  = file_name_head_particle
   !character(*), parameter:: file_name_rawo  = file_name_head_particle
