@@ -14,8 +14,8 @@
   ! parameter (ny_g = 98)
   parameter (nx_g = 1024)
   parameter (ny_g = 1024)
-  parameter (tsst = 15551 - 0 + 2) !CHECK,start number
-  parameter (tsed = 15551 + 2500) !last number
+  parameter (tsst = 16087 - 0 + 2) !CHECK,start number
+  parameter (tsed = 16087 + 2500) !last number
   ! parameter (tsint = 6) !increment
   parameter (tsint = 3) !increment
   ! parameter (delta_t = 5.0D-5) !measurement speed (attention!!! check code, dmd.f90)
@@ -27,9 +27,9 @@
   ! parameter (dir_out = '/home/yatagi/analysis/piv_output/velofield/dmd/20190823/10/averaging/trans4/u1_3/') ! CHECK,directory
   ! parameter (dir_out = '/home/yatagi/analysis/piv_output/velofield/dmd/20190823/01/averaging/trans1/v1_3/') ! CHECK,directory
   parameter (dir_in = '/home/yatagi/analysis/chem_output/dmd/20190823/data_files/')
-  parameter (dir_out = '/home/yatagi/analysis/chem_output/dmd/20190823/01/averaging/trans6/3_3/') ! CHECK,directory
+  parameter (dir_out = '/home/yatagi/analysis/chem_output/dmd/20190823/02/averaging/trans6/3_3/') ! CHECK,directory
   ! parameter (case_name = 'spiv_fbsc_10_ucl') ! CHECK,number
   ! parameter (case_name = 'spiv_fbsc_01_vcl') ! CHECK,number
-  parameter (case_name = 'chem_01_rmv') ! CHECK,number
+  parameter (case_name = 'chem_02_rmv') ! CHECK,number
 
   end module grid_m
