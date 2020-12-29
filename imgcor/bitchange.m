@@ -8,9 +8,10 @@
     ny = 1024;
     nz = 21839;
 %     nz = 300;
-    date = '20201214';
+    date = '20201215';
     
-    for cond = [1 2 3 4 5 6 7 8 9 10 11]
+    for cond = [1 2 3 4 5 6 7 8 9 10 11 12]
+%     for cond = [1]
 
         dir_in = strcat('G:/',date,'/raw_old/');
         dir_out = strcat('G:/',date,'/raw/');
