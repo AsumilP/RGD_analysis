@@ -94,7 +94,7 @@
 
   ! character(*), parameter:: file_name_rawi = 'chem_grid_av' !input file name
   ! character(*), parameter:: file_name_rawi = 'spiv_fr_grid_av' !input file name
-  character(*), parameter:: file_name_rawi = 'spiv_br_12'  !for cold flow
+  character(*), parameter:: file_name_rawi = 'spiv_br_14'  !for cold flow
 
   character(*), parameter:: file_name_rawmean  ='x2_mean'                 !output file name --> mean
    !!end--------------------------------------------------------------------------------------------
@@ -111,7 +111,7 @@
 
   !character(*), parameter:: file_name_rawo  = file_name_rawi
   ! character(*), parameter:: file_name_rawo  = 'chem_grid_cor' !output name
-  character(*), parameter:: file_name_rawo  = 'spiv_br_12_cor' !output name
+  character(*), parameter:: file_name_rawo  = 'spiv_br_14_cor' !output name
 
   !character(*), parameter:: file_name_rawi  = file_name_head_particle
   !character(*), parameter:: file_name_rawo  = file_name_head_particle
