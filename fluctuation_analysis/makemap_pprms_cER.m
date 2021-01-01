@@ -4,260 +4,238 @@
 
 %% PARAMETERS
 
-    sw_num = 45; % [-], vane angle
-    data_sheet_l = 'd1185';
+    sw_num = 60; % [-], vane angle
+    duct_l = 2; % 1.d1185,  2.d582
     vis_map = 1; % 1.peak-frequency, 2.ppr(20-300), 3.ppr(20-3000)
     down_or_up = 1; % 1.downstream, 2.upstream
-%     vis_col = ;
+
+    er_min = 0.66;
+    er_max = 0.8;
+    fr_min = 250;
+    fr_max = 500;
+    interpolation = 1; % 1.spline, 2.hermite
+    er_interp_num = 15;
+    fr_interp_num = 26;
     
-    dir = sprintf('G:/');
+    vis_col = 'jet';
+    figex = '.png'; % fig, png
+    
+%     col_min = 0; % 60(45,1185,f), 0(45,1185,ppr,d), 0(45,1185,ppr,u)
+%     col_max = 0.9; % 120(45,1185,f), 0.9(45,1185,ppr,d), 0.9(45,1185,ppr,u)
+%     col_min = 0; % 60(60,1185,f), 0(45,1185,ppr,d), 0(45,1185,ppr,u)
+%     col_max = 0.9; % 120(60,1185,f), 0.9(45,1185,ppr,d), 0.9(45,1185,ppr,u)
+    
+%     col_min = 0; % 190(45,582,f), 0(45,582,ppr,d), 0(45,582,ppr,u)
+%     col_max = 0.05; % 230(45,582,f), 0.1(45,582,ppr,d), 0.1(45,582,ppr,u)
+    col_min = 190; % 190(60,582,f), 0(60,582,ppr,d), 0(45,582,ppr,u)
+    col_max = 230; % 230(60,582,f), 0.1(60,582,ppr,d), 0.1(45,582,ppr,u)
+
+%% Read
+
+    dir = sprintf('G:/Analysis/pressure/PS_cER_calc/sw%d/results/',sw_num);
     
     if sw_num == 45
         rfn = sprintf('sw%d_cER.xlsx',sw_num);
-        if vis_map == 1
-            fr = xlsread(append(dir,rfn),data_sheet_l,'A2:A15');
-            er = xlsread(append(dir,rfn),data_sheet_l,'B1:K1');
-            T = xlsread(append(dir,rfn),data_sheet_l,'B2:K15');
-        elseif vis_map == 2            
-            if down_or_up == 1
-                fr = xlsread(append(dir,rfn),data_sheet_l,'M2:M15');
-                er = xlsread(append(dir,rfn),data_sheet_l,'N1:W1');
-                T = xlsread(append(dir,rfn),data_sheet_l,'N2:W15');
-            elseif down_or_up == 2
-                fr = xlsread(append(dir,rfn),data_sheet_l,'Y2:Y15');
-                er = xlsread(append(dir,rfn),data_sheet_l,'Z1:AI1');
-                T = xlsread(append(dir,rfn),data_sheet_l,'Z2:AI15');
+        if duct_l == 1
+            data_sheet_l = 'd1185';
+            if vis_map == 1
+                fr = xlsread(append(dir,rfn),data_sheet_l,'A2:A15');
+                er = xlsread(append(dir,rfn),data_sheet_l,'B1:K1');
+                T = xlsread(append(dir,rfn),data_sheet_l,'B2:K15');
+                ofn = sprintf('sw%d_cER_d1185_f_%d',sw_num,interpolation);
+            elseif vis_map == 2            
+                if down_or_up == 1
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'M2:M15');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'N1:W1');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'N2:W15');
+                    ofn = sprintf('sw%d_cER_d1185_ppr(20-300)_down_%d',sw_num,interpolation);
+                elseif down_or_up == 2
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'Y2:Y15');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'Z1:AI1');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'Z2:AI15');
+                    ofn = sprintf('sw%d_cER_d1185_ppr(20-300)_up_%d',sw_num,interpolation);
+                end
+            elseif vis_map == 3
+                if down_or_up == 1
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'M18:M31');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'N17:W17');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'N18:W31');
+                    ofn = sprintf('sw%d_cER_d1185_ppr(20-3000)_down_%d',sw_num,interpolation);
+                elseif down_or_up == 2
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'Y18:Y31');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'Z17:AI17');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'Z18:AI31');
+                    ofn = sprintf('sw%d_cER_d1185_ppr(20-3000)_up_%d',sw_num,interpolation);
+                end
             end
-        elseif vis_map == 3
-            if down_or_up == 1
-                fr = xlsread(append(dir,rfn),data_sheet_l,'M18:M31');
-                er = xlsread(append(dir,rfn),data_sheet_l,'N17:W17');
-                T = xlsread(append(dir,rfn),data_sheet_l,'N18:W31');
-            elseif down_or_up == 2
-                fr = xlsread(append(dir,rfn),data_sheet_l,'Y18:Y31');
-                er = xlsread(append(dir,rfn),data_sheet_l,'Z17:AI17');
-                T = xlsread(append(dir,rfn),data_sheet_l,'Z18:AI31');
+            
+        elseif duct_l ==2
+            data_sheet_l = 'd582';
+            if vis_map == 1
+                fr = xlsread(append(dir,rfn),data_sheet_l,'A2:A15');
+                er = xlsread(append(dir,rfn),data_sheet_l,'B1:G1');
+                T = xlsread(append(dir,rfn),data_sheet_l,'B2:G15');
+                ofn = sprintf('sw%d_cER_d582_f_%d',sw_num,interpolation);
+            elseif vis_map == 2            
+                if down_or_up == 1
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'I2:I15');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'J1:O1');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'J2:O15');
+                    ofn = sprintf('sw%d_cER_d582_ppr(20-300)_down_%d',sw_num,interpolation);
+                elseif down_or_up == 2
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'Q2:Q15');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'R1:W1');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'R2:W15');
+                    ofn = sprintf('sw%d_cER_d582_ppr(20-300)_up_%d',sw_num,interpolation);
+                end
+            elseif vis_map == 3
+                if down_or_up == 1
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'I18:I31');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'J17:O17');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'J18:O31');
+                    ofn = sprintf('sw%d_cER_d582_ppr(20-3000)_down_%d',sw_num,interpolation);
+                elseif down_or_up == 2
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'Q18:Q31');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'R17:W17');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'R18:W31');
+                    ofn = sprintf('sw%d_cER_d582_ppr(20-3000)_up_%d',sw_num,interpolation);
+                end
+            end
+        end
+        
+    elseif sw_num == 60
+        rfn = sprintf('sw%d_cER.xlsx',sw_num);
+        if duct_l == 1
+            data_sheet_l = 'd1185';
+            if vis_map == 1
+                fr = xlsread(append(dir,rfn),data_sheet_l,'A2:A15');
+                er = xlsread(append(dir,rfn),data_sheet_l,'B1:G1');
+                T = xlsread(append(dir,rfn),data_sheet_l,'B2:G15');
+                ofn = sprintf('sw%d_cER_d1185_f_%d',sw_num,interpolation);
+            elseif vis_map == 2            
+                if down_or_up == 1
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'I2:I15');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'J1:O1');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'J2:O15');
+                    ofn = sprintf('sw%d_cER_d1185_ppr(20-300)_down_%d',sw_num,interpolation);
+                elseif down_or_up == 2
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'Q2:Q15');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'R1:W1');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'R2:W15');
+                    ofn = sprintf('sw%d_cER_d1185_ppr(20-300)_up_%d',sw_num,interpolation);
+                end
+            elseif vis_map == 3
+                if down_or_up == 1
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'I18:I31');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'J17:O17');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'J18:O31');
+                    ofn = sprintf('sw%d_cER_d1185_ppr(20-3000)_down_%d',sw_num,interpolation);
+                elseif down_or_up == 2
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'Q18:Q31');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'R17:W17');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'R18:W31');
+                    ofn = sprintf('sw%d_cER_d1185_ppr(20-3000)_up_%d',sw_num,interpolation);
+                end
+            end
+            
+        elseif duct_l ==2
+            data_sheet_l = 'd582';
+            if vis_map == 1
+                fr = xlsread(append(dir,rfn),data_sheet_l,'A2:A15');
+                er = xlsread(append(dir,rfn),data_sheet_l,'B1:G1');
+                T = xlsread(append(dir,rfn),data_sheet_l,'B2:G15');
+                ofn = sprintf('sw%d_cER_d582_f_%d',sw_num,interpolation);
+            elseif vis_map == 2            
+                if down_or_up == 1
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'I2:I15');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'J1:O1');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'J2:O15');
+                    ofn = sprintf('sw%d_cER_d582_ppr(20-300)_down_%d',sw_num,interpolation);
+                elseif down_or_up == 2
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'Q2:Q15');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'R1:W1');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'R2:W15');
+                    ofn = sprintf('sw%d_cER_d582_ppr(20-300)_up_%d',sw_num,interpolation);
+                end
+            elseif vis_map == 3
+                if down_or_up == 1
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'I18:I31');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'J17:O17');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'J18:O31');
+                    ofn = sprintf('sw%d_cER_d582_ppr(20-3000)_down_%d',sw_num,interpolation);
+                elseif down_or_up == 2
+                    fr = xlsread(append(dir,rfn),data_sheet_l,'Q18:Q31');
+                    er = xlsread(append(dir,rfn),data_sheet_l,'R17:W17');
+                    T = xlsread(append(dir,rfn),data_sheet_l,'R18:W31');
+                    ofn = sprintf('sw%d_cER_d582_ppr(20-3000)_up_%d',sw_num,interpolation);
+                end
             end
         end
     end
     
+%% Interpolation
 
-   
-%     
-% %     for specific_f = [61 68 70 73 80 85 143 147 149 155 171 188 194 203 232] %%%
-%     for specific_f = [64 68 85 155 188 203] %%%
-% 
-%         for num = 1:1:recnum
-% 
-% %% READ DATA
-% 
-%             dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
-% %             dir = sprintf('G:/Analysis/pressure/%d/calc/p%d/',date,part);
-% %             dir = sprintf('C:/Users/yatagi/Desktop/sw%d_cER/%d/calc/',sw_num,date);
-%       
-%             if name_mode == 1
-%                 rfn = sprintf('pressure_%d.xlsx',num);
-%             elseif name_mode == 2
-%                 rfn = sprintf('pressure_d%d_%d_%.2f_cER.xlsx',duct_l,flow_rate,eq_ratio);
-%             elseif name_mode == 3
-%                 rfn = sprintf('pressure_speaker_%dHz_%dV_%ds_d%d_%d.xlsx',specific_f,speaker_v,speaker_t,duct_l,num);
-%             elseif name_mode == 4
-%                 rfn = sprintf('pressure_d%d_air%dL_%0.2d.xlsx',duct_l,flow_rate,num);
-%             elseif name_mode == 5
-%                 rfn = sprintf('pressure_d%d_BG_%0.2d.xlsx',duct_l,num);
-%             elseif name_mode == 6
-%                 rfn = sprintf('pressure_speaker_cold_piv_%dHz_%dV_d%d_%d.xlsx',specific_f,speaker_v,duct_l,flow_rate);
-%             end
-%             trig = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));   
-%             upv = xlsread(append(dir,rfn), sprintf('B2:B%d',fs*samp_time+1));     
-%             dpv = xlsread(append(dir,rfn), sprintf('C2:C%d',fs*samp_time+1));
-%             spv = xlsread(append(dir,rfn), sprintf('D2:D%d',fs*samp_time+1));
-% %             trig = xlsread(append(dir,rfn), sprintf('C2:C%d',fs*samp_time+1));
-% %             upv = xlsread(append(dir,rfn), sprintf('B2:B%d',fs*samp_time+1));
-% %             dpv = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));
-% 
-% %% OUTPUT FILE
-% 
-%             fn_signal_axis = sprintf('signal_time_%dkHz_%dsec.dat',fs/1000,samp_time);
-%             fn_rms_axis = sprintf('rms_time_%dkHz_%dsec_width%.1fsec.dat',fs/1000,samp_time,RMS_width);
-%             if name_mode == 1
-%                 fnubps = sprintf('PUpper_hps%d_lps%d_%d_%02u.dat',hpsfreq,lpsfreq,date,num);
-%                 fndbps = sprintf('PDown_hps%d_lps%d_%d_%02u.dat',hpsfreq,lpsfreq,date,num);
-%                 fnurms = sprintf('PUpper_primerms_hps%d_lps%d_%d_%02u.dat',hpsfreq,lpsfreq,date,num);
-%                 fndrms = sprintf('PDown_primerms_hps%d_lps%d_%d_%02u.dat',hpsfreq,lpsfreq,date,num);
-%             elseif name_mode == 2
-%                 fnubps = sprintf('PUpper_d%d_hps%d_lps%d_%d_%.2f_cER.dat',duct_l,hpsfreq,lpsfreq,flow_rate,eq_ratio);
-%                 fndbps = sprintf('PDown_d%d_hps%d_lps%d_%d_%.2f_cER.dat',duct_l,hpsfreq,lpsfreq,flow_rate,eq_ratio);
-%                 fnurms = sprintf('PUpper_d%d_primerms_hps%d_lps%d_%d_%.2f_cER.dat',duct_l,hpsfreq,lpsfreq,flow_rate,eq_ratio);
-%                 fndrms = sprintf('PDown_d%d_primerms_hps%d_lps%d_%d_%.2f.dat',duct_l,hpsfreq,lpsfreq,flow_rate,eq_ratio);
-%             elseif name_mode == 3
-%                 fnubps = sprintf('PUpper_speaker_hps%d_lps%d_%dHz_%dV_%ds_d%d_%d.dat',hpsfreq,lpsfreq,specific_f,speaker_v,speaker_t,duct_l,num);
-%                 fndbps = sprintf('PDown_speaker_hps%d_lps%d_%dHz_%dV_%ds_d%d_%d.dat',hpsfreq,lpsfreq,specific_f,speaker_v,speaker_t,duct_l,num);
-%                 fnurms = sprintf('PUpper_primerms_speaker_hps%d_lps%d_%dHz_%dV_%ds_d%d_%d.dat',hpsfreq,lpsfreq,specific_f,speaker_v,speaker_t,duct_l,num);
-%                 fndrms = sprintf('PDown_primerms_speaker_hps%d_lps%d_%dHz_%dV_%ds_d%d_%d.dat',hpsfreq,lpsfreq,specific_f,speaker_v,speaker_t,duct_l,num);
-%             elseif name_mode == 4
-%                 fnubps = sprintf('PUpper_d%d_air%dL_hps%d_lps%d_%d.dat',duct_l,flow_rate,hpsfreq,lpsfreq,num);
-%                 fndbps = sprintf('PDown_d%d_air%dL_hps%d_lps%d_%d.dat',duct_l,flow_rate,hpsfreq,lpsfreq,num);
-%                 fnurms = sprintf('PUpper_primerms_d%d_air%dL_hps%d_lps%d_%d.dat',duct_l,flow_rate,hpsfreq,lpsfreq,num);
-%                 fndrms = sprintf('PDown_primerms_d%d_air%dL_hps%d_lps%d_%d.dat',duct_l,flow_rate,hpsfreq,lpsfreq,num);
-%             elseif name_mode == 5
-%                 fnubps = sprintf('PUpper_d%d_BG_hps%d_lps%d_%d.dat',duct_l,hpsfreq,lpsfreq,num);
-%                 fndbps = sprintf('PDown_d%d_BG_hps%d_lps%d_%d.dat',duct_l,hpsfreq,lpsfreq,num);
-%                 fnurms = sprintf('PUpper_primerms_d%d_BG_hps%d_lps%d_%d.dat',duct_l,hpsfreq,lpsfreq,num);
-%                 fndrms = sprintf('PDown_primerms_d%d_BG_hps%d_lps%d_%d.dat',duct_l,hpsfreq,lpsfreq,num);
-%             end
-%             fn_signal_axis = append(dir,fn_signal_axis);
-%             fn_rms_axis = append(dir,fn_rms_axis);
-%             fnubps = append(dir,fnubps);
-%             fndbps = append(dir,fndbps);
-%             fnurms = append(dir,fnurms);
-%             fndrms = append(dir,fndrms);
-% 
-% %% Matrix
-% 
-%             Sts = 1/fs; % [sec]
-%             ppd = Prof_Down*dpv; % [kPa]
-%             ppu = Prof_Upper*upv; % [kPa]
-%             taxis = Sts:Sts:samp_time;
-% 
-%             fileID = fopen(fn_signal_axis,'w');
-%             fwrite(fileID,taxis,'double');
-%             fclose(fileID);
-% 
-% %% FIND THE TRIGERERD TIME-STEP, Fts
-% 
-%             Fts = 10e7;  % do not change
-% 
-%             for t = 1:fs*samp_time
-%                 if  trig(t) > trigV
-%                     if t < Fts
-%                         Fts = t;
-%                     end
-%                 end
-%             end
-% 
-%             trig_time = Fts*Sts  % [sec]
-%             cam_start_time = trig_time - cam_frames*Sts
-% 
-% %% BAND-PASS FILTER, CALCULATION & SAVE
-% 
-%             ppu = ppu - mean(ppu);
-%             ppd = ppd - mean(ppd);
-% 
-%             [ppu] = band_pass_filter(ppu, fs, lpsfreq, hpsfreq, fft_dbl_type);
-%             [ppd] = band_pass_filter(ppd, fs, lpsfreq, hpsfreq, fft_dbl_type);
-% 
-%             fileID = fopen(fnubps,'w');
-%             fwrite(fileID,ppu,'double');
-%             fclose(fileID);
-% 
-%             fileID = fopen(fndbps,'w');
-%             fwrite(fileID,ppd,'double');
-%             fclose(fileID);
-% 
-% %% primerms-time, SAVE
-% 
-%             taxis_rms = Sts + RMS_width/2:Sts:samp_time - RMS_width/2;
-% 
-%             fileID = fopen(fn_rms_axis,'w');
-%             fwrite(fileID,taxis_rms,'double');
-%             fclose(fileID);
-% 
-% %% PRMIE_RMS, CALCULATION & SAVE
-% 
-%             for k= 1:fs*samp_time - RMS_width/Sts
-%                 for j = 1:RMS_width/Sts
-%                     p_temp_upper(j) = ppu(k+j);
-%                     p_temp_down(j) = ppd(k+j);
-%                 end
-%                 p_rms_upper(k) = rms(p_temp_upper-mean(p_temp_upper));
-%                 p_rms_down(k) = rms(p_temp_down-mean(p_temp_down));
-%             end
-% 
-%             fileID=fopen(fnurms,'w');
-%             fwrite(fileID,p_rms_upper,'double');
-%             fclose(fileID);
-% 
-%             fileID = fopen(fndrms,'w');
-%             fwrite(fileID,p_rms_down,'double');
-%             fclose(fileID);
-% 
-% %% FIGURE
-% 
-% % BAND-PASS, P_DOWN
-%             figure('Position', [50 50 960 735],'Color','white');
-%             plot(taxis,ppd,'vk')
-% 
-%             ax = gca;
-%             xtickformat('%d')
-%             ytickformat('%.2f')
-% 
-%             ax.XColor = 'k';
-%             ax.YColor = 'k';
-%             ax.FontSize = 20;
-%             ax.FontName = 'Times New Roman';
-%             ax.TitleFontSizeMultiplier = 2;
-%             ax.Box = 'on';
-%             ax.LineWidth = 2.0;
-%             ax.XMinorTick = 'on';
-%             ax.YMinorTick = 'on';
-%             ax.XLim = [0 samp_time];
-%             ax.YLim = [-0.60 0.60];
-% 
-%             xlabel('\it \fontname{Times New Roman} t \rm[sec]')
-%             ylabel('\it \fontname{Times New Roman} p'' \rm[kPa]')
-%             set(gca,'FontName','Times New Roman','FontSize',20)
-%             hold on
-% 
-%             plot(taxis,ppu,'^r')
-%             hold on
-% 
-%             plot([trig_time trig_time],[-0.60 0.60],'g','LineWidth',1.5)
-%             hold on
-% 
-%             plot([cam_start_time cam_start_time],[-0.60 0.60],'g','LineWidth',1.5)
-%             hold off
-%             pbaspect([sqrt(2) 1 1]);
-% 
-% % BAND-PASS, P_DOWN, PRIMERMS
-%             figure('Position', [50 50 960 735],'Color','white');
-%             plot(taxis_rms,p_rms_down,'vk')
-% 
-%             ax = gca;
-%             xtickformat('%d')
-%             ytickformat('%.2f')
-% 
-%             ax.XColor = 'k';
-%             ax.YColor = 'k';
-%             ax.FontSize = 20;
-%             ax.FontName = 'Times New Roman';
-%             ax.TitleFontSizeMultiplier = 2;
-%             ax.Box = 'on';
-%             ax.LineWidth = 2.0;
-%             ax.XMinorTick = 'on';
-%             ax.YMinorTick = 'on';
-%             ax.XLim = [0 samp_time];
-%             ax.YLim = [0 0.40];
-% 
-%             xlabel('\it \fontname{Times New Roman} t \rm[sec]')
-%             ylabel('\it \fontname{Times New Roman} p''_{rms} \rm[kPa]')
-%             set(gca,'FontName','Times New Roman','FontSize',20)
-%             hold on
-% 
-%             plot(taxis_rms,p_rms_upper,'^r')
-%             hold on
-% 
-%             plot([trig_time trig_time],[0 0.40],'g','LineWidth',1.5)
-%             hold on
-% 
-%             plot([cam_start_time cam_start_time],[0 0.40],'g','LineWidth',1.5)
-%             hold off
-%             pbaspect([sqrt(2) 1 1]);
-% 
-% %             pause;
-% %             clear all
-%             close all
-%             clc
-% 
-%         end
-%     end %%%
+    der = (er_max-er_min)/(er_interp_num-1);
+    dfr = (fr_max-fr_min)/(fr_interp_num-1);
+    er_interp = er_min:der:er_max;
+    fr_interp = fr_min:dfr:fr_max;
+    
+    T_interp_temp = zeros(length(fr),length(er_interp));
+    T_interp_plot = zeros(length(fr_interp),length(er_interp));
+    
+    if interpolation == 1
+        for i = 1:1:length(fr)
+            T_interp_temp(i,:) = spline(er,T(i,:),er_interp);
+        end
+        for j = 1:1:length(er_interp)
+            T_interp_plot(:,j) = spline(fr,T_interp_temp(:,j),fr_interp);
+        end
+        
+    elseif interpolation == 2
+        for i = 1:1:length(fr)
+            T_interp_temp(i,:) = pchip(er,T(i,:),er_interp);
+        end
+        for j = 1:1:length(er_interp)
+            T_interp_plot(:,j) = pchip(fr,T_interp_temp(:,j),fr_interp);
+        end
+    end
+
+%% Plot, Figure
+    
+    figure('Position', [50 50 960 735],'Color','white');
+    imagesc([er_min er_max],[fr_min fr_max],T_interp_plot,[col_min col_max]);
+
+    ax = gca;
+    colormap(ax,vis_col)
+    xtickformat('%.2f')
+    ytickformat('%.d')
+
+    ax.XColor = 'k';
+    ax.YColor = 'k';
+    ax.FontSize = 20;
+    ax.FontName = 'Times New Roman';
+    ax.TitleFontSizeMultiplier = 2;
+    ax.Box = 'on';
+    ax.LineWidth = 2.0;
+    ax.XMinorTick = 'on';
+    ax.YMinorTick = 'on';
+    ax.XLim = [er_min er_max];
+    ax.YLim = [fr_min fr_max];
+    
+    c = colorbar;
+    c.TickLabelInterpreter='latex';
+    c.Label.FontSize = 20;
+    if vis_map == 1
+        c.Label.String = '\it \fontname{Times New Roman} f \rm [Hz]';
+    else
+        c.Label.String = '\it \fontname{Times New Roman} p''_{rms} \rm [kPa]';
+    end
+    c.Location = 'eastoutside';
+    c.AxisLocation='out';
+
+     xlabel('\rm \fontname{Times New Roman} Equivalence ratio')
+     ylabel('\rm \fontname{Times New Roman} Flow rate \rm[L/min]')
+     set(gca,'FontName','Times New Roman','FontSize',20)
+
+     pbaspect([sqrt(2) 1 1]);
+     saveas(gcf,strcat(dir,ofn,figex));
