@@ -6,29 +6,25 @@
 
     sw_num = 60; % [-], vane angle
     duct_l = 2; % 1.d1185,  2.d582
-    vis_map = 1; % 1.peak-frequency, 2.ppr(20-300), 3.ppr(20-3000)
-    down_or_up = 1; % 1.downstream, 2.upstream
+    vis_map = 3; % 1.peak-frequency, 2.ppr(20-300), 3.ppr(20-3000)
+    down_or_up = 2; % 1.downstream, 2.upstream
+
+%     col_min = 0; % 60(d1185,f), 0(d1185,ppr)
+%     col_max = 0.9; % 120(d1185,f), 0.9(d1185,ppr)
+    
+    col_min = 0; % 190(d582,f), 0(d582,ppr)
+    col_max = 0.1; % 230(d582,f), 0.1(d582,ppr)
 
     er_min = 0.66;
     er_max = 0.8;
     fr_min = 250;
     fr_max = 500;
-    interpolation = 1; % 1.spline, 2.hermite
+    interpolation = 2; % 1.spline, 2.hermite
     er_interp_num = 15;
     fr_interp_num = 26;
     
     vis_col = 'jet';
     figex = '.png'; % fig, png
-    
-%     col_min = 0; % 60(45,1185,f), 0(45,1185,ppr,d), 0(45,1185,ppr,u)
-%     col_max = 0.9; % 120(45,1185,f), 0.9(45,1185,ppr,d), 0.9(45,1185,ppr,u)
-%     col_min = 0; % 60(60,1185,f), 0(45,1185,ppr,d), 0(45,1185,ppr,u)
-%     col_max = 0.9; % 120(60,1185,f), 0.9(45,1185,ppr,d), 0.9(45,1185,ppr,u)
-    
-%     col_min = 0; % 190(45,582,f), 0(45,582,ppr,d), 0(45,582,ppr,u)
-%     col_max = 0.05; % 230(45,582,f), 0.1(45,582,ppr,d), 0.1(45,582,ppr,u)
-    col_min = 190; % 190(60,582,f), 0(60,582,ppr,d), 0(45,582,ppr,u)
-    col_max = 230; % 230(60,582,f), 0.1(60,582,ppr,d), 0.1(45,582,ppr,u)
 
 %% Read
 
