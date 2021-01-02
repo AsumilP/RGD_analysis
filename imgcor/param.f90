@@ -7,8 +7,8 @@
   ! param for camera
   integer, parameter :: nx = 1024   !PIXEL RESOLUTION
   integer, parameter :: ny = 1024
-  ! logical, parameter :: xflip = .false. ! flip image in x, plif, br, fl
-  logical, parameter :: xflip = .true. ! true for chem, bl, fr
+  logical, parameter :: xflip = .false. ! flip image in x, plif, br, fl
+  ! logical, parameter :: xflip = .true. ! true for chem, bl, fr
   logical, parameter :: yflip = .false.  ! flip image in y, always false
   logical, parameter :: iflip = .true.  ! flip image intensity: enable to set cross as bright (white cross on black background)
   integer, parameter :: flag_skip = 0 ! camera bit depth
@@ -57,8 +57,10 @@
 !!  character(*), parameter:: file_name_head_particle = file_name_head
 
   !! xc
-  character(*), parameter:: path_of_grid_raw = '/home/yatagi/mnt/20201219/imgcor/' !input file directory
-  character(*), parameter:: path_of_grid_ccc = '/home/yatagi/mnt/20201219/imgcor/' !output file directory
+  ! character(*), parameter:: path_of_grid_raw = '/home/yatagi/mnt/20201219/imgcor/' !input file directory
+  ! character(*), parameter:: path_of_grid_ccc = '/home/yatagi/mnt/20201219/imgcor/' !output file directory
+  character(*), parameter:: path_of_grid_raw = '/home/yatagi/analysis/rawimg/20201215/imgcor/' !input file directory
+  character(*), parameter:: path_of_grid_ccc = '/home/yatagi/analysis/rawimg/20201215/imgcor/' !output file directory
   ! character(*), parameter:: file_name_raw = 'chem_grid_av.dat'      !input file name
   ! character(*), parameter:: file_name_ccc = 'chem_ccc.dat'     !output file name
   ! character(*), parameter:: file_name_ccco = 'chem_cco.dat' !output file name
@@ -76,13 +78,14 @@
   ! character(*), parameter:: file_name_ccco = 'spiv_bl_cco.dat' !output file name
 
   !! ls
-  character(*), parameter:: path_of_coe = '/home/yatagi/analysis/grid_output/20201215/fr/' !output
+  character(*), parameter:: path_of_coe = '/home/yatagi/analysis/grid_output/20201214/br/' !output
+  ! character(*), parameter:: path_of_coe = '/home/yatagi/analysis/rawimg/20201215/imgcor/' !output
   ! character(*), parameter:: path_of_coe = '/home/yatagi/mnt/20201219/imgcor/' !output
   ! character(*), parameter:: path_of_coe = '/home/yatagi/mnt/20201219/imgcor/grid/' !output
   ! character(*), parameter:: file_name_coe ='chem_grid_cor.txt'
-  character(*), parameter:: file_name_coe ='spiv_fr_grid_cor.txt'
+  ! character(*), parameter:: file_name_coe ='spiv_fr_grid_cor.txt'
   ! character(*), parameter:: file_name_coe ='spiv_fl_grid_cor.txt'
-  ! character(*), parameter:: file_name_coe ='spiv_br_grid_cor.txt'
+  character(*), parameter:: file_name_coe ='spiv_br_grid_cor.txt'
   ! character(*), parameter:: file_name_coe ='spiv_bl_grid_cor.txt'
 
   !! imgcor
@@ -90,11 +93,11 @@
    !!Have to Change whether grid or particle-------------------------------------------------------
   !character(*), parameter:: path_of_particle_raw = '/home/yatagi/analysis/grid_output/20190227/spiv_bl/'!for grid
   ! character(*), parameter:: path_of_particle_raw = '/home/yatagi/mnt/20201219/raw/' !for flow
-  character(*), parameter:: path_of_particle_raw = '/home/yatagi/analysis/rawimg/20201215/raw/'
+  character(*), parameter:: path_of_particle_raw = '/home/yatagi/analysis/rawimg/20201214/raw/'
 
   ! character(*), parameter:: file_name_rawi = 'chem_grid_av' !input file name
   ! character(*), parameter:: file_name_rawi = 'spiv_fr_grid_av' !input file name
-  character(*), parameter:: file_name_rawi = 'spiv_fr_02'  !for cold flow
+  character(*), parameter:: file_name_rawi = 'spiv_br_02'  !for cold flow
 
   character(*), parameter:: file_name_rawmean  ='x2_mean'                 !output file name --> mean
    !!end--------------------------------------------------------------------------------------------
@@ -107,11 +110,11 @@
   !character(*), parameter:: path_of_particle_corrected = '/home/yatagi/analysis/chem_output/20181129/'
   !character(*), parameter:: path_of_particle_corrected = '/home/yatagi/analysis/plif_output/20190821/plif_cor/'
   ! character(*), parameter:: path_of_particle_corrected = '/home/yatagi/mnt/20201221/imgcor/'
-  character(*), parameter:: path_of_particle_corrected = '/home/yatagi/analysis/piv_output/flow_cor/20201215/fr/'
+  character(*), parameter:: path_of_particle_corrected = '/home/yatagi/analysis/piv_output/flow_cor/20201214/br/'
 
   !character(*), parameter:: file_name_rawo  = file_name_rawi
   ! character(*), parameter:: file_name_rawo  = 'chem_grid_cor' !output name
-  character(*), parameter:: file_name_rawo  = 'spiv_fr_02_cor' !output name
+  character(*), parameter:: file_name_rawo  = 'spiv_br_02_cor' !output name
 
   !character(*), parameter:: file_name_rawi  = file_name_head_particle
   !character(*), parameter:: file_name_rawo  = file_name_head_particle
