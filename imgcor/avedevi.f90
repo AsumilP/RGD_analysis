@@ -24,11 +24,11 @@
  ! character(*), parameter :: path_of_file_in = '/home/yatagi/analysis/rawimg/20181218/spiv_fr/'
  ! character(*), parameter :: path_of_file_out = '/home/yatagi/analysis/piv_output/rmvnoise_particle/20181218/spiv_fr/'
 
- ! character(*), parameter :: path_of_file_in = '/home/yatagi/analysis/rawimg/20190301/plif/'
- ! character(*), parameter :: path_of_file_out = '/home/yatagi/analysis/grid_output/20190301/plif/'
+ character(*), parameter :: path_of_file_in = '/home/yatagi/analysis/rawimg/20201215/raw/'
+ character(*), parameter :: path_of_file_out = '/home/yatagi/analysis/rawimg/20201215/imgcor/'
 
- character(*), parameter :: path_of_file_in = '/home/yatagi/mnt/20201218/raw/'
- character(*), parameter :: path_of_file_out = '/home/yatagi/mnt/20201218/imgcor/'
+ ! character(*), parameter :: path_of_file_in = '/home/yatagi/mnt/20201223/raw/'
+ ! character(*), parameter :: path_of_file_out = '/home/yatagi/mnt/20201223/imgcor/'
 !------------------------------------
  integer:: i,j,k,l
  integer(2):: craw(nx,ny,nz)
@@ -66,15 +66,6 @@
   ! write(file_name_in,"('spiv_fr_grid.mraw')")
 
    ! write(file_name_in,"('spiv_fr_',i2.2,'.mraw')"),l
-
-   ! write(file_name_in,"('chem_grid.dat')")
-   ! write(file_name_in,"('plif_noise.dat')")
-   ! write(file_name_in,"('spiv_bl_grid.dat')")
-   ! write(file_name_in,"('spiv_br_grid.dat')")
-   ! write(file_name_in,"('spiv_fl_grid.dat')")
-   ! write(file_name_in,"('spiv_fr_grid.dat')")
-
-    ! write(file_name_in,"('spiv_fr_',i2.2,'.dat')"),l
 
    !-----------------output-------------------
 
