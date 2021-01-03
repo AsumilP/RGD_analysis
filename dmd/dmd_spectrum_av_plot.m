@@ -22,23 +22,25 @@
     flow_rate6 = 400; % [L/min]
     step6 = 'trans6';
     
-    dir = 'G:/Analysis/piv_output/dmd/dmd_averaged/';
-    velo = 'u';
+%     dir = 'G:/Analysis/piv_output/dmd/dmd_averaged/';
+    dir = 'D:/Analysis/chem_output/chem_dmd/dmd_averaged/';
+%     type = 'u';
+    type = 'chem';
 
 %% READ
 
-    fg_m_fil_in1 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step1,'_',velo,'.dat'),flow_rate1);
-    norm_dm_fil_in1 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step1,'_',velo,'.dat'),flow_rate1);
-    fg_m_fil_in2 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step2,'_',velo,'.dat'),flow_rate2);
-    norm_dm_fil_in2 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step2,'_',velo,'.dat'),flow_rate2);
-    fg_m_fil_in3 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step3,'_',velo,'.dat'),flow_rate3);
-    norm_dm_fil_in3 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step3,'_',velo,'.dat'),flow_rate3);
-    fg_m_fil_in4 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step4,'_',velo,'.dat'),flow_rate4);
-    norm_dm_fil_in4 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step4,'_',velo,'.dat'),flow_rate4);
-    fg_m_fil_in5 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step5,'_',velo,'.dat'),flow_rate5);
-    norm_dm_fil_in5 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step5,'_',velo,'.dat'),flow_rate5);
-    fg_m_fil_in6 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step6,'_',velo,'.dat'),flow_rate6);
-    norm_dm_fil_in6 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step6,'_',velo,'.dat'),flow_rate6);
+    fg_m_fil_in1 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step1,'_',type,'.dat'),flow_rate1);
+    norm_dm_fil_in1 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step1,'_',type,'.dat'),flow_rate1);
+    fg_m_fil_in2 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step2,'_',type,'.dat'),flow_rate2);
+    norm_dm_fil_in2 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step2,'_',type,'.dat'),flow_rate2);
+    fg_m_fil_in3 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step3,'_',type,'.dat'),flow_rate3);
+    norm_dm_fil_in3 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step3,'_',type,'.dat'),flow_rate3);
+    fg_m_fil_in4 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step4,'_',type,'.dat'),flow_rate4);
+    norm_dm_fil_in4 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step4,'_',type,'.dat'),flow_rate4);
+    fg_m_fil_in5 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step5,'_',type,'.dat'),flow_rate5);
+    norm_dm_fil_in5 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step5,'_',type,'.dat'),flow_rate5);
+    fg_m_fil_in6 = sprintf(strcat(dir,'fg_m_real_fil_%02u_',step6,'_',type,'.dat'),flow_rate6);
+    norm_dm_fil_in6 = sprintf(strcat(dir,'norm_dm_fil_%02u_',step6,'_',type,'.dat'),flow_rate6);
 %
     fileID = fopen(fg_m_fil_in1,'r');
     fg1 = fread(fileID,[1 inf],'double');
@@ -109,7 +111,8 @@
      % ax.XScale = 'log';
      % ax.YScale = 'log';
      ax.XLim = [20 300];
-     ax.YLim = [4 200];
+%      ax.YLim = [4 200];
+     ax.YLim = [10^3 2*10^5];
      ax.FontSize = 20;
      ax.FontName = 'Times New Roman';
      ax.TitleFontSizeMultiplier = 2;
