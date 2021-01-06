@@ -3,8 +3,8 @@
     clc
 
 %% PARAMETERS
-    data_species = 5; % 1, 2, 3, 4, 5, 6
-    signal_type = 4; % 1. p_sequence, 2. p_cER, 3. speaker_chirp, 4. specific_f, 5. air, 6. BG
+    data_species = 3; % 1, 2, 3, 4, 5, 6
+    signal_type = 3; % 1. p_sequence, 2. p_cER, 3. speaker_chirp, 4. specific_f, 5. air, 6. BG
     noise_sub = 0; %1. Yes, 0: No
     up_or_dwn = 2; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
 
@@ -16,6 +16,10 @@
     
     dir_noise = sprintf('H:/Analysis/pressure/%d/calc/',noise_date);
     div_nlength_noise = fs_noise*fft_mean_tlength_noise;
+    
+%%
+    spk_freq= [61 68 70 73 80 85 143 147 149 155 171 188 194 203 232];
+    spk_PS= [895.3 1325 1476 1650 1720 1508 239.2 376 386.2 451.1 554.8 188 168.1 119.7 39.13];
     
 %%
     if data_species == 1
@@ -2424,9 +2428,9 @@
 
      end
 
-     % legend('582mm','883mm','1185mm','FontSize',20,'Location','northwest')
+     legend('582mm','883mm','1185mm','FontSize',20,'Location','northwest')
      % legend('582mm','883mm','1185mm','0mm','FontSize',20,'Location','northwest')
-     legend('61Hz','68Hz','70Hz','73Hz','80Hz','FontSize',20,'Location','northwest')
+%      legend('61Hz','68Hz','70Hz','73Hz','80Hz','FontSize',20,'Location','northwest')
 %      legend('85Hz','143Hz','147Hz','149Hz','155Hz','FontSize',20,'Location','northwest')
 %      legend('171Hz','188Hz','194Hz','203Hz','232Hz','FontSize',20,'Location','northwest')
      % legend('400L/min, stable','400L/min, oscillation','450L/min, stable','450L/min, oscillation','500L/min, stable','500L/min, oscillation','FontSize',20,'Location','northwest')
@@ -2434,5 +2438,9 @@
      % legend('350L/min, 0.70','350L/min, 0.72','350L/min, 0.74','350L/min, 0.76','350L/min, 0.78','350L/min, 0.80','FontSize',15,'Location','northeast')
      % legend('450L/min, 0.70','450L/min, 0.72','450L/min, 0.74','450L/min, 0.76','450L/min, 0.78','450L/min, 0.80','FontSize',15,'Location','northeast')
      % legend('500L/min, 0.70','500L/min, 0.72','500L/min, 0.74','500L/min, 0.76','500L/min, 0.78','500L/min, 0.80','FontSize',15,'Location','northeast')
+     hold on
+     plot(spk_freq(1:6),spk_PS(1:6)/30,'-dk','MarkerSize',8,'MarkerFaceColor','k','MarkerIndices',1:1:length(spk_PS))
+     hold on
+     plot(spk_freq(7:14),spk_PS(7:14)/30,'-dk','MarkerSize',8,'MarkerFaceColor','k','MarkerIndices',1:1:length(spk_PS))
      hold off
      pbaspect([sqrt(2) 1 1]);
