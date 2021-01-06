@@ -84,12 +84,12 @@
 %%
     elseif data_species == 3
 
-      ndata1 = 30;
+      ndata1 = 31;
       flow_rate1 = 0; % [L/min]
       eq_ratio1 = 0;
       hpsfreq1 = 20; % [Hz], signal_type = 1,2,3,4
       lpsfreq1 = 300; % [Hz], signal_type = 1,2,3,4
-      speaker_duration1 = 15; % [s], signal_type = 3,4
+      speaker_duration1 = 7.5; % [s], signal_type = 3,4
       specific_f1 = 0; % [s], signal_type = 4
       part1 = 1; % signal_type = 4
       lduct1 = 582; % [mm], signal_type = 3,4
@@ -99,7 +99,7 @@
       eq_ratio2 = 0;
       hpsfreq2 = 0; % [Hz], signal_type = 1,2,3,4
       lpsfreq2 = 0; % [Hz], signal_type = 1,2,3,4
-      speaker_duration2 = 15; % [s], signal_type = 3,4
+      speaker_duration2 = 7.5; % [s], signal_type = 3,4
       specific_f2 = 0; % [s], signal_type = 4
       part2 = 1; % signal_type = 4
       lduct2 = 883; % [mm], signal_type = 3,4
@@ -109,7 +109,7 @@
       eq_ratio3 = 0;
       hpsfreq3 = 0; % [Hz], signal_type = 1,2,3,4
       lpsfreq3 = 0; % [Hz], signal_type = 1,2,3,4
-      speaker_duration3 = 15; % [s], signal_type = 3,4
+      speaker_duration3 = 7.5; % [s], signal_type = 3,4
       specific_f3 = 0; % [s], signal_type = 4
       part3 = 1; % signal_type = 4
       lduct3 = 1185; % [mm], signal_type = 3,4
