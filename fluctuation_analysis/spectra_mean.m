@@ -13,7 +13,7 @@
     fft_mean_type = 1;
     fft_mean_tlength = 1; % [s]
 
-    date = 20201127;
+    date = 20201203;
     num_start = 1;
     num_end = 5;
     flow_rate = 350; % [L/min], signal_type = 1,2
@@ -25,7 +25,7 @@
 %     speaker_hf = 350; %%% [Hz], signal_type = 3
     speaker_lf_start = 20; %%%
     speaker_lf_end = 300; %%%
-    part = 1;
+    part = 8;
 
     calc_start_time = 0; % [s], trans_start_time
     calc_fin_time = 15; % [s], trans_fin_time
