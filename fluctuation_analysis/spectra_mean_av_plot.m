@@ -3,10 +3,10 @@
     clc
 
 %% PARAMETERS
-    data_species = 6; % 1, 2, 3, 4, 5, 6
-    signal_type = 3; % 1. p_sequence, 2. p_cER, 3. speaker_chirp, 4. specific_f, 5. air, 6. BG
+    data_species = 5; % 1, 2, 3, 4, 5, 6
+    signal_type = 4; % 1. p_sequence, 2. p_cER, 3. speaker_chirp, 4. specific_f, 5. air, 6. BG
     noise_sub = 0; %1. Yes, 0: No
-    up_or_dwn = 1; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
+    up_or_dwn = 2; % 1. upperstream 2. downstream, when signal_type = 1 or 2 or 3
 
 %%
     ndata_noise = 5;
@@ -23,14 +23,16 @@
       ndata1 = 30;
       flow_rate1 = 0; % [L/min]
       eq_ratio1 = 0.00;
-      hpsfreq1 = 0; % [Hz], signal_type = 2
-      lpsfreq1 = 0; % [Hz], signal_type = 2
-      speaker_duration1 = 7.5; % [s], signal_type = 3
-      lduct1 = 1185; % [mm], signal_type = 3
+      hpsfreq1 = 0; % [Hz], signal_type = 1,2,3,4
+      lpsfreq1 = 0; % [Hz], signal_type = 1,2,3,4
+      speaker_duration1 = 7.5; % [s], signal_type = 3,4
+      specific_f1 = 0; % [s], signal_type = 4
+      part1 = 1; % signal_type = 4
+      lduct1 = 1185; % [mm], signal_type = 3,4
 
       date = 20200908;
       fft_mean_tlength = 1; % [s]
-      speaker_voltage = 1; % [V], signal_type = 3
+      speaker_voltage = 1; % [V], signal_type = 3,4
       speaker_lf = 0; % [Hz], signal_type = 3
       speaker_hf = 350; % [Hz], signal_type = 3
       fs = 20e3;
@@ -46,22 +48,26 @@
       ndata1 = 30;
       flow_rate1 = 0; % [L/min]
       eq_ratio1 = 0.00;
-      hpsfreq1 = 0; % [Hz], signal_type = 2
-      lpsfreq1 = 0; % [Hz], signal_type = 2
-      speaker_duration1 = 7.5; % [s], signal_type = 3
-      lduct1 = 1185; % [mm], signal_type = 3
+      hpsfreq1 = 0; % [Hz], signal_type = 1,2,3,4
+      lpsfreq1 = 0; % [Hz], signal_type = 1,2,3,4
+      speaker_duration1 = 7.5; % [s], signal_type = 3,4
+      specific_f1 = 0; % [s], signal_type = 4
+      part1 = 1; % signal_type = 4
+      lduct1 = 1185; % [mm], signal_type = 3,4
 
       ndata2 = 30;
       flow_rate2 = 0; % [L/min]
       eq_ratio2 = 0.00;
-      hpsfreq2 = 0; % [Hz], signal_type = 2
-      lpsfreq2 = 0; % [Hz], signal_type = 2
-      speaker_duration2 = 7.5; % [s], signal_type = 3
-      lduct2 = 1185; % [mm], signal_type = 3
+      hpsfreq2 = 0; % [Hz], signal_type = 1,2,3,4
+      lpsfreq2 = 0; % [Hz], signal_type = 1,2,3,4
+      speaker_duration2 = 7.5; % [s], signal_type = 3,4
+      specific_f2 = 0; % [s], signal_type = 4
+      part2 = 1; % signal_type = 4
+      lduct2 = 1185; % [mm], signal_type = 3,4
 
       date = 20200908;
       fft_mean_tlength = 1; % [s]
-      speaker_voltage = 1; % [V], signal_type = 3
+      speaker_voltage = 1; % [V], signal_type = 3,4
       speaker_lf = 0; % [Hz], signal_type = 3
       speaker_hf = 350; % [Hz], signal_type = 3
       fs = 20e3;
@@ -77,30 +83,36 @@
       ndata1 = 30;
       flow_rate1 = 0; % [L/min]
       eq_ratio1 = 0;
-      hpsfreq1 = 20; % [Hz], signal_type = 2
-      lpsfreq1 = 300; % [Hz], signal_type = 2
-      speaker_duration1 = 15; % [s], signal_type = 3
-      lduct1 = 582; % [mm], signal_type = 3
+      hpsfreq1 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq1 = 300; % [Hz], signal_type = 1,2,3,4
+      speaker_duration1 = 15; % [s], signal_type = 3,4
+      specific_f1 = 0; % [s], signal_type = 4
+      part1 = 1; % signal_type = 4
+      lduct1 = 582; % [mm], signal_type = 3,4
 
       ndata2 = 30;
       flow_rate2 = 0; % [L/min]
       eq_ratio2 = 0;
-      hpsfreq2 = 0; % [Hz], signal_type = 2
-      lpsfreq2 = 0; % [Hz], signal_type = 2
-      speaker_duration2 = 15; % [s], signal_type = 3
-      lduct2 = 883; % [mm], signal_type = 3
+      hpsfreq2 = 0; % [Hz], signal_type = 1,2,3,4
+      lpsfreq2 = 0; % [Hz], signal_type = 1,2,3,4
+      speaker_duration2 = 15; % [s], signal_type = 3,4
+      specific_f2 = 0; % [s], signal_type = 4
+      part2 = 1; % signal_type = 4
+      lduct2 = 883; % [mm], signal_type = 3,4
 
       ndata3 = 30;
       flow_rate3 = 0; % [L/min]
       eq_ratio3 = 0;
-      hpsfreq3 = 0; % [Hz], signal_type = 2
-      lpsfreq3 = 0; % [Hz], signal_type = 2
-      speaker_duration3 = 15; % [s], signal_type = 3
-      lduct3 = 1185; % [mm], signal_type = 3
+      hpsfreq3 = 0; % [Hz], signal_type = 1,2,3,4
+      lpsfreq3 = 0; % [Hz], signal_type = 1,2,3,4
+      speaker_duration3 = 15; % [s], signal_type = 3,4
+      specific_f3 = 0; % [s], signal_type = 4
+      part3 = 1; % signal_type = 4
+      lduct3 = 1185; % [mm], signal_type = 3,4
 
       date = 20200908;
       fft_mean_tlength = 1; % [s]
-      speaker_voltage = 1; % [V], signal_type = 3
+      speaker_voltage = 1; % [V], signal_type = 3,4
       speaker_lf = 0; % [Hz], signal_type = 3
       speaker_hf = 350; % [Hz], signal_type = 3
       fs = 20e3;
@@ -118,38 +130,46 @@
       ndata1 = 30;
       flow_rate1 = 0; % [L/min]
       eq_ratio1 = 0;
-      hpsfreq1 = 20; % [Hz], signal_type = 2
-      lpsfreq1 = 300; % [Hz], signal_type = 2
-      speaker_duration1 = 15; % [s], signal_type = 3
-      lduct1 = 582; % [mm], signal_type = 3
+      hpsfreq1 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq1 = 300; % [Hz], signal_type = 1,2,3,4
+      speaker_duration1 = 15; % [s], signal_type = 3,4
+      specific_f1 = 0; % [s], signal_type = 4
+      part1 = 1; % signal_type = 4
+      lduct1 = 582; % [mm], signal_type = 3,4
 
       ndata2 = 30;
       flow_rate2 = 0; % [L/min]
       eq_ratio2 = 0;
-      hpsfreq2 = 0; % [Hz], signal_type = 2
-      lpsfreq2 = 0; % [Hz], signal_type = 2
-      speaker_duration2 = 15; % [s], signal_type = 3
-      lduct2 = 883; % [mm], signal_type = 3
+      hpsfreq2 = 0; % [Hz], signal_type = 1,2,3,4
+      lpsfreq2 = 0; % [Hz], signal_type = 1,2,3,4
+      speaker_duration2 = 15; % [s], signal_type = 3,4
+      specific_f2 = 0; % [s], signal_type = 4
+      part2 = 1; % signal_type = 4
+      lduct2 = 883; % [mm], signal_type = 3,4
 
       ndata3 = 30;
       flow_rate3 = 0; % [L/min]
       eq_ratio3 = 0;
-      hpsfreq3 = 0; % [Hz], signal_type = 2
-      lpsfreq3 = 0; % [Hz], signal_type = 2
-      speaker_duration3 = 15; % [s], signal_type = 3
-      lduct3 = 1185; % [mm], signal_type = 3
+      hpsfreq3 = 0; % [Hz], signal_type = 1,2,3,4
+      lpsfreq3 = 0; % [Hz], signal_type = 1,2,3,4
+      speaker_duration3 = 15; % [s], signal_type = 3,4
+      specific_f3 = 0; % [s], signal_type = 4
+      part3 = 1; % signal_type = 4
+      lduct3 = 1185; % [mm], signal_type = 3,4
       
       ndata4 = 30;
       flow_rate4 = 0; % [L/min]
       eq_ratio4 = 0;
-      hpsfreq4 = 0; % [Hz], signal_type = 2
-      lpsfreq4 = 0; % [Hz], signal_type = 2
-      speaker_duration4 = 15; % [s], signal_type = 3
-      lduct4 = 0; % [mm], signal_type = 3
+      hpsfreq4 = 0; % [Hz], signal_type = 1,2,3,4
+      lpsfreq4 = 0; % [Hz], signal_type = 1,2,3,4
+      speaker_duration4 = 15; % [s], signal_type = 3,4
+      specific_f4 = 0; % [s], signal_type = 4
+      part4 = 1; % signal_type = 4
+      lduct4 = 0; % [mm], signal_type = 3,4
 
       date = 20200908;
       fft_mean_tlength = 1; % [s]
-      speaker_voltage = 1; % [V], signal_type = 3
+      speaker_voltage = 1; % [V], signal_type = 3,4
       speaker_lf = 0; % [Hz], signal_type = 3
       speaker_hf = 350; % [Hz], signal_type = 3
       fs = 20e3;
@@ -163,50 +183,62 @@
       
 %%
     elseif data_species == 5
+        
+      part_all = 9;
 
-      ndata1 = 1;
+      ndata1 = 5;
       flow_rate1 = 400; % [L/min]
       eq_ratio1 = 0.68;
-      hpsfreq1 = 0; % [Hz], signal_type = 2
-      lpsfreq1 = 0; % [Hz], signal_type = 2
-      speaker_duration1 = 7.5; % [s], signal_type = 3
-      lduct1 = 582; % [mm], signal_type = 3
+      hpsfreq1 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq1 = 3000; % [Hz], signal_type = 1,2,3,4
+      speaker_duration1 = 15; % [s], signal_type = 3,4
+      specific_f1 = 61; % [s], signal_type = 4
+      part1 = part_all; % signal_type = 4
+      lduct1 = 1185; % [mm], signal_type = 3,4
 
-      ndata2 = 1;
+      ndata2 = 5;
       flow_rate2 = 450; % [L/min]
       eq_ratio2 = 0.68;
-      hpsfreq2 = 0; % [Hz], signal_type = 2
-      lpsfreq2 = 0; % [Hz], signal_type = 2
-      speaker_duration2 = 7.5; % [s], signal_type = 3
-      lduct2 = 883; % [mm], signal_type = 3
+      hpsfreq2 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq2 = 3000; % [Hz], signal_type = 1,2,3,4
+      speaker_duration2 = 15; % [s], signal_type = 3,4
+      specific_f2 = 68; % [s], signal_type = 4
+      part2 = part_all; % signal_type = 4
+      lduct2 = 1185; % [mm], signal_type = 3,4
 
-      ndata3 = 1;
+      ndata3 = 5;
       flow_rate3 = 500; % [L/min]
       eq_ratio3 = 0.68;
-      hpsfreq3 = 0; % [Hz], signal_type = 2
-      lpsfreq3 = 0; % [Hz], signal_type = 2
-      speaker_duration3 = 7.5; % [s], signal_type = 3
-      lduct3 = 1185; % [mm], signal_type = 3
+      hpsfreq3 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq3 = 3000; % [Hz], signal_type = 1,2,3,4
+      speaker_duration3 = 15; % [s], signal_type = 3,4
+      specific_f3 = 70; % [s], signal_type = 4
+      part3 = part_all; % signal_type = 4
+      lduct3 = 1185; % [mm], signal_type = 3,4
       
-      ndata4 = 1;
+      ndata4 = 5;
       flow_rate4 = 500; % [L/min]
       eq_ratio4 = 0.68;
-      hpsfreq4 = 0; % [Hz], signal_type = 2
-      lpsfreq4 = 0; % [Hz], signal_type = 2
-      speaker_duration4 = 7.5; % [s], signal_type = 3
-      lduct4 = 1185; % [mm], signal_type = 3
+      hpsfreq4 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq4 = 3000; % [Hz], signal_type = 1,2,3,4
+      speaker_duration4 = 15; % [s], signal_type = 3,4
+      specific_f4 = 73; % [s], signal_type = 4
+      part4 = part_all; % signal_type = 4
+      lduct4 = 1185; % [mm], signal_type = 3,4
       
-      ndata5 = 1;
+      ndata5 = 5;
       flow_rate5 = 500; % [L/min]
       eq_ratio5 = 0.68;
-      hpsfreq5 = 0; % [Hz], signal_type = 2
-      lpsfreq5 = 0; % [Hz], signal_type = 2
-      speaker_duration5 = 7.5; % [s], signal_type = 3
-      lduct5 = 1185; % [mm], signal_type = 3
+      hpsfreq5 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq5 = 3000; % [Hz], signal_type = 1,2,3,4
+      speaker_duration5 = 15; % [s], signal_type = 3,4
+      specific_f5 = 80; % [s], signal_type = 4
+      part5 = part_all; % signal_type = 4
+      lduct5 = 1185; % [mm], signal_type = 3,4
 
       date = 20200908;
       fft_mean_tlength = 1; % [s]
-      speaker_voltage = 1; % [V], signal_type = 3
+      speaker_voltage = 1; % [V], signal_type = 3,4
       speaker_lf = 40; % [Hz], signal_type = 3
       speaker_hf = 315; % [Hz], signal_type = 3
       fs = 20e3;
@@ -214,7 +246,8 @@
 
       % dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
       % dir = sprintf('G:/Analysis/pressure/PS_trans_calc/');
-      dir = sprintf('G:/Analysis/pressure/PS_cER_calc/sw60/');
+      % dir = sprintf('G:/Analysis/pressure/PS_cER_calc/sw60/');
+      dir = sprintf('G:/Analysis/pressure/PS_mode_calc/');
       % dir = sprintf('E:/chem_output/chem_intensity/%d/',date);
       % dir = sprintf('E:/piv_output/v_oscillation/');
       
@@ -224,9 +257,9 @@
       ndata1 = 1;
       flow_rate1 = 450; % [L/min]
       eq_ratio1 = 0.70;
-      hpsfreq1 = 20; % [Hz], signal_type = 2
-      lpsfreq1 = 3000; % [Hz], signal_type = 2
-      speaker_duration1 = 7.5; % [s], signal_type = 3
+      hpsfreq1 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq1 = 3000; % [Hz], signal_type = 1,2,3,4
+      speaker_duration1 = 7.5; % [s], signal_type = 3,4
       specific_f1 = 61; % [Hz], signal_type = 4
       part1 = 1; % signal_type = 4
       lduct1 = 582; % [mm], signal_type = 2, 3, 4
@@ -234,48 +267,56 @@
       ndata2 = 1;
       flow_rate2 = 450; % [L/min]
       eq_ratio2 = 0.72;
-      hpsfreq2 = 20; % [Hz], signal_type = 2
-      lpsfreq2 = 3000; % [Hz], signal_type = 2
-      speaker_duration2 = 7.5; % [s], signal_type = 3
+      hpsfreq2 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq2 = 3000; % [Hz], signal_type = 1,2,3,4
+      speaker_duration2 = 7.5; % [s], signal_type = 3,4
       specific_f2 = 68; % [Hz], signal_type = 4
+      part2 = 1; % signal_type = 4
       lduct2 = 582; % [mm], signal_type = 2, 3, 4
 
       ndata3 = 1;
       flow_rate3 = 450; % [L/min]
       eq_ratio3 = 0.74;
-      hpsfreq3 = 20; % [Hz], signal_type = 2
-      lpsfreq3 = 3000; % [Hz], signal_type = 2
-      speaker_duration3 = 7.5; % [s], signal_type = 3
+      hpsfreq3 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq3 = 3000; % [Hz], signal_type = 1,2,3,4
+      speaker_duration3 = 7.5; % [s], signal_type = 3,4
       specific_f3 = 70; % [Hz], signal_type = 4
+      part3 = 1; % signal_type = 4
       lduct3 = 582; % [mm], signal_type = 3
       
       ndata4 = 1;
       flow_rate4 = 450; % [L/min]
       eq_ratio4 = 0.76;
-      hpsfreq4 = 20; % [Hz], signal_type = 2
-      lpsfreq4 = 3000; % [Hz], signal_type = 2
-      speaker_duration4 = 7.5; % [s], signal_type = 3
+      hpsfreq4 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq4 = 3000; % [Hz], signal_type = 1,2,3,4
+      speaker_duration4 = 7.5; % [s], signal_type = 3,4
+      specific_f4 = 0; % [s], signal_type = 4
+      part4 = 1; % signal_type = 4
       lduct4 = 582; % [mm], signal_type = 3
       
       ndata5 = 1;
       flow_rate5 = 450; % [L/min]
       eq_ratio5 = 0.78;
-      hpsfreq5 = 20; % [Hz], signal_type = 2
-      lpsfreq5 = 3000; % [Hz], signal_type = 2
-      speaker_duration5 = 7.5; % [s], signal_type = 3
+      hpsfreq5 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq5 = 3000; % [Hz], signal_type = 1,2,3,4
+      speaker_duration5 = 7.5; % [s], signal_type = 3,4
+      specific_f5 = 0; % [s], signal_type = 4
+      part5 = 1; % signal_type = 4
       lduct5 = 582; % [mm], signal_type = 3
 
       ndata6 = 1;
       flow_rate6 = 450; % [L/min]
       eq_ratio6 = 0.80;
-      hpsfreq6 = 20; % [Hz], signal_type = 2
-      lpsfreq6 = 3000; % [Hz], signal_type = 2
-      speaker_duration6 = 7.5; % [s], signal_type = 3
+      hpsfreq6 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq6 = 3000; % [Hz], signal_type = 1,2,3,4
+      speaker_duration6 = 7.5; % [s], signal_type = 3,4
+      specific_f6 = 0; % [s], signal_type = 4
+      part6 = 1; % signal_type = 4
       lduct6 = 582; % [mm], signal_type = 3
 
       date = 20200908;
       fft_mean_tlength = 1; % [s]
-      speaker_voltage = 1; % [V], signal_type = 3
+      speaker_voltage = 1; % [V], signal_type = 3,4
       speaker_lf = 0; % [Hz], signal_type = 3
       speaker_hf = 350; % [Hz], signal_type = 3
       fs = 20e3;
@@ -309,14 +350,12 @@
 %%
     if noise_sub == 1
         for i = 1:1:ndata_noise
-            if (signal_type == 1) || (signal_type == 2) || (signal_type == 3)
+            if  signal_type == 6
                 if up_or_dwn == 1
                     fnps_n = sprintf('ppu_spk_ps_noinput_tlen%g_%02u.dat',fft_mean_tlength_noise,i);
                 elseif up_or_dwn == 2
                     fnps_n = sprintf('ppd_spk_ps_noinput_tlen%g_%02u.dat',fft_mean_tlength_noise,i);
-                end
-            elseif signal_type == 4
-                
+                end                
             end
         
             fid = fopen(append(dir_noise,fnps_n),'r');
@@ -410,10 +449,31 @@
           fclose(fid);
 
       elseif signal_type == 4
-     
+          for i = 1:1:ndata1
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av1 = psb_av1 + psb/ndata1;
+          end
           
+          if noise_sub == 1
+              psb_av1 = psb_av1 - psnoise_av;
+          end
           
+          fnaxis = sprintf('p%d/PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
+          fid = fopen(append(dir,fnaxis),'r');
+          faxis = fread(fid,div_nlength,'double');
+          fclose(fid);
           
+      elseif signal_type == 5
+
 
       end
 %%
@@ -562,10 +622,49 @@
           fclose(fid);
 
       elseif signal_type == 4
+          for i = 1:1:ndata1
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av1 = psb_av1 + psb/ndata1;
+          end
+          
+          if noise_sub == 1
+              psb_av1 = psb_av1 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata2
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av2 = psb_av2 + psb/ndata2;
+          end
+          
+          if noise_sub == 1
+              psb_av2 = psb_av2 - psnoise_av;
+          end
+          
+          fnaxis = sprintf('p%d/PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
+          fid = fopen(append(dir,fnaxis),'r');
+          faxis = fread(fid,div_nlength,'double');
+          fclose(fid);
+          
+      elseif signal_type == 5
      
-          
-          
-          
 
       end
 %%
@@ -782,6 +881,66 @@
           fclose(fid);
           
       elseif signal_type == 4
+          for i = 1:1:ndata1
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av1 = psb_av1 + psb/ndata1;
+          end
+          
+          if noise_sub == 1
+              psb_av1 = psb_av1 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata2
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av2 = psb_av2 + psb/ndata2;
+          end
+          
+          if noise_sub == 1
+              psb_av2 = psb_av2 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata3
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av3 = psb_av3 + psb/ndata3;
+          end
+          
+          if noise_sub == 1
+              psb_av3 = psb_av3 - psnoise_av;
+          end
+          
+          fnaxis = sprintf('p%d/PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
+          fid = fopen(append(dir,fnaxis),'r');
+          faxis = fread(fid,div_nlength,'double');
+          fclose(fid);
+          
+      elseif signal_type == 5
           
           
       end
@@ -1063,6 +1222,85 @@
           fclose(fid);
           
       elseif signal_type == 4
+          for i = 1:1:ndata1
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av1 = psb_av1 + psb/ndata1;
+          end
+          
+          if noise_sub == 1
+              psb_av1 = psb_av1 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata2
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av2 = psb_av2 + psb/ndata2;
+          end
+          
+          if noise_sub == 1
+              psb_av2 = psb_av2 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata3
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av3 = psb_av3 + psb/ndata3;
+          end
+          
+          if noise_sub == 1
+              psb_av3 = psb_av3 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata4
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part4,hpsfreq4,lpsfreq4,specific_f4,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part4,hpsfreq4,lpsfreq4,specific_f4,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av4 = psb_av4 + psb/ndata4;
+          end
+          
+          if noise_sub == 1
+              psb_av4 = psb_av4 - psnoise_av;
+          end
+          
+          fnaxis = sprintf('p%d/PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
+          fid = fopen(append(dir,fnaxis),'r');
+          faxis = fread(fid,div_nlength,'double');
+          fclose(fid);
+          
+      elseif signal_type == 5
+          
           
           
       end
@@ -1398,7 +1636,102 @@
           fclose(fid);
           
       elseif signal_type == 4
+          for i = 1:1:ndata1
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av1 = psb_av1 + psb/ndata1;
+          end
           
+          if noise_sub == 1
+              psb_av1 = psb_av1 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata2
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av2 = psb_av2 + psb/ndata2;
+          end
+          
+          if noise_sub == 1
+              psb_av2 = psb_av2 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata3
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av3 = psb_av3 + psb/ndata3;
+          end
+          
+          if noise_sub == 1
+              psb_av3 = psb_av3 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata4
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part4,hpsfreq4,lpsfreq4,specific_f4,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part4,hpsfreq4,lpsfreq4,specific_f4,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av4 = psb_av4 + psb/ndata4;
+          end
+          
+          if noise_sub == 1
+              psb_av4 = psb_av4 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata5
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part5,hpsfreq5,lpsfreq5,specific_f5,speaker_voltage,speaker_duration5,lduct5,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part5,hpsfreq5,lpsfreq5,specific_f5,speaker_voltage,speaker_duration5,lduct5,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av5 = psb_av5 + psb/ndata5;
+          end
+          
+          if noise_sub == 1
+              psb_av5 = psb_av5 - psnoise_av;
+          end
+          
+          fnaxis = sprintf('p%d/PS_faxis_pressure_tlen%g.dat',part1,fft_mean_tlength);
+          fid = fopen(append(dir,fnaxis),'r');
+          faxis = fread(fid,div_nlength,'double');
+          fclose(fid);
+          
+      elseif signal_type == 5
           
       end
 %%
@@ -1795,6 +2128,120 @@
           fclose(fid);
           
       elseif signal_type == 4
+          for i = 1:1:ndata1
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av1 = psb_av1 + psb/ndata1;
+          end
+          
+          if noise_sub == 1
+              psb_av1 = psb_av1 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata2
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av2 = psb_av2 + psb/ndata2;
+          end
+          
+          if noise_sub == 1
+              psb_av2 = psb_av2 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata3
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av3 = psb_av3 + psb/ndata3;
+          end
+          
+          if noise_sub == 1
+              psb_av3 = psb_av3 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata4
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part4,hpsfreq4,lpsfreq4,specific_f4,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part4,hpsfreq4,lpsfreq4,specific_f4,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av4 = psb_av4 + psb/ndata4;
+          end
+          
+          if noise_sub == 1
+              psb_av4 = psb_av4 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata5
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part5,hpsfreq5,lpsfreq5,specific_f5,speaker_voltage,speaker_duration5,lduct5,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part5,hpsfreq5,lpsfreq5,specific_f5,speaker_voltage,speaker_duration5,lduct5,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av5 = psb_av5 + psb/ndata5;
+          end
+          
+          if noise_sub == 1
+              psb_av5 = psb_av5 - psnoise_av;
+          end
+          
+          for i = 1:1:ndata6
+              if up_or_dwn == 1
+                  fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part6,hpsfreq6,lpsfreq6,specific_f6,speaker_voltage,speaker_duration6,lduct6,fft_mean_tlength,i);
+              elseif up_or_dwn == 2
+                  fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part6,hpsfreq6,lpsfreq6,specific_f6,speaker_voltage,speaker_duration6,lduct6,fft_mean_tlength,i);
+              end
+              
+              fid = fopen(append(dir,fnps),'r');
+              psb = fread(fid,div_nlength,'double');
+              fclose(fid);
+
+              psb_av6 = psb_av6 + psb/ndata6;
+          end
+          
+          if noise_sub == 1
+              psb_av6 = psb_av6 - psnoise_av;
+          end
+          
+          fnaxis = sprintf('p%d/PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
+          fid = fopen(append(dir,fnaxis),'r');
+          faxis = fread(fid,div_nlength,'double');
+          fclose(fid);
+          
+      elseif signal_type == 5
           
           
       end
@@ -1977,8 +2424,11 @@
 
      end
 
-%      legend('582mm','883mm','1185mm','FontSize',20,'Location','northwest')
-     legend('582mm','883mm','1185mm','0mm','FontSize',20,'Location','northwest')
+     % legend('582mm','883mm','1185mm','FontSize',20,'Location','northwest')
+     % legend('582mm','883mm','1185mm','0mm','FontSize',20,'Location','northwest')
+     legend('61Hz','68Hz','70Hz','73Hz','80Hz','FontSize',20,'Location','northwest')
+%      legend('85Hz','143Hz','147Hz','149Hz','155Hz','FontSize',20,'Location','northwest')
+%      legend('171Hz','188Hz','194Hz','203Hz','232Hz','FontSize',20,'Location','northwest')
      % legend('400L/min, stable','400L/min, oscillation','450L/min, stable','450L/min, oscillation','500L/min, stable','500L/min, oscillation','FontSize',20,'Location','northwest')
      % legend('250L/min, 0.70','250L/min, 0.72','250L/min, 0.74','250L/min, 0.76','250L/min, 0.78','250L/min, 0.80','FontSize',15,'Location','northeast')
      % legend('350L/min, 0.70','350L/min, 0.72','350L/min, 0.74','350L/min, 0.76','350L/min, 0.78','350L/min, 0.80','FontSize',15,'Location','northeast')
