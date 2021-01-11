@@ -13,14 +13,14 @@
     noise_date = 20200828;
     fs_noise = 20e3;
     fft_mean_tlength_noise = 1; % [s]
-    
+
     dir_noise = sprintf('H:/Analysis/pressure/%d/calc/',noise_date);
     div_nlength_noise = fs_noise*fft_mean_tlength_noise;
-    
+
 %%
     spk_freq= [61 68 70 73 80 85 143 147 149 155 171 188 194 203 232];
-    spk_PS= [895.3 1325 1476 1650 1720 1508 239.2 376 386.2 451.1 554.8 188 168.1 119.7 39.13];
-    
+    spk_PS= [895.3 1325 1476 1650 1720 1508 239.2 376 386.2 451.1 554.8 188 168.1 119.7 39.13]; % PS_mode at 450mm
+
 %%
     if data_species == 1
 
@@ -41,11 +41,11 @@
       speaker_hf = 350; % [Hz], signal_type = 3
       fs = 20e3;
       div_nlength = fs*fft_mean_tlength;
-      
+
       dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
       % dir = sprintf('E:/chem_output/chem_intensity/%d/',date);
       % dir = sprintf('E:/piv_output/v_oscillation/');
-      
+
 %%
     elseif data_species == 2
 
@@ -80,7 +80,7 @@
       dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
       % dir = sprintf('E:/chem_output/chem_intensity/%d/',date);
       % dir = sprintf('E:/piv_output/v_oscillation/');
-      
+
 %%
     elseif data_species == 3
 
@@ -127,7 +127,7 @@
       dir = sprintf('G:/Analysis/pressure/PS_chirp_calc/');
       % dir = sprintf('E:/chem_output/chem_intensity/%d/',date);
       % dir = sprintf('E:/piv_output/v_oscillation/');
-      
+
 %%
     elseif data_species == 4
 
@@ -160,7 +160,7 @@
       specific_f3 = 0; % [s], signal_type = 4
       part3 = 1; % signal_type = 4
       lduct3 = 1185; % [mm], signal_type = 3,4
-      
+
       ndata4 = 30;
       flow_rate4 = 0; % [L/min]
       eq_ratio4 = 0;
@@ -184,10 +184,10 @@
       dir = sprintf('G:/Analysis/pressure/PS_chirp_calc/');
       % dir = sprintf('E:/chem_output/chem_intensity/%d/',date);
       % dir = sprintf('E:/piv_output/v_oscillation/');
-      
+
 %%
     elseif data_species == 5
-        
+
       part_all = 9;
 
       ndata1 = 5;
@@ -219,7 +219,7 @@
       specific_f3 = 70; % [s], signal_type = 4
       part3 = part_all; % signal_type = 4
       lduct3 = 1185; % [mm], signal_type = 3,4
-      
+
       ndata4 = 5;
       flow_rate4 = 500; % [L/min]
       eq_ratio4 = 0.68;
@@ -229,7 +229,7 @@
       specific_f4 = 73; % [s], signal_type = 4
       part4 = part_all; % signal_type = 4
       lduct4 = 1185; % [mm], signal_type = 3,4
-      
+
       ndata5 = 5;
       flow_rate5 = 500; % [L/min]
       eq_ratio5 = 0.68;
@@ -254,7 +254,7 @@
       dir = sprintf('G:/Analysis/pressure/PS_mode_calc/');
       % dir = sprintf('E:/chem_output/chem_intensity/%d/',date);
       % dir = sprintf('E:/piv_output/v_oscillation/');
-      
+
 %%
     elseif data_species == 6
 
@@ -287,7 +287,7 @@
       specific_f3 = 70; % [Hz], signal_type = 4
       part3 = 1; % signal_type = 4
       lduct3 = 582; % [mm], signal_type = 3
-      
+
       ndata4 = 1;
       flow_rate4 = 450; % [L/min]
       eq_ratio4 = 0.76;
@@ -297,7 +297,7 @@
       specific_f4 = 0; % [s], signal_type = 4
       part4 = 1; % signal_type = 4
       lduct4 = 582; % [mm], signal_type = 3
-      
+
       ndata5 = 1;
       flow_rate5 = 450; % [L/min]
       eq_ratio5 = 0.78;
@@ -331,7 +331,7 @@
       dir = sprintf('G:/Analysis/pressure/PS_cER_calc/sw60/');
       % dir = sprintf('E:/chem_output/chem_intensity/%d/',date);
       % dir = sprintf('E:/piv_output/v_oscillation/');
-      
+
 %%
     end
 
@@ -359,13 +359,13 @@
                     fnps_n = sprintf('ppu_spk_ps_noinput_tlen%g_%02u.dat',fft_mean_tlength_noise,i);
                 elseif up_or_dwn == 2
                     fnps_n = sprintf('ppd_spk_ps_noinput_tlen%g_%02u.dat',fft_mean_tlength_noise,i);
-                end                
+                end
             end
-        
+
             fid = fopen(append(dir_noise,fnps_n),'r');
             psnoise = fread(fid,div_nlength_noise,'double');
             fclose(fid);
-        
+
             psnoise_av = psnoise_av + psnoise/ndata_noise;
         end
     end
@@ -381,7 +381,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate1,eq_ratio1,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate1,eq_ratio1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -393,12 +393,12 @@
               psb_av1 = psb_av1 + psb/ndata1;
               psa_av1 = psa_av1 + psa/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
               psa_av1 = psa_av1 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
@@ -418,11 +418,11 @@
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('PS_faxis_pressure_tlen%g_cER.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
@@ -435,18 +435,18 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('p_spk_ps_f_%d-%dHz_%dV_%gs_d%d_tlen%g.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
@@ -459,23 +459,23 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('p%d/PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
           fclose(fid);
-          
+
       elseif signal_type == 5
 
 
@@ -492,7 +492,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate1,eq_ratio1,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate1,eq_ratio1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -504,12 +504,12 @@
               psb_av1 = psb_av1 + psb/ndata1;
               psa_av1 = psa_av1 + psa/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
               psa_av1 = psa_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
@@ -518,7 +518,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -530,12 +530,12 @@
               psb_av2 = psb_av2 + psb/ndata2;
               psa_av2 = psa_av2 + psa/ndata2;
           end
-                    
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
               psa_av2 = psa_av2 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
@@ -548,36 +548,36 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct1,hpsfreq1,lpsfreq1,flow_rate1,eq_ratio1,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct2,hpsfreq2,lpsfreq2,flow_rate2,eq_ratio2,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct2,hpsfreq2,lpsfreq2,flow_rate2,eq_ratio2,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('PS_faxis_pressure_tlen%g_cER.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
@@ -590,36 +590,36 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('p_spk_ps_f_%d-%dHz_%dV_%gs_d%d_tlen%g.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
@@ -632,43 +632,43 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('p%d/PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
           fclose(fid);
-          
+
       elseif signal_type == 5
-     
+
 
       end
 %%
@@ -683,7 +683,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate1,eq_ratio1,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate1,eq_ratio1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -695,12 +695,12 @@
               psb_av1 = psb_av1 + psb/ndata1;
               psa_av1 = psa_av1 + psa/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
               psa_av1 = psa_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
@@ -709,7 +709,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -721,12 +721,12 @@
               psb_av2 = psb_av2 + psb/ndata2;
               psa_av2 = psa_av2 + psa/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
               psa_av2 = psa_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate3,eq_ratio3,fft_mean_tlength,i);
@@ -735,7 +735,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate3,eq_ratio3,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate3,eq_ratio3,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -747,12 +747,12 @@
               psb_av3 = psb_av3 + psb/ndata3;
               psa_av3 = psa_av3 + psa/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
               psa_av3 = psa_av3 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
@@ -765,54 +765,54 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct1,hpsfreq1,lpsfreq1,flow_rate1,eq_ratio1,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct2,hpsfreq2,lpsfreq2,flow_rate2,eq_ratio2,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct2,hpsfreq2,lpsfreq2,flow_rate2,eq_ratio2,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct3,hpsfreq3,lpsfreq3,flow_rate3,eq_ratio3,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct3,hpsfreq3,lpsfreq3,flow_rate3,eq_ratio3,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av3 = psb_av3 + psb/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('PS_faxis_pressure_tlen%g_cER.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
@@ -827,18 +827,18 @@
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
 %                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
@@ -847,18 +847,18 @@
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
 %                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
@@ -867,23 +867,23 @@
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
 %                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av3 = psb_av3 + psb/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('p_spk_ps_f_%d-%dHz_%dV_%gs_d%d_tlen%g.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
           fclose(fid);
-          
+
       elseif signal_type == 4
           for i = 1:1:ndata1
               if up_or_dwn == 1
@@ -891,66 +891,66 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av3 = psb_av3 + psb/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('p%d/PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
           fclose(fid);
-          
+
       elseif signal_type == 5
-          
-          
+
+
       end
 %%
     elseif data_species == 4
-        
+
       if signal_type == 1
           for i = 1:1:ndata1
               if up_or_dwn == 1
@@ -960,7 +960,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate1,eq_ratio1,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate1,eq_ratio1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -972,12 +972,12 @@
               psb_av1 = psb_av1 + psb/ndata1;
               psa_av1 = psa_av1 + psa/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
               psa_av1 = psa_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
@@ -986,7 +986,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -998,12 +998,12 @@
               psb_av2 = psb_av2 + psb/ndata2;
               psa_av2 = psa_av2 + psa/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
               psa_av2 = psa_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate3,eq_ratio3,fft_mean_tlength,i);
@@ -1012,7 +1012,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate3,eq_ratio3,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate3,eq_ratio3,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -1024,12 +1024,12 @@
               psb_av3 = psb_av3 + psb/ndata3;
               psa_av3 = psa_av3 + psa/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
               psa_av3 = psa_av3 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata4
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate4,eq_ratio4,fft_mean_tlength,i);
@@ -1038,7 +1038,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate4,eq_ratio4,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate4,eq_ratio4,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -1050,12 +1050,12 @@
               psb_av4 = psb_av4 + psb/ndata4;
               psa_av4 = psa_av4 + psa/ndata4;
           end
-          
+
           if noise_sub == 1
               psb_av4 = psb_av4 - psnoise_av;
               psa_av4 = psa_av4 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
@@ -1068,72 +1068,72 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct1,hpsfreq1,lpsfreq1,flow_rate1,eq_ratio1,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct2,hpsfreq2,lpsfreq2,flow_rate2,eq_ratio2,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct2,hpsfreq2,lpsfreq2,flow_rate2,eq_ratio2,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct3,hpsfreq3,lpsfreq3,flow_rate3,eq_ratio3,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct3,hpsfreq3,lpsfreq3,flow_rate3,eq_ratio3,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av3 = psb_av3 + psb/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata4
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct4,hpsfreq4,lpsfreq4,flow_rate4,eq_ratio4,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct4,hpsfreq4,lpsfreq4,flow_rate4,eq_ratio4,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av4 = psb_av4 + psb/ndata4;
           end
-          
+
           if noise_sub == 1
               psb_av4 = psb_av4 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('PS_faxis_pressure_tlen%g_cER.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
@@ -1148,18 +1148,18 @@
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
 %                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
@@ -1168,18 +1168,18 @@
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
 %                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
@@ -1188,18 +1188,18 @@
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
 %                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av3 = psb_av3 + psb/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata4
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
@@ -1208,23 +1208,23 @@
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
 %                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_av.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av4 = psb_av4 + psb/ndata4;
           end
-          
+
           if noise_sub == 1
               psb_av4 = psb_av4 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('p_spk_ps_f_%d-%dHz_%dV_%gs_d%d_tlen%g.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
           fclose(fid);
-          
+
       elseif signal_type == 4
           for i = 1:1:ndata1
               if up_or_dwn == 1
@@ -1232,85 +1232,85 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av3 = psb_av3 + psb/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata4
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part4,hpsfreq4,lpsfreq4,specific_f4,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part4,hpsfreq4,lpsfreq4,specific_f4,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av4 = psb_av4 + psb/ndata4;
           end
-          
+
           if noise_sub == 1
               psb_av4 = psb_av4 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('p%d/PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
           fclose(fid);
-          
+
       elseif signal_type == 5
-          
-          
-          
+
+
+
       end
 %%
     elseif data_species == 5
-        
+
       if signal_type == 1
           for i = 1:1:ndata1
               if up_or_dwn == 1
@@ -1320,7 +1320,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate1,eq_ratio1,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate1,eq_ratio1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -1332,12 +1332,12 @@
               psb_av1 = psb_av1 + psb/ndata1;
               psa_av1 = psa_av1 + psa/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
               psa_av1 = psa_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
@@ -1346,7 +1346,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -1358,12 +1358,12 @@
               psb_av2 = psb_av2 + psb/ndata2;
               psa_av2 = psa_av2 + psa/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
               psa_av2 = psa_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate3,eq_ratio3,fft_mean_tlength,i);
@@ -1372,7 +1372,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate3,eq_ratio3,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate3,eq_ratio3,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -1384,12 +1384,12 @@
               psb_av3 = psb_av3 + psb/ndata3;
               psa_av3 = psa_av3 + psa/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
               psa_av3 = psa_av3 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata4
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate4,eq_ratio4,fft_mean_tlength,i);
@@ -1398,7 +1398,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate4,eq_ratio4,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate4,eq_ratio4,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -1410,12 +1410,12 @@
               psb_av4 = psb_av4 + psb/ndata4;
               psa_av4 = psa_av4 + psa/ndata4;
           end
-          
+
           if noise_sub == 1
               psb_av4 = psb_av4 - psnoise_av;
               psa_av4 = psa_av4 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata5
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate5,eq_ratio5,fft_mean_tlength,i);
@@ -1424,7 +1424,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate5,eq_ratio5,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate5,eq_ratio5,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -1436,12 +1436,12 @@
               psb_av5 = psb_av5 + psb/ndata5;
               psa_av5 = psa_av5 + psa/ndata5;
           end
-          
+
           if noise_sub == 1
               psb_av5 = psb_av5 - psnoise_av;
               psa_av5 = psa_av5 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
@@ -1454,90 +1454,90 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct1,hpsfreq1,lpsfreq1,flow_rate1,eq_ratio1,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct2,hpsfreq2,lpsfreq2,flow_rate2,eq_ratio2,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct2,hpsfreq2,lpsfreq2,flow_rate2,eq_ratio2,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct3,hpsfreq3,lpsfreq3,flow_rate3,eq_ratio3,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct3,hpsfreq3,lpsfreq3,flow_rate3,eq_ratio3,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av3 = psb_av3 + psb/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata4
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct4,hpsfreq4,lpsfreq4,flow_rate4,eq_ratio4,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct4,hpsfreq4,lpsfreq4,flow_rate4,eq_ratio4,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av4 = psb_av4 + psb/ndata4;
           end
-          
+
           if noise_sub == 1
               psb_av4 = psb_av4 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata5
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct5,hpsfreq5,lpsfreq5,flow_rate5,eq_ratio5,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct5,hpsfreq5,lpsfreq5,flow_rate5,eq_ratio5,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av5 = psb_av5 + psb/ndata5;
           end
-          
+
           if noise_sub == 1
               psb_av5 = psb_av5 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('PS_faxis_pressure_tlen%g_cER.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
@@ -1550,95 +1550,95 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av3 = psb_av3 + psb/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata4
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av4 = psb_av4 + psb/ndata4;
           end
-          
+
           if noise_sub == 1
               psb_av4 = psb_av4 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata5
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration5,lduct5,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration5,lduct5,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av5 = psb_av5 + psb/ndata5;
           end
-          
+
           if noise_sub == 1
               psb_av5 = psb_av5 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('p_spk_ps_f_%d-%dHz_%dV_%gs_d%d_tlen%g.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
           fclose(fid);
-          
+
       elseif signal_type == 4
           for i = 1:1:ndata1
               if up_or_dwn == 1
@@ -1646,101 +1646,101 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av3 = psb_av3 + psb/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata4
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part4,hpsfreq4,lpsfreq4,specific_f4,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part4,hpsfreq4,lpsfreq4,specific_f4,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av4 = psb_av4 + psb/ndata4;
           end
-          
+
           if noise_sub == 1
               psb_av4 = psb_av4 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata5
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part5,hpsfreq5,lpsfreq5,specific_f5,speaker_voltage,speaker_duration5,lduct5,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part5,hpsfreq5,lpsfreq5,specific_f5,speaker_voltage,speaker_duration5,lduct5,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av5 = psb_av5 + psb/ndata5;
           end
-          
+
           if noise_sub == 1
               psb_av5 = psb_av5 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('p%d/PS_faxis_pressure_tlen%g.dat',part1,fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
           fclose(fid);
-          
+
       elseif signal_type == 5
-          
+
       end
 %%
     elseif data_species == 6
-        
+
       if signal_type == 1
           for i = 1:1:ndata1
               if up_or_dwn == 1
@@ -1750,7 +1750,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate1,eq_ratio1,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate1,eq_ratio1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -1762,12 +1762,12 @@
               psb_av1 = psb_av1 + psb/ndata1;
               psa_av1 = psa_av1 + psa/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
               psa_av1 = psa_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
@@ -1776,7 +1776,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate2,eq_ratio2,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -1788,12 +1788,12 @@
               psb_av2 = psb_av2 + psb/ndata2;
               psa_av2 = psa_av2 + psa/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
               psa_av2 = psa_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate3,eq_ratio3,fft_mean_tlength,i);
@@ -1802,7 +1802,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate3,eq_ratio3,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate3,eq_ratio3,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -1814,12 +1814,12 @@
               psb_av3 = psb_av3 + psb/ndata3;
               psa_av3 = psa_av3 + psa/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
               psa_av3 = psa_av3 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata4
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate4,eq_ratio4,fft_mean_tlength,i);
@@ -1828,7 +1828,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate4,eq_ratio4,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate4,eq_ratio4,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -1840,12 +1840,12 @@
               psb_av4 = psb_av4 + psb/ndata4;
               psa_av4 = psa_av4 + psa/ndata4;
           end
-          
+
           if noise_sub == 1
               psb_av4 = psb_av4 - psnoise_av;
               psa_av4 = psa_av4 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata5
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate5,eq_ratio5,fft_mean_tlength,i);
@@ -1854,7 +1854,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate5,eq_ratio5,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate5,eq_ratio5,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -1866,12 +1866,12 @@
               psb_av5 = psb_av5 + psb/ndata5;
               psa_av5 = psa_av5 + psa/ndata5;
           end
-          
+
           if noise_sub == 1
               psb_av5 = psb_av5 - psnoise_av;
               psa_av5 = psa_av5 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata6
               if up_or_dwn == 1
                   fnpsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate6,eq_ratio6,fft_mean_tlength,i);
@@ -1880,7 +1880,7 @@
                   fnpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%02u.dat',flow_rate6,eq_ratio6,fft_mean_tlength,i);
                   fnpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%02u.dat',flow_rate6,eq_ratio6,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnpsb),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
@@ -1892,12 +1892,12 @@
               psb_av6 = psb_av6 + psb/ndata6;
               psa_av6 = psa_av6 + psa/ndata6;
           end
-          
+
           if noise_sub == 1
               psb_av6 = psb_av6 - psnoise_av;
               psa_av6 = psa_av6 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
@@ -1910,108 +1910,108 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct1,hpsfreq1,lpsfreq1,flow_rate1,eq_ratio1,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct2,hpsfreq2,lpsfreq2,flow_rate2,eq_ratio2,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct2,hpsfreq2,lpsfreq2,flow_rate2,eq_ratio2,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct3,hpsfreq3,lpsfreq3,flow_rate3,eq_ratio3,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct3,hpsfreq3,lpsfreq3,flow_rate3,eq_ratio3,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av3 = psb_av3 + psb/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata4
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct4,hpsfreq4,lpsfreq4,flow_rate4,eq_ratio4,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct4,hpsfreq4,lpsfreq4,flow_rate4,eq_ratio4,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av4 = psb_av4 + psb/ndata4;
           end
-          
+
           if noise_sub == 1
               psb_av4 = psb_av4 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata5
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct5,hpsfreq5,lpsfreq5,flow_rate5,eq_ratio5,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct5,hpsfreq5,lpsfreq5,flow_rate5,eq_ratio5,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av5 = psb_av5 + psb/ndata5;
           end
-          
+
           if noise_sub == 1
               psb_av5 = psb_av5 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata6
               if up_or_dwn == 1
                   fnps = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct6,hpsfreq6,lpsfreq6,flow_rate6,eq_ratio6,fft_mean_tlength);
               elseif up_or_dwn == 2
                   fnps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_cER.dat',lduct6,hpsfreq6,lpsfreq6,flow_rate6,eq_ratio6,fft_mean_tlength);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av6 = psb_av6 + psb/ndata6;
           end
-          
+
           if noise_sub == 1
               psb_av6 = psb_av6 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('PS_faxis_pressure_tlen%g_cER.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
@@ -2024,113 +2024,113 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av3 = psb_av3 + psb/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata4
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av4 = psb_av4 + psb/ndata4;
           end
-          
+
           if noise_sub == 1
               psb_av4 = psb_av4 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata5
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration5,lduct5,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration5,lduct5,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av5 = psb_av5 + psb/ndata5;
           end
-          
+
           if noise_sub == 1
               psb_av5 = psb_av5 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata6
               if up_or_dwn == 1
                   fnps = sprintf('ppu_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration6,lduct6,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('ppd_spk_ps_%d-%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration6,lduct6,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av6 = psb_av6 + psb/ndata6;
           end
-          
+
           if noise_sub == 1
               psb_av6 = psb_av6 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('p_spk_ps_f_%d-%dHz_%dV_%gs_d%d_tlen%g.dat',speaker_lf,speaker_hf,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
           fclose(fid);
-          
+
       elseif signal_type == 4
           for i = 1:1:ndata1
               if up_or_dwn == 1
@@ -2138,116 +2138,116 @@
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part1,hpsfreq1,lpsfreq1,specific_f1,speaker_voltage,speaker_duration1,lduct1,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av1 = psb_av1 + psb/ndata1;
           end
-          
+
           if noise_sub == 1
               psb_av1 = psb_av1 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata2
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part2,hpsfreq2,lpsfreq2,specific_f2,speaker_voltage,speaker_duration2,lduct2,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av2 = psb_av2 + psb/ndata2;
           end
-          
+
           if noise_sub == 1
               psb_av2 = psb_av2 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata3
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part3,hpsfreq3,lpsfreq3,specific_f3,speaker_voltage,speaker_duration3,lduct3,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av3 = psb_av3 + psb/ndata3;
           end
-          
+
           if noise_sub == 1
               psb_av3 = psb_av3 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata4
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part4,hpsfreq4,lpsfreq4,specific_f4,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part4,hpsfreq4,lpsfreq4,specific_f4,speaker_voltage,speaker_duration4,lduct4,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av4 = psb_av4 + psb/ndata4;
           end
-          
+
           if noise_sub == 1
               psb_av4 = psb_av4 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata5
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part5,hpsfreq5,lpsfreq5,specific_f5,speaker_voltage,speaker_duration5,lduct5,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part5,hpsfreq5,lpsfreq5,specific_f5,speaker_voltage,speaker_duration5,lduct5,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av5 = psb_av5 + psb/ndata5;
           end
-          
+
           if noise_sub == 1
               psb_av5 = psb_av5 - psnoise_av;
           end
-          
+
           for i = 1:1:ndata6
               if up_or_dwn == 1
                   fnps = sprintf('p%d/PUpper_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part6,hpsfreq6,lpsfreq6,specific_f6,speaker_voltage,speaker_duration6,lduct6,fft_mean_tlength,i);
               elseif up_or_dwn == 2
                   fnps = sprintf('p%d/PDown_speaker_PS_hps%d_lps%d_%dHz_%dV_%gs_d%d_tlen%g_%02u.dat',part6,hpsfreq6,lpsfreq6,specific_f6,speaker_voltage,speaker_duration6,lduct6,fft_mean_tlength,i);
               end
-              
+
               fid = fopen(append(dir,fnps),'r');
               psb = fread(fid,div_nlength,'double');
               fclose(fid);
 
               psb_av6 = psb_av6 + psb/ndata6;
           end
-          
+
           if noise_sub == 1
               psb_av6 = psb_av6 - psnoise_av;
           end
-          
+
           fnaxis = sprintf('p%d/PS_faxis_pressure_tlen%g.dat',fft_mean_tlength);
           fid = fopen(append(dir,fnaxis),'r');
           faxis = fread(fid,div_nlength,'double');
           fclose(fid);
-          
+
       elseif signal_type == 5
-          
-          
+
+
       end
 %%
     end
@@ -2320,7 +2320,7 @@
            loglog(faxis,psa_av3,'->k','MarkerSize',8,'MarkerFaceColor','k','MarkerIndices',1:1:length(psa_av3))
            hold on
        end
-       
+
      elseif data_species == 4
 
 %        loglog(faxis,psb_av2,'-sb','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:5:length(psb_av2))
@@ -2347,7 +2347,7 @@
            loglog(faxis,psa_av4,'-hg','MarkerSize',8,'MarkerFaceColor','k','MarkerIndices',1:1:length(psa_av4))
            hold on
        end
-       
+
      elseif data_species == 5
 
 %        loglog(faxis,psb_av2,'-sb','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:5:length(psb_av2))
@@ -2382,7 +2382,7 @@
            loglog(faxis,psa_av5,'-+c','MarkerSize',8,'MarkerFaceColor','k','MarkerIndices',1:1:length(psa_av5))
            hold on
        end
-       
+
      elseif data_species == 6
 
 %        loglog(faxis,psb_av2,'-sb','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:5:length(psb_av2))
