@@ -4,17 +4,22 @@
 
 %% Parameters
 
-    nx = 1024;
-    ny = 1024;
-    nz = 21839;
-    date = '20201218';
+    nx = 95;
+    ny = 124;
+    nz = 21838;
+%     date = '20201218';
     
     for cond = [1]
 
-        dir_in1 = strcat('G:/',date,'/raw_old/');
-        dir_in2 = strcat('G:/',date,'/raw/');
-        filename_in1 = sprintf('spiv_bl_%02u.mraw',cond);
-        filename_in2 = sprintf('spiv_bl_%02u.dat',cond);
+%         dir_in1 = strcat('G:/',date,'/raw_old/');
+%         dir_in2 = strcat('G:/',date,'/raw/');
+%         filename_in1 = sprintf('spiv_bl_%02u.mraw',cond);
+%         filename_in2 = sprintf('spiv_bl_%02u.dat',cond);
+        
+        dir_in1 = strcat('C:/Users/yatagi/Desktop/');
+        dir_in2 = strcat('C:/Users/yatagi/Desktop/');
+        filename_in1 = sprintf('spiv_bl_%02u_vcut.dat',cond);
+        filename_in2 = sprintf('spiv_bl_%02u_vcl.dat',cond);
 
 %% Matrix
 
@@ -26,8 +31,10 @@
         fid2 = fopen(append(dir_in2,filename_in2),'r');
 
         for m = 1:1:nz
-            I = fread(fid1,Pixels,'uint8');
-            bcout = fread(fid2,Pixels,'uint16');
+%             I = fread(fid1,Pixels,'uint8');
+%             bcout = fread(fid2,Pixels,'uint16');
+            I = fread(fid1,Pixels,'double');
+            bcout = fread(fid2,Pixels,'double');
             dif_max(m) = max(bcout - I);
         end
     
