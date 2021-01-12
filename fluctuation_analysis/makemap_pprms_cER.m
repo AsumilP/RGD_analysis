@@ -4,19 +4,16 @@
 
 %% PARAMETERS
 
-    sw_num = 60; % [-], vane angle
+    sw_num = 45; % [-], vane angle
     duct_l = 2; % 1.d1185,  2.d582
-    vis_map = 3; % 1.peak-frequency, 2.ppr(20-300), 3.ppr(20-3000)
-    down_or_up = 2; % 1.downstream, 2.upstream
+    vis_map = 2; % 1.peak-frequency, 2.ppr(20-300), 3.ppr(20-3000)
+    down_or_up = 1; % 1.downstream, 2.upstream
 
-%     col_min = 0; % 60(d1185,f), 0(d1185,ppr)
-%     col_max = 0.9; % 120(d1185,f), 0.9(d1185,ppr)
-    
-    col_min = 0; % 190(d582,f), 0(d582,ppr)
-    col_max = 0.1; % 230(d582,f), 0.1(d582,ppr)
+    col_min = 0.01; % 60(d1185,f), 0(d1185,ppr)
+    col_max = 0.03; % 120(d1185,f), 0.9(d1185,ppr)
 
-    er_min = 0.66;
-    er_max = 0.8;
+    er_min = 0.70;
+    er_max = 0.80;
     fr_min = 250;
     fr_max = 500;
     interpolation = 2; % 1.spline, 2.hermite
@@ -203,6 +200,8 @@
 
     ax = gca;
     colormap(ax,vis_col)
+%     load('MyColormap_for_w','mymap')
+%     colormap(ax,mymap)
     xtickformat('%.2f')
     ytickformat('%.d')
 
