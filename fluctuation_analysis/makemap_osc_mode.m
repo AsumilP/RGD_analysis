@@ -39,21 +39,21 @@
         PS_power203(j) = PS_power((j-1)*15+14)/30;
         PS_power232(j) = PS_power((j-1)*15+15)/30;
         
-        ppr61(j) = ppr((j-1)*15+1);
-        ppr68(j) = ppr((j-1)*15+2);
-        ppr70(j) = ppr((j-1)*15+3);
-        ppr73(j) = ppr((j-1)*15+4);
-        ppr80(j) = ppr((j-1)*15+5);
-        ppr85(j) = ppr((j-1)*15+6);
-        ppr143(j) = ppr((j-1)*15+7);
-        ppr147(j) = ppr((j-1)*15+8);
-        ppr149(j) = ppr((j-1)*15+9);
-        ppr155(j) = ppr((j-1)*15+10);
-        ppr171(j) = ppr((j-1)*15+11);
-        ppr188(j) = ppr((j-1)*15+12);
-        ppr194(j) = ppr((j-1)*15+13);
-        ppr203(j) = ppr((j-1)*15+14);
-        ppr232(j) = ppr((j-1)*15+15);
+        ppr61(j) = ppr((j-1)*15+1)/2;
+        ppr68(j) = ppr((j-1)*15+2)/2;
+        ppr70(j) = ppr((j-1)*15+3)/2;
+        ppr73(j) = ppr((j-1)*15+4)/2;
+        ppr80(j) = ppr((j-1)*15+5)/2;
+        ppr85(j) = ppr((j-1)*15+6)/2;
+        ppr143(j) = ppr((j-1)*15+7)/2;
+        ppr147(j) = ppr((j-1)*15+8)/2;
+        ppr149(j) = ppr((j-1)*15+9)/2;
+        ppr155(j) = ppr((j-1)*15+10)/2;
+        ppr171(j) = ppr((j-1)*15+11)/2;
+        ppr188(j) = ppr((j-1)*15+12)/2;
+        ppr194(j) = ppr((j-1)*15+13)/2;
+        ppr203(j) = ppr((j-1)*15+14)/2;
+        ppr232(j) = ppr((j-1)*15+15)/2;
         
         sensor_plot_pos(j) = sensor_pos((j-1)*15+1);
     end
@@ -85,7 +85,7 @@
     ax.XLim = [0 1185];
     ax.YLim = [1 160];
    
-     xlabel('\rm \fontname{Times New Roman} Sensor position [mm]')
+     xlabel('\rm \fontname{Times New Roman} Sensor height [mm]')
      ylabel('\it \fontname{Times New Roman} P \rm[kPa]')
      set(gca,'FontName','Times New Roman','FontSize',20)
      hold on
@@ -132,7 +132,7 @@
     ax.XLim = [0 1185];
     ax.YLim = [1 160];
    
-     xlabel('\rm \fontname{Times New Roman} Sensor position [mm]')
+     xlabel('\rm \fontname{Times New Roman} Sensor height [mm]')
      ylabel('\it \fontname{Times New Roman} P \rm[kPa]')
      set(gca,'FontName','Times New Roman','FontSize',20)
      hold on
@@ -165,7 +165,7 @@
 
     ax = gca;
     xtickformat('%d')
-    ytickformat('%.3f')
+    ytickformat('%.2f')
     
     ax.XAxisLocation = 'bottom';
     ax.YDir='normal';
@@ -183,9 +183,9 @@
     ax.XMinorTick = 'on';
     ax.YMinorTick = 'on';
     ax.XLim = [0 1185];
-    ax.YLim = [0 0.3];
+    ax.YLim = [0 0.15];
    
-     xlabel('\rm \fontname{Times New Roman} Sensor position [mm]')
+     xlabel('\rm \fontname{Times New Roman} Sensor height [mm]')
      ylabel('\it \fontname{Times New Roman} p''_{rms} \rm[kPa]')
      set(gca,'FontName','Times New Roman','FontSize',20)
      hold on
@@ -212,7 +212,7 @@
 
     ax = gca;
     xtickformat('%d')
-    ytickformat('%.3f')
+    ytickformat('%.2f')
     
     ax.XAxisLocation = 'bottom';
     ax.YDir='normal';
@@ -230,9 +230,9 @@
     ax.XMinorTick = 'on';
     ax.YMinorTick = 'on';
     ax.XLim = [0 1185];
-    ax.YLim = [0 0.3];
+    ax.YLim = [0 0.15];
    
-     xlabel('\rm \fontname{Times New Roman} Sensor position [mm]')
+     xlabel('\rm \fontname{Times New Roman} Sensor height [mm]')
      ylabel('\it \fontname{Times New Roman} p''_{rms} \rm[kPa]')
      set(gca,'FontName','Times New Roman','FontSize',20)
      hold on
