@@ -22,17 +22,17 @@
  integer, parameter:: nztmp= 2000
  integer, parameter:: nzlast= 1838
  integer, parameter:: head_size= 0
- integer, parameter:: xorigin= 145 ![px]
+ integer, parameter:: xorigin= 130 ![px]
  integer, parameter:: hemisize_chamb= 60 ![mm]
  integer, parameter:: imgcut_left_px= 1 ![px]
  integer, parameter:: vec_spc_x_px= 8 ![px]
  real(8), parameter:: img_res_x= 80d-3 ![mm/px]
- integer, parameter:: cond = 1
+ integer, parameter:: cond = 12
  real(8), parameter:: vector_width= img_res_x*vec_spc_x_px ![mm]
  integer, parameter:: discard_vec= int((xorigin-imgcut_left_px)/vec_spc_x_px)+1
  integer, parameter:: nvec_x_cut= int((hemisize_chamb/vector_width)+0.5)+1
 
- character(*), parameter:: path_of_velo = '/home/yatagi/analysis/piv_output/velofield/20190816/piv/br/'
+ character(*), parameter:: path_of_velo = '/home/yatagi/analysis/piv_output/velofield/20201215/br/'
  !character(*), parameter:: path_of_velo = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/br/'
  character(*):: file_name_in*200
  character(*):: file_name_out_u*200
