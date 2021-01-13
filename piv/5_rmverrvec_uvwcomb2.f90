@@ -17,7 +17,7 @@
 !c--------------------------------------------------c
  implicit none
 
- integer, parameter :: nvec_x_fit_dbl= 211
+ integer, parameter :: nvec_x_fit_dbl= 191
  integer, parameter :: nvec_y= 123
  integer, parameter :: nz= 21838
  integer, parameter :: NFX=512, IPX=9
@@ -25,11 +25,11 @@
  integer, parameter :: NFZ=65536, IPZ=16
  real(8), parameter :: NCUT_LPF=0.48D0
  real(8), parameter :: NCUT_LPF_T=0.3D0
- integer, parameter :: cond = 11
+ integer, parameter :: cond = 7
 
- character(*), parameter :: path_of_velo_i = '/home/yatagi/analysis/piv_output/velofield/20190301/piv/combined/'
+ character(*), parameter :: path_of_velo_i = '/home/yatagi/analysis/piv_output/velofield/20201223/combined/'
 ! character(*), parameter :: path_of_velo_i = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/combined/'
- character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20190301/piv/comblps/'
+ character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20201223/comblps/'
 ! character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/comblps/'
 
 !-------------------------------------------------------------------------------
@@ -87,7 +87,8 @@ write(*,*) 'Reading files...'
     read(10) UI
       do j=1,nvec_y
         do i=1,nvec_x_fit_dbl
-           UR(i,j,k)=UI(i,j)
+           ! UR(i,j,k)=UI(i,j)
+           U(i,j,k)=UI(i,j)
         enddo
       enddo
   enddo
@@ -98,7 +99,8 @@ write(*,*) 'Reading files...'
     read(11) VI
       do j=1,nvec_y
         do i=1,nvec_x_fit_dbl
-           VR(i,j,k)=VI(i,j)
+           ! VR(i,j,k)=VI(i,j)
+           V(i,j,k)=VI(i,j)
         enddo
       enddo
   enddo
@@ -109,7 +111,8 @@ write(*,*) 'Reading files...'
      read(12) WI
        do j=1,nvec_y
          do i=1,nvec_x_fit_dbl
-            WR(i,j,k)=WI(i,j)
+            ! WR(i,j,k)=WI(i,j)
+            W(i,j,k)=WI(i,j)
          enddo
        enddo
    enddo
@@ -117,9 +120,9 @@ write(*,*) 'Reading files...'
 
  !--------- max filter ----------
 
-   call max_filter(U,UR)
-   call max_filter(V,VR)
-   call max_filter(W,WR)
+   ! call max_filter(U,UR)
+   ! call max_filter(V,VR)
+   ! call max_filter(W,WR)
 
 !----------------------U_X----------------------
   write(*,*) 'Calcurating U_X...'
@@ -304,11 +307,11 @@ write(*,*) 'Reading files...'
 !c----------------------c
   subroutine max_filter(UOUT,binin)
 
-  integer, parameter :: nx = 211
+  integer, parameter :: nx = 191
   integer, parameter :: ny = 123
   integer, parameter :: nz = 21838
 
-  integer, parameter :: thrl = 8  ![m/s]
+  integer, parameter :: thrl = 20  ![m/s]
   integer, parameter :: nb = 3   !binning area;odd number
 
   integer(8) :: i,j,k,ii,jj
