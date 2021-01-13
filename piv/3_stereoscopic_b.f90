@@ -17,23 +17,23 @@
 !c--------------------------------------------------c
  implicit none
 
- integer, parameter :: nvec_x_cut= 114  !number of vectors
+ integer, parameter :: nvec_x_cut= 95  !number of vectors
  integer, parameter :: nvec_y= 124
  integer, parameter :: nz= 21838     !number of vector maps
- real(8), parameter :: x0= 240.0d-3  ![m] distance between z axis and center of lens
- real(8), parameter :: d= 770.0d-3 ![m] distance between measurement plane and center of lens
- real(8), parameter :: img_res_x= 73.00d-6  ! [m/pixel]
- real(8), parameter :: img_res_y= 69.00d-6  ! [m/pixel]
+ real(8), parameter :: x0= 340.0d-3  ![m] distance between z axis and center of lens
+ real(8), parameter :: d= 760.0d-3 ![m] distance between measurement plane and center of lens
+ real(8), parameter :: img_res_x= 80.00d-6  ! [m/pixel]
+ real(8), parameter :: img_res_y= 75.00d-6  ! [m/pixel]
  integer, parameter :: vec_spc_x_px= 8 ![px]
  integer, parameter :: vec_spc_y_px= 8 ![px]
  real(8), parameter :: dt    = 50.0d-6  !(sec)
- integer, parameter :: cond = 10
+ integer, parameter :: cond = 11
 
- character(*), parameter :: path_of_velo_l = '/home/yatagi/analysis/piv_output/velofield/20190228/piv/bl/'
+ character(*), parameter :: path_of_velo_l = '/home/yatagi/analysis/piv_output/velofield/20201214/bl/'
 ! character(*), parameter :: path_of_velo_l = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/bl/'
- character(*), parameter :: path_of_velo_r = '/home/yatagi/analysis/piv_output/velofield/20190228/piv/br/'
+ character(*), parameter :: path_of_velo_r = '/home/yatagi/analysis/piv_output/velofield/20201214/br/'
 ! character(*), parameter :: path_of_velo_r = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/br/'
- character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20190228/piv/bs/'
+ character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20201214/bs/'
 ! character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/bs/'
 
  real(8), parameter :: lax= img_res_x*vec_spc_x_px*(nvec_x_cut-1)  ![m] !length of measurement region
