@@ -17,7 +17,7 @@
 !c--------------------------------------------------c
  implicit none
 
- integer, parameter :: nvec_x_cut= 105
+ integer, parameter :: nvec_x_cut= 95
  integer, parameter :: nvec_y= 124
  integer, parameter :: nz= 21838
  integer, parameter :: NFX=256, IPX=8
@@ -29,7 +29,7 @@
  real, parameter :: meas_freq=20 ! [kHz]
  real, parameter :: lpsfreq=meas_freq*nz*NCUT_LPF_T/NFZ
 
- character(*), parameter :: path_of_velo = '/home/yatagi/analysis/piv_output/velofield/20190301/piv/fr/'
+ character(*), parameter :: path_of_velo = '/home/yatagi/analysis/piv_output/velofield/20201214/fr/'
 ! character(*), parameter :: path_of_velo = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/fr/'
 
 !------------------------------------------------
@@ -77,7 +77,8 @@ write(*,*) 'Reading files...'
     read(10) UI
       do j=1,nvec_y
         do i=1,nvec_x_cut
-           UR(i,j,k)=UI(i,j)
+           ! UR(i,j,k)=UI(i,j)
+           U(i,j,k)=UI(i,j)
         enddo
       enddo
   enddo
@@ -88,7 +89,8 @@ write(*,*) 'Reading files...'
      read(11) VI
        do j=1,nvec_y
          do i=1,nvec_x_cut
-            VR(i,j,k)=VI(i,j)
+            ! VR(i,j,k)=VI(i,j)
+            V(i,j,k)=VI(i,j)
          enddo
        enddo
    enddo
@@ -96,8 +98,8 @@ write(*,*) 'Reading files...'
 
 !--------- max filter ----------
 
-  call max_filter(U,UR)
-  call max_filter(V,VR)
+  ! call max_filter(U,UR)
+  ! call max_filter(V,VR)
 
 !----------------------U_X----------------------
   write(*,*) 'Calculating U_X...'
@@ -232,11 +234,11 @@ write(*,*) 'Reading files...'
 !c----------------------c
   subroutine max_filter(UOUT,binin)
 
-  integer, parameter :: nx = 105
+  integer, parameter :: nx = 95
   integer, parameter :: ny = 124
   integer, parameter :: nz = 21838
 
-  integer, parameter :: thrl = 10  ![m/s]
+  integer, parameter :: thrl = 20  ![m/s]
   integer, parameter :: nb = 3   !binning area;odd number
 
   integer(8) :: i,j,k,ii,jj
