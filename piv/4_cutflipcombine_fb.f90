@@ -17,26 +17,26 @@
 !c--------------------------------------------------c
  implicit none
 
- integer, parameter :: nvec_x_f= 105
- integer, parameter :: nvec_x_b= 114
- integer, parameter :: nvec_x_fit= 105  !lower nvec_x
+ integer, parameter :: nvec_x_f= 95
+ integer, parameter :: nvec_x_b= 95
+ integer, parameter :: nvec_x_fit= 95  !lower nvec_x
  integer, parameter :: nvec_y= 124
  integer, parameter :: nz= 21838
  integer, parameter :: cond = 11
  integer, parameter :: origin_height = 46 ![mm] from the bottom, 2*23 by grid 20181218
- integer, parameter :: yorigin= 315 ![px]
+ integer, parameter :: yorigin= 370 ![px]
  integer, parameter :: imgcut_top_px= 1 ![px]
  integer, parameter :: vec_spc_y_px= 8 ![px]
- real(8), parameter :: img_res_y = 69.00d-3  ! [mm/pixel]
+ real(8), parameter :: img_res_y = 75.00d-3  ! [mm/pixel]
 
  integer, parameter :: origin_vec_y= int( (yorigin - imgcut_top_px) / vec_spc_y_px ) +1
  integer, parameter :: bottom_vec=  origin_vec_y + int( origin_height / (vec_spc_y_px*img_res_y) )    ! = 126 (20181218) SHOULD NOT BE OUTNUMBERED by nvec_y
 
- character(*), parameter :: path_of_velof_i = '/home/yatagi/analysis/piv_output/velofield/20190301/piv/fs/'
+ character(*), parameter :: path_of_velof_i = '/home/yatagi/analysis/piv_output/velofield/20201214/fs/'
 ! character(*), parameter :: path_of_velof_i = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/fs/'
- character(*), parameter :: path_of_velob_i = '/home/yatagi/analysis/piv_output/velofield/20190301/piv/bs/'
+ character(*), parameter :: path_of_velob_i = '/home/yatagi/analysis/piv_output/velofield/20201214/bs/'
 ! character(*), parameter :: path_of_velob_i = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/bs/'
- character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20190301/piv/combined/'
+ character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20201214/combined/'
 ! character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/combined/'
 
 !-------------------------------------------------------------------------------
