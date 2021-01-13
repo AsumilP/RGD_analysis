@@ -18,8 +18,10 @@
         
         dir_in1 = strcat('C:/Users/yatagi/Desktop/');
         dir_in2 = strcat('C:/Users/yatagi/Desktop/');
-        filename_in1 = sprintf('spiv_bl_%02u_vcut.dat',cond);
-        filename_in2 = sprintf('spiv_bl_%02u_vcl.dat',cond);
+        filename_in1 = sprintf('spiv_bl_%02u_ucut.dat',cond);
+        filename_in2 = sprintf('spiv_bl_%02u_ucl.dat',cond);
+%         filename_in1 = sprintf('spiv_bl_%02u_vcut.dat',cond);
+%         filename_in2 = sprintf('spiv_bl_%02u_vcl.dat',cond);
 
 %% Matrix
 
@@ -68,3 +70,12 @@
         pbaspect([sqrt(2) 1 1]);
 
     end
+    
+    figure('Position', [50 50 960 735],'Color','white');
+    imagesc(reshape(bcout,[nx,ny]),[2 1])
+    colorbar
+
+    figure('Position', [50 50 960 735],'Color','white');
+    imagesc(reshape(I,[nx,ny]),[2 1])
+    colorbar
+    
