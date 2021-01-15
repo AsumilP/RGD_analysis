@@ -23,13 +23,13 @@
   parameter (nt = (tsed-tsst)/tsint) !number of images
   parameter (num  = nx_g * ny_g)
   parameter (lwork = 4*nt+250*nt)
-  ! parameter (dir_in = '/home/yatagi/analysis/piv_output/velofield/dmd/20190823/data_files/')
+  parameter (dir_in = '/home/yatagi/analysis/piv_output/velofield/dmd/20190823/data_files/')
   ! parameter (dir_out = '/home/yatagi/analysis/piv_output/velofield/dmd/20190823/10/averaging/trans4/u1_3/') ! CHECK,directory
-  ! parameter (dir_out = '/home/yatagi/analysis/piv_output/velofield/dmd/20190823/01/averaging/trans1/v1_3/') ! CHECK,directory
-  parameter (dir_in = '/home/yatagi/analysis/chem_output/dmd/20190823/data_files/')
-  parameter (dir_out = '/home/yatagi/analysis/chem_output/dmd/20190823/10/averaging/trans6/3_3/') ! CHECK,directory
+  parameter (dir_out = '/home/yatagi/analysis/piv_output/velofield/dmd/20190823/01/averaging/trans1/v1_3/') ! CHECK,directory
+  ! parameter (dir_in = '/home/yatagi/analysis/chem_output/dmd/20190823/data_files/')
+  ! parameter (dir_out = '/home/yatagi/analysis/chem_output/dmd/20190823/10/averaging/trans6/3_3/') ! CHECK,directory
   ! parameter (case_name = 'spiv_fbsc_10_ucl') ! CHECK,number
-  ! parameter (case_name = 'spiv_fbsc_01_vcl') ! CHECK,number
-  parameter (case_name = 'chem_10_rmv') ! CHECK,number
+  parameter (case_name = 'spiv_fbsc_01_vcl') ! CHECK,number
+  ! parameter (case_name = 'chem_10_rmv') ! CHECK,number
 
   end module grid_m
