@@ -10,10 +10,14 @@ function squiver_pres(u,v,w,nx,ny,nx_start,nx_end,ny_start,ny_end,nincrement,...
   % wy = zeros(2,1);
   nx_calc = nx_end - nx_start + 1;
   ny_calc = ny_end - ny_start + 1;
-  xmin = - (0.5 * (nx-1)) * dx - 0.5 * dx;
-  xmax = 0.5 * (nx-1) * dx + 0.5 * dx;
-  ymin = dy * ny_start;
-  ymax = dy * ny_end;
+  xmin_all = - (0.5 * (nx-1)) * dx - 0.5 * dx;
+  xmax_all = 0.5 * (nx-1) * dx + 0.5 * dx;
+  xmin = xmin_all + (nx_start-1) * dx;
+  xmax = xmax_all - (nx - nx_end) * dx;
+%   ymin_all = dy;
+%   ymax_all = dy * ny;
+  ymin = (ny-ny_end+1) * dy;
+  ymax = (ny-ny_start+1) * dy;
   l_nx = dx * nx_calc;
   l_ny = dy * ny_calc;
 
