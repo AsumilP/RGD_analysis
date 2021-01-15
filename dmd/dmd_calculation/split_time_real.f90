@@ -18,7 +18,7 @@
 !c--------------------------------------------------c
   implicit none
 
-  character(8), parameter :: date = "20190823"
+  character(8), parameter :: date = "20201214"
   integer, parameter :: nx = 191
   integer, parameter :: nx_cut = 191
   integer, parameter :: nx_start = 1
