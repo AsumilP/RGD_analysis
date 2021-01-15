@@ -27,13 +27,13 @@
  integer, parameter :: vec_spc_x_px= 8 ![px]
  integer, parameter :: vec_spc_y_px= 8 ![px]
  real(8), parameter :: dt    = 50.0d-6  !(sec)
- integer, parameter :: cond = 11
+ integer, parameter :: cond = 13
 
- character(*), parameter :: path_of_velo_l = '/home/yatagi/analysis/piv_output/velofield/20201214/bl/'
+ character(*), parameter :: path_of_velo_l = '/home/yatagi/analysis/piv_output/velofield/20201216/bl/cut/'
 ! character(*), parameter :: path_of_velo_l = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/bl/'
- character(*), parameter :: path_of_velo_r = '/home/yatagi/analysis/piv_output/velofield/20201214/br/'
+ character(*), parameter :: path_of_velo_r = '/home/yatagi/analysis/piv_output/velofield/20201216/br/cut/'
 ! character(*), parameter :: path_of_velo_r = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/br/'
- character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20201214/bs/'
+ character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20201216/bs/'
 ! character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/bs/'
 
  real(8), parameter :: lax= img_res_x*vec_spc_x_px*(nvec_x_cut-1)  ![m] !length of measurement region
@@ -63,16 +63,20 @@
 do l=1,cond
   !-----------------input-------------------
 
-  write(file_name_in_ul,"('spiv_bl_',i2.2,'_ucl.dat')"),l
+  ! write(file_name_in_ul,"('spiv_bl_',i2.2,'_ucl.dat')"),l
+  write(file_name_in_ul,"('spiv_bl_',i2.2,'_ucut.dat')"),l
 !  write(file_name_in_ul,"('spiv_bl_',i2.2,'_rmv_ucl.dat')"),l
 
-  write(file_name_in_vl,"('spiv_bl_',i2.2,'_vcl.dat')"),l
+  ! write(file_name_in_vl,"('spiv_bl_',i2.2,'_vcl.dat')"),l
+  write(file_name_in_vl,"('spiv_bl_',i2.2,'_vcut.dat')"),l
 !  write(file_name_in_vl,"('spiv_bl_',i2.2,'_rmv_vcl.dat')"),l
 
-  write(file_name_in_ur,"('spiv_br_',i2.2,'_ucl.dat')"),l
+  ! write(file_name_in_ur,"('spiv_br_',i2.2,'_ucl.dat')"),l
+  write(file_name_in_ur,"('spiv_br_',i2.2,'_ucut.dat')"),l
 !  write(file_name_in_ur,"('spiv_br_',i2.2,'_rmv_ucl.dat')"),l
 
-  write(file_name_in_vr,"('spiv_br_',i2.2,'_vcl.dat')"),l
+  ! write(file_name_in_vr,"('spiv_br_',i2.2,'_vcl.dat')"),l
+  write(file_name_in_vr,"('spiv_br_',i2.2,'_vcut.dat')"),l
 !  write(file_name_in_vr,"('spiv_br_',i2.2,'_rmv_vcl.dat')"),l
 
  !-----------------output-------------------
