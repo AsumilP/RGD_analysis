@@ -5,7 +5,7 @@
  integer, parameter:: ny = 123
  integer, parameter:: nz = 21838
  integer, parameter:: head_size = 0
- integer, parameter:: cond = 7    ! 1 for grid
+ integer, parameter:: cond = 13    ! 1 for grid
 
  ! character(*), parameter :: path_of_file_in = '/home/yatagi/analysis/rawimg/20190227/chem/chem_grid/'
  ! character(*), parameter :: path_of_file_in = '/home/yatagi/analysis/rawimg/20190301/plif/plif_grid/'
@@ -27,8 +27,9 @@
  ! character(*), parameter :: path_of_file_in = '/home/yatagi/analysis/rawimg/20201215/raw/'
  ! character(*), parameter :: path_of_file_out = '/home/yatagi/analysis/rawimg/20201215/imgcor/'
 
- character(*), parameter :: path_of_file_in = '/home/yatagi/analysis/piv_output/velofield/20201223/comblps/'
- character(*), parameter :: path_of_file_out = '/home/yatagi/analysis/piv_output/velofield/20201223/average/'
+ ! character(*), parameter :: path_of_file_in = '/home/yatagi/analysis/piv_output/velofield/20201223/comblps/'
+ character(*), parameter :: path_of_file_in = '/home/yatagi/analysis/piv_output/velofield/20201216/combined/'
+ character(*), parameter :: path_of_file_out = '/home/yatagi/analysis/piv_output/velofield/20201216/average/'
 
  ! character(*), parameter :: path_of_file_in = '/home/yatagi/mnt/20201223/raw/'
  ! character(*), parameter :: path_of_file_out = '/home/yatagi/mnt/20201223/imgcor/'
@@ -73,7 +74,11 @@
 
   ! write(file_name_in,"('spiv_fbsc_',i2.2,'_ucl.dat')"),l
   ! write(file_name_in,"('spiv_fbsc_',i2.2,'_vcl.dat')"),l
-  write(file_name_in,"('spiv_fbsc_',i2.2,'_wcl.dat')"),l
+  ! write(file_name_in,"('spiv_fbsc_',i2.2,'_wcl.dat')"),l
+
+  write(file_name_in,"('spiv_fbsc_',i2.2,'_u.dat')"),l
+  ! write(file_name_in,"('spiv_fbsc_',i2.2,'_v.dat')"),l
+  ! write(file_name_in,"('spiv_fbsc_',i2.2,'_w.dat')"),l
 
   ! write(file_name_in,"('spiv_fr_',i2.2,'.mraw')"),l
 
@@ -106,9 +111,19 @@
   ! write(file_name_ave_out,"('spiv_fbsc_',i2.2,'_vcl_av.dat')"),l
   ! write(file_name_devi_out,"('spiv_fbsc_',i2.2,'_vcl_devi.dat')"),l
   ! write(file_name_emph_out,"('spiv_fbsc_',i2.2,'_vcl_emph.dat')"),l
-  write(file_name_ave_out,"('spiv_fbsc_',i2.2,'_wcl_av.dat')"),l
-  write(file_name_devi_out,"('spiv_fbsc_',i2.2,'_wcl_devi.dat')"),l
-  write(file_name_emph_out,"('spiv_fbsc_',i2.2,'_wcl_emph.dat')"),l
+  ! write(file_name_ave_out,"('spiv_fbsc_',i2.2,'_wcl_av.dat')"),l
+  ! write(file_name_devi_out,"('spiv_fbsc_',i2.2,'_wcl_devi.dat')"),l
+  ! write(file_name_emph_out,"('spiv_fbsc_',i2.2,'_wcl_emph.dat')"),l
+
+  write(file_name_ave_out,"('spiv_fbsc_',i2.2,'_u_av.dat')"),l
+  write(file_name_devi_out,"('spiv_fbsc_',i2.2,'_u_devi.dat')"),l
+  write(file_name_emph_out,"('spiv_fbsc_',i2.2,'_u_emph.dat')"),l
+  ! write(file_name_ave_out,"('spiv_fbsc_',i2.2,'_v_av.dat')"),l
+  ! write(file_name_devi_out,"('spiv_fbsc_',i2.2,'_v_devi.dat')"),l
+  ! write(file_name_emph_out,"('spiv_fbsc_',i2.2,'_v_emph.dat')"),l
+  ! write(file_name_ave_out,"('spiv_fbsc_',i2.2,'_w_av.dat')"),l
+  ! write(file_name_devi_out,"('spiv_fbsc_',i2.2,'_w_devi.dat')"),l
+  ! write(file_name_emph_out,"('spiv_fbsc_',i2.2,'_w_emph.dat')"),l
 
   ! write(file_name_ave_out,"('spiv_fr_',i2.2,'_av.dat')"),l
   ! write(file_name_devi_out,"('spiv_fr_',i2.2,'_devi.dat')"),l
