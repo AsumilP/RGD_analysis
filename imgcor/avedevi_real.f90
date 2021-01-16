@@ -5,7 +5,7 @@
  integer, parameter:: ny = 123
  integer, parameter:: nz = 21838
  integer, parameter:: head_size = 0
- integer, parameter:: cond = 13    ! 1 for grid
+ integer, parameter:: cond = 7    ! 1 for grid
 
  ! character(*), parameter :: path_of_file_in = '/home/yatagi/analysis/rawimg/20190227/chem/chem_grid/'
  ! character(*), parameter :: path_of_file_in = '/home/yatagi/analysis/rawimg/20190301/plif/plif_grid/'
@@ -28,8 +28,8 @@
  ! character(*), parameter :: path_of_file_out = '/home/yatagi/analysis/rawimg/20201215/imgcor/'
 
  ! character(*), parameter :: path_of_file_in = '/home/yatagi/analysis/piv_output/velofield/20201223/comblps/'
- character(*), parameter :: path_of_file_in = '/home/yatagi/analysis/piv_output/velofield/20201216/combined/'
- character(*), parameter :: path_of_file_out = '/home/yatagi/analysis/piv_output/velofield/20201216/average/'
+ character(*), parameter :: path_of_file_in = '/home/yatagi/analysis/piv_output/velofield/20201223/combined/'
+ character(*), parameter :: path_of_file_out = '/home/yatagi/analysis/piv_output/velofield/20201223/average/'
 
  ! character(*), parameter :: path_of_file_in = '/home/yatagi/mnt/20201223/raw/'
  ! character(*), parameter :: path_of_file_out = '/home/yatagi/mnt/20201223/imgcor/'
