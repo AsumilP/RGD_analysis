@@ -27,13 +27,13 @@
  integer, parameter :: vec_spc_x_px= 8 ![px]
  integer, parameter :: vec_spc_y_px= 8 ![px]
  real(8), parameter :: dt    = 50.0d-6  !(sec)
- integer, parameter :: cond = 13
+ integer, parameter :: cond = 11
 
- character(*), parameter :: path_of_velo_l = '/home/yatagi/analysis/piv_output/velofield/20201216/bl/cut/'
+ character(*), parameter :: path_of_velo_l = '/home/yatagi/analysis/piv_output/velofield/20201214/bl/cut/'
 ! character(*), parameter :: path_of_velo_l = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/bl/'
- character(*), parameter :: path_of_velo_r = '/home/yatagi/analysis/piv_output/velofield/20201216/br/cut/'
+ character(*), parameter :: path_of_velo_r = '/home/yatagi/analysis/piv_output/velofield/20201214/br/cut/'
 ! character(*), parameter :: path_of_velo_r = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/br/'
- character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20201216/bs/'
+ character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20201214/bs/'
 ! character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/bs/'
 
  real(8), parameter :: lax= img_res_x*vec_spc_x_px*(nvec_x_cut-1)  ![m] !length of measurement region
@@ -144,15 +144,15 @@ do l=1,cond
            x = dble(i)*lax/dble(nvec_x_cut-1) - 0.5*lax/dble(nvec_x_cut-1)
            y = lay - dble(j-2)*lay/dble(nvec_y-1)
 
-!           dz(i,j) = d*(dxr(i,j) - dxl(i,j))/((x - x0) + (x - x0))                   ! model 1, model 2
+           ! dz(i,j) = d*(dxr(i,j) - dxl(i,j))/((x - x0) + (x - x0))                   ! model 1, model 2
            dz(i,j) = d*(dxr(i,j) - dxl(i,j))/(2*(x - x0) + dxr(i,j) + dxl(i,j))      ! model 3
 
-!           dx(i,j) = 0.5d0*(dxr(i,j) + dxl(i,j))                                     ! model 1
-!           dx(i,j) = 0.5d0*(dxr(i,j) + dxl(i,j)) - 2.0d0*dz(i,j)*dz(i,j)*(d**2.0d0+x**2.0d0)**1.5d0 /(d**2.0d0*(d**2.0d0+x**2.0d0)-x**2.0d0*(dz(i,j))**2.0d0)       ! model 2
+           ! dx(i,j) = 0.5d0*(dxr(i,j) + dxl(i,j))                                     ! model 1
+           ! dx(i,j) = 0.5d0*(dxr(i,j) + dxl(i,j)) - 2.0d0*dz(i,j)*dz(i,j)*(d**2.0d0+x**2.0d0)**1.5d0 /(d**2.0d0*(d**2.0d0+x**2.0d0)-x**2.0d0*(dz(i,j))**2.0d0)       ! model 2
            dx(i,j) = ((x - x0)*(dxr(i,j) + dxl(i,j)) + 2*dxr(i,j)*dxl(i,j))/(2*(x - x0) + dxr(i,j) + dxl(i,j))    ! model 3
 
-!           dy(i,j) = 0.5d0*(dyr(i,j) + dyl(i,j))                                     ! model 1
-!           dy(i,j) = 0.5d0*(dyr(i,j) + dyl(i,j)) - 2.0d0*dz(i,j)*dz(i,j)*(d**2.0d0+y**2.0d0)**1.5d0 /(d**2.0d0*(d**2.0d0+y**2.0d0)-y**2.0d0*(dz(i,j))**2.0d0)       ! model 2
+           ! dy(i,j) = 0.5d0*(dyr(i,j) + dyl(i,j))                                     ! model 1
+           ! dy(i,j) = 0.5d0*(dyr(i,j) + dyl(i,j)) - 2.0d0*dz(i,j)*dz(i,j)*(d**2.0d0+y**2.0d0)**1.5d0 /(d**2.0d0*(d**2.0d0+y**2.0d0)-y**2.0d0*(dz(i,j))**2.0d0)       ! model 2
            dy(i,j) = (y*(dyr(i,j) + dyl(i,j)) + 2*dyr(i,j)*dyl(i,j)) /(2*y + dyr(i,j) + dyl(i,j))    ! model 3
 
           enddo
