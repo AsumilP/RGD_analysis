@@ -27,13 +27,13 @@
  integer, parameter :: vec_spc_x_px= 8 ![px]
  integer, parameter :: vec_spc_y_px= 8 ![px]
  real(8), parameter :: dt    = 50.0d-6  !(sec)
- integer, parameter :: cond = 11
+ integer, parameter :: cond = 7
 
- character(*), parameter :: path_of_velo_l = '/home/yatagi/analysis/piv_output/velofield/20201214/fl/cut/'
+ character(*), parameter :: path_of_velo_l = '/home/yatagi/analysis/piv_output/velofield/20201223/fl/cut/'
 ! character(*), parameter :: path_of_velo_l = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/fl/'
- character(*), parameter :: path_of_velo_r = '/home/yatagi/analysis/piv_output/velofield/20201214/fr/cut/'
+ character(*), parameter :: path_of_velo_r = '/home/yatagi/analysis/piv_output/velofield/20201223/fr/cut/'
 ! character(*), parameter :: path_of_velo_r = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/fr/'
- character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20201214/fs/'
+ character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20201223/fs/'
 ! character(*), parameter :: path_of_velo_o = '/home/yatagi/analysis/piv_output/velofield/20181218/rmvpiv/fs/'
 
  real(8), parameter :: lax= img_res_x*vec_spc_x_px*(nvec_x_cut-1)  ![m] !length of measurement region
