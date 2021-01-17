@@ -18,22 +18,23 @@
 !c--------------------------------------------------c
   implicit none
 
-  character(8), parameter :: date = "20201214"
+  character(8), parameter :: date = "20201223"
   integer, parameter :: nx = 191
   integer, parameter :: nx_cut = 191
   integer, parameter :: nx_start = 1
   integer, parameter :: ny = 121
   integer, parameter :: ny_cut = 98
-  integer, parameter :: ny_start = 4
+  integer, parameter :: ny_start = 8
   integer, parameter :: nz = 21838
-  integer, parameter :: deal_start_frame = 12535
-  integer, parameter :: deal_end_frame = 15535
+  integer, parameter :: deal_start_frame = 1
+  integer, parameter :: deal_end_frame = 21838
   integer, parameter :: dt = 50d-6 ! [s]
-  integer, parameter :: cond_start = 10
-  integer, parameter :: cond_end = 10
+  integer, parameter :: cond_start = 1
+  integer, parameter :: cond_end = 2
   integer, parameter :: components = 2 ! 1.u, 2.v, 3.w
 
-  character(*), parameter :: path_of_i = '/home/yatagi/mnt/velofield/'//date//'/piv/comblps/'
+  ! character(*), parameter :: path_of_i = '/home/yatagi/mnt/velofield/'//date//'/piv/comblps/'
+  character(*), parameter :: path_of_i = '/home/yatagi/analysis/piv_output/velofield/'//date//'/combined/'
   character(*), parameter :: path_of_o = '/home/yatagi/analysis/piv_output/velofield/dmd/'//date//'/data_files/'
 
   character(*) :: fni*200
@@ -58,11 +59,14 @@
     print *,'Condition number =', m
   !-----------------input-------------------
     if (components == 1) then
-      write(file_name_in,"('spiv_fbsc_',i2.2,'_ucl.dat')"), m
+      ! write(file_name_in,"('spiv_fbsc_',i2.2,'_ucl.dat')"), m
+      write(file_name_in,"('spiv_fbsc_',i2.2,'_u.dat')"), m
     else if (components == 2) then
-      write(file_name_in,"('spiv_fbsc_',i2.2,'_vcl.dat')"), m
+      ! write(file_name_in,"('spiv_fbsc_',i2.2,'_vcl.dat')"), m
+      write(file_name_in,"('spiv_fbsc_',i2.2,'_v.dat')"), m
     else if (components == 3) then
-      write(file_name_in,"('spiv_fbsc_',i2.2,'_wcl.dat')"), m
+      ! write(file_name_in,"('spiv_fbsc_',i2.2,'_wcl.dat')"), m
+      write(file_name_in,"('spiv_fbsc_',i2.2,'_w.dat')"), m
     end if
 
     fni = path_of_i//file_name_in
@@ -71,11 +75,14 @@
     do l = 1, nz
 
       if (components == 1) then
-        write(file_name_out,"('spiv_fbsc_',i2.2,'_ucl_',i5.5,'.dat')"), m, l
+        ! write(file_name_out,"('spiv_fbsc_',i2.2,'_ucl_',i5.5,'.dat')"), m, l
+        write(file_name_out,"('spiv_fbsc_',i2.2,'_u_',i5.5,'.dat')"), m, l
       else if (components == 2) then
-        write(file_name_out,"('spiv_fbsc_',i2.2,'_vcl_',i5.5,'.dat')"), m, l
+        ! write(file_name_out,"('spiv_fbsc_',i2.2,'_vcl_',i5.5,'.dat')"), m, l
+        write(file_name_out,"('spiv_fbsc_',i2.2,'_v_',i5.5,'.dat')"), m, l
       else if (components == 3) then
-        write(file_name_out,"('spiv_fbsc_',i2.2,'_wcl_',i5.5,'.dat')"), m, l
+        ! write(file_name_out,"('spiv_fbsc_',i2.2,'_wcl_',i5.5,'.dat')"), m, l
+        write(file_name_out,"('spiv_fbsc_',i2.2,'_w_',i5.5,'.dat')"), m, l
       end if
 
       fno = path_of_o//file_name_out
