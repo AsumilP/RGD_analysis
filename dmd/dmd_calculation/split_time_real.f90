@@ -18,7 +18,7 @@
 !c--------------------------------------------------c
   implicit none
 
-  character(8), parameter :: date = "20201223"
+  character(8), parameter :: date = "20201214"
   integer, parameter :: nx = 191
   integer, parameter :: nx_cut = 191
   integer, parameter :: nx_start = 1
@@ -30,8 +30,8 @@
   integer, parameter :: deal_end_frame = 21838
   integer, parameter :: dt = 50d-6 ! [s]
   integer, parameter :: cond_start = 1
-  integer, parameter :: cond_end = 2
-  integer, parameter :: components = 2 ! 1.u, 2.v, 3.w
+  integer, parameter :: cond_end = 4
+  integer, parameter :: components = 1 ! 1.u, 2.v, 3.w
 
   ! character(*), parameter :: path_of_i = '/home/yatagi/mnt/velofield/'//date//'/piv/comblps/'
   character(*), parameter :: path_of_i = '/home/yatagi/analysis/piv_output/velofield/'//date//'/combined/'
