@@ -7,8 +7,8 @@
     nincrement=2;
     quivermode=2;
     
-    date=20201216;
-    num=13;
+    date=20201223;
+    num=7;
     first_frame=1;
     frames=1;
     skip_frame=0;
@@ -29,7 +29,7 @@
     dx=img_res_x*vec_spc_x;
     dy=img_res_y*vec_spc_y;
     
-    dir=sprintf('C:/Users/yatagi/Desktop/work/piv_output/%d/average/',date);
+    dir=sprintf('C:/Users/yatagi/Desktop/work/piv_output/%d/average/combined/',date);
     file_u=sprintf('spiv_fbsc_%02u_u_av.dat',num);
     file_v=sprintf('spiv_fbsc_%02u_v_av.dat',num);
     file_w=sprintf('spiv_fbsc_%02u_w_av.dat',num);
