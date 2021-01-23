@@ -18,7 +18,7 @@
 !c--------------------------------------------------c
   implicit none
 
-  character(8), parameter :: date = "20190823"
+  character(8), parameter :: date = "20201223"
   integer, parameter :: nx = 1024
   integer, parameter :: nx_cut = 1024
   integer, parameter :: nx_start = 1
@@ -26,14 +26,17 @@
   integer, parameter :: ny_cut = 1024
   integer, parameter :: ny_start = 1
   integer, parameter :: nz = 21839
-  integer, parameter :: deal_start_frame = 16187 - 2500
-  integer, parameter :: deal_end_frame = 16187 + 2500
+  ! integer, parameter :: deal_start_frame = 13838 - 2500
+  ! integer, parameter :: deal_end_frame = 13838 + 2500
+  integer, parameter :: deal_start_frame = 1
+  integer, parameter :: deal_end_frame = 21839
   integer, parameter :: dt = 100d-6 ! [s]
-  integer, parameter :: cond_start = 10
-  integer, parameter :: cond_end = 10
+  integer, parameter :: cond_start = 6
+  integer, parameter :: cond_end = 7
 
-  character(*), parameter :: path_of_i = '/home/yatagi/mnt/'//date//'/'
-  character(*), parameter :: path_of_o = '/home/yatagi/analysis/chem_output/dmd/'//date//'/data_files/'
+  ! character(*), parameter :: path_of_i = '/home/yatagi/mnt/'//date//'/'
+  character(*), parameter :: path_of_i = '/home/yatagi/analysis/chem_output/'//date//'/'
+  character(*), parameter :: path_of_o = '/home/yatagi/analysis/chem_output/chem_dmd/'//date//'/data_files/'
 
   character(*) :: fni*200
   character(*) :: fno*200
@@ -56,13 +59,15 @@
   do m = cond_start, cond_end
     print *,'Condition number =', m
   !-----------------input-------------------
-    write(file_name_in,"('chem_',i2.2,'_rmv.dat')"), m
+    ! write(file_name_in,"('chem_',i2.2,'_rmv.dat')"), m
+    write(file_name_in,"('chem_',i2.2,'_cor.dat')"), m
     fni = path_of_i//file_name_in
     open(10, file=fni, form='binary')
 
     do l = 1, nz
 
-      write(file_name_out,"('chem_',i2.2,'_rmv_',i5.5,'.dat')"), m, l
+      ! write(file_name_out,"('chem_',i2.2,'_rmv_',i5.5,'.dat')"), m, l
+      write(file_name_out,"('chem_',i2.2,'_cor_',i5.5,'.dat')"), m, l
       fno = path_of_o//file_name_out
       read(10) craw
 
