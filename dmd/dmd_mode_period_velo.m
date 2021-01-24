@@ -5,13 +5,16 @@ close all
 %% Parameters 1
 
     dt = 50*10^(-6); %[s]
-    increment = 6;
+%     increment = 6;
+    increment = 25;
     id = 2; %1: norm, 2: norm (considering damp)
-    date = '20190819'; %1
-    cond = 5;
-    step = 'trans3';
-    div = 'u3_3';
-    serach_freq = 206;
+    date = '20190821'; %1
+    cond = 1;
+%     step = 'trans3';
+    step = 'v';
+%     div = 'u3_3';
+    div = '01_13';
+    serach_freq = 284;
 
     div_theta = 10;
     col_min = -1;
@@ -42,7 +45,7 @@ close all
     ifilename_fg = 'f_and_g.txt';
     ifilename_norm = 'norm.txt';
 
-    filepath = strcat('G:/Analysis/piv_output/dmd/',date,'/%02u/averaging/',step,'/',div,'/mode/');
+    filepath = strcat('I:/Analysis/piv_output/dmd/',date,'/%02u/averaging/',step,'/',div,'/mode/');
     ifilename = sprintf(strcat(filepath,ifilename_fg),cond);
     fileID = fopen(ifilename,'r');
     fg = fscanf(fileID,'%f',[2 Inf]);
@@ -61,7 +64,7 @@ close all
     mn = 0;
 
     for i = 1:1:length(norm)
-      if abs(fg_v(i,1)-serach_freq) < floor(1/(2*T))
+      if abs(fg_v(i,1)-serach_freq) < 1/(2*T)
         mn = mn + 1;
         mode_number(mn) = i
       end
