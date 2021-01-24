@@ -14,110 +14,109 @@ clc
   average_width = 20;
 
   flow_rate = 500;
-  er = 0.80;
-  specific_f = 189;
-  sw = 60;
-  duct_l = 582;
+  er = 0.68;
+  specific_f = 0;
+  sw = 45;
+  duct_l = 1185;
   step = 'v';
 %   step = 'trans1';
   type = '1';
 %   type = 'v';
 %   type = 'chem';
-  num_data = 12;
+  num_data = 13;
 
   filepath_out = strcat('I:/Analysis/piv_output/dmd/dmd_averaged/');
 %   filepath_out = strcat('D:/Analysis/chem_output/chem_dmd/dmd_averaged/');
 
 %% FILE INFORMATION
 %
-  date_1 = '20201223'; %1
-  cond_1 = 7;
+  date_1 = '20190821'; %1
+  cond_1 = 1;
   div_1='01_13';
 %   div_1='u1_3';
 %   div_1='v1_3';
 %   div_1='1_3';
 
-  date_2 = '20201223'; %2
-  cond_2 = 7;
+  date_2 = '20190821'; %2
+  cond_2 = 1;
   div_2 = '02_13';
 %   div_2 = 'u2_3';
 %   div_2 = 'v2_3';
 %   div_2 = '2_3';
 
-  date_3 = '20201223'; %3
-  cond_3 = 7;
+  date_3 = '20190821'; %3
+  cond_3 = 1;
   div_3 = '03_13';
 %   div_3 = 'u3_3';
 %   div_3 = 'v3_3';
 %   div_3 = '1_3';
 
-  date_4 = '20201223'; %4
-  cond_4 = 7;
+  date_4 = '20190821'; %4
+  cond_4 = 1;
   div_4 = '04_13';
 %   div_4 = 'u1_3';
 %   div_4 = 'v1_3';
 %   div_4 = '2_3';
 
-  date_5 = '20201223'; %5
-  cond_5 = 7;
+  date_5 = '20190821'; %5
+  cond_5 = 1;
   div_5 = '05_13';
 %   div_5 = 'u2_3';
 %   div_5 = 'v2_3';
 %   div_5 = '1_3';
 
-  date_6 = '20201223'; %6
-  cond_6 = 7;
+  date_6 = '20190821'; %6
+  cond_6 = 1;
   div_6 = '06_13';
 %   div_6 = 'u3_3';
 %   div_6 = 'v3_3';
 %   div_6 = '2_3';
 
-  date_7 = '20201223'; %7
-  cond_7 = 7;
+  date_7 = '20190821'; %7
+  cond_7 = 1;
   div_7 = '07_13';
 %   div_7 = 'u1_3';
 %   div_7 = 'v1_3';
 %   div_7 = '1_3';
 
-  date_8 = '20201223'; %8
-  cond_8 = 7;
+  date_8 = '20190821'; %8
+  cond_8 = 1;
   div_8 = '08_13';
 %   div_8 = 'u2_3';
 %   div_8 = 'v2_3';
 %   div_8 = '2_3';
 
-  date_9 = '20201223'; %9
-  cond_9 = 7;
+  date_9 = '20190821'; %9
+  cond_9 = 1;
   div_9 = '09_13';
 %   div_9 = 'u3_3';
 %   div_9 = 'v3_3';
 %   div_9 = '1_3';
 
-  date_10 = '20201223'; %10
-  cond_10 = 7;
+  date_10 = '20190821'; %10
+  cond_10 = 1;
   div_10 = '10_13';
 %   div_10 = 'u1_3';
 %   div_10 = 'v1_3';
 %   div_10 = '2_3';
 
-  date_11 = '20201223'; %11
-  cond_11 = 7;
+  date_11 = '20190821'; %11
+  cond_11 = 1;
   div_11 = '11_13';
 %   div_11 = 'u2_3';
 %   div_11 = 'v2_3';
 %   div_11 = '1_3';
 
-  date_12 = '20201223'; %12
-  cond_12 = 7;
-%   div_12 = '12_13';
-  div_12 = '13_13';
+  date_12 = '20190821'; %12
+  cond_12 = 1;
+  div_12 = '12_13';
 %   div_12 = 'u3_3';
 %   div_12 = 'v3_3';
 %   div_12 = '2_3';
 
-%   date_13 = '20201223'; %13
-%   cond_13 = 7;
-%   div_13 = '13_13';
+  date_13 = '20190821'; %13
+  cond_13 = 1;
+  div_13 = '13_13';
 %   div_13 = 'u1_3';
 %   div_13 = 'v1_3';
 %   div_13 = '1_3';
@@ -422,20 +421,20 @@ clc
   norm(:,:,12) = fscanf(fileID,'%f');
   fclose(fileID);
 
-% % 13
-%   filepath_13 = strcat('I:/Analysis/piv_output/dmd/',date_13,'/%02u/averaging/',step,'/',div_13,'/mode/');
-% %   filepath_13 = strcat('D:/Analysis/chem_output/chem_dmd/',date_13,'/%02u/averaging/',step,'/',div_13,'/mode/');
-%   ifilename_13 = sprintf(strcat(filepath_13,ifilename_fg),cond_13);
-%   fileID = fopen(ifilename_13,'r');
-%   fg = fscanf(fileID,'%f',[2 Inf]);
-%   fclose(fileID);
-%   fg_v(:,:,13) = fg';
-% 
-%   ifilename_13 = sprintf(strcat(filepath_13,ifilename_norm),cond_13);
-%   fileID = fopen(ifilename_13,'r');
-%   norm(:,:,13) = fscanf(fileID,'%f');
-%   fclose(fileID);
-% 
+% 13
+  filepath_13 = strcat('I:/Analysis/piv_output/dmd/',date_13,'/%02u/averaging/',step,'/',div_13,'/mode/');
+%   filepath_13 = strcat('D:/Analysis/chem_output/chem_dmd/',date_13,'/%02u/averaging/',step,'/',div_13,'/mode/');
+  ifilename_13 = sprintf(strcat(filepath_13,ifilename_fg),cond_13);
+  fileID = fopen(ifilename_13,'r');
+  fg = fscanf(fileID,'%f',[2 Inf]);
+  fclose(fileID);
+  fg_v(:,:,13) = fg';
+
+  ifilename_13 = sprintf(strcat(filepath_13,ifilename_norm),cond_13);
+  fileID = fopen(ifilename_13,'r');
+  norm(:,:,13) = fscanf(fileID,'%f');
+  fclose(fileID);
+
 % % 14
 % %   filepath_14 = strcat('G:/Analysis/piv_output/dmd/',date_14,'/%02u/averaging/',step,'/',div_14,'/mode/');
 %   filepath_14 = strcat('D:/Analysis/chem_output/chem_dmd/',date_14,'/%02u/averaging/',step,'/',div_14,'/mode/');
