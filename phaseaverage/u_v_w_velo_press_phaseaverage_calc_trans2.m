@@ -4,40 +4,58 @@
 
 %% Parameters 1
 
-    trans_start_time = 2.9297;
-    trans_fin_time = 3.2257;
-    trig_time = 3.495;
-    flow_rate=400;
-    date=20190823;
-    num=1;
+%     trans_start_time = 2.9297;
+%     trans_fin_time = 3.2257;
+%     trig_time = 3.495;
+    trans_start_time=3.0647;%%%
+    trans_fin_time=trans_start_time+1.09195;
+    trig_time=trans_start_time;
+    flow_rate=500;%%%
+    equivalence_ratio=0.80;%%%
+    specific_f=189;%%%
+    duct_l=582;
+    hpsfreq=20;
+    lpsfreq=300;
+    date=20201223;
+    num=7;
 
-    file_u=sprintf('E:/piv_output/velofield/%d/spiv_fbsc_%02u_ucl.dat',date,num);
-    file_v=sprintf('E:/piv_output/velofield/%d/spiv_fbsc_%02u_vcl.dat',date,num);
-    file_w=sprintf('E:/piv_output/velofield/%d/spiv_fbsc_%02u_wcl.dat',date,num);
-    presname = sprintf('E:/pressure/%d/calc/PDown_hps20_lps300_%d_%02u.dat',date,date,num);
+%     file_u=sprintf('I:/Analysis/piv_output/velofield/%d/comblps/spiv_fbsc_%02u_ucl.dat',date,num);
+%     file_v=sprintf('I:/Analysis/piv_output/velofield/%d/comblps/spiv_fbsc_%02u_vcl.dat',date,num);
+%     file_w=sprintf('I:/Analysis/piv_output/velofield/%d/comblps/spiv_fbsc_%02u_wcl.dat',date,num);
+%     presname = sprintf('I:/Analysis/pressure/%d/calc/PDown_hps20_lps300_%d_%02u.dat',date,date,num);
+    file_u=sprintf('I:/Analysis/piv_output/velofield/%d/combined/spiv_fbsc_%02u_u.dat',date,num);
+    file_v=sprintf('I:/Analysis/piv_output/velofield/%d/combined/spiv_fbsc_%02u_v.dat',date,num);
+    file_w=sprintf('I:/Analysis/piv_output/velofield/%d/combined/spiv_fbsc_%02u_w.dat',date,num);
+%     presname = sprintf('I:/Analysis/pressure/%d/calc/PDown_%d_cold_piv_%dHz_d%d_hps%d_lps%d.dat',date,flow_rate,specific_f,duct_l,hpsfreq,lpsfreq);
+    presname = sprintf('I:/Analysis/pressure/%d/calc/PDown_%d_%.2f_piv_%dHz_d%d_hps%d_lps%d.dat',date,flow_rate,equivalence_ratio,specific_f,duct_l,hpsfreq,lpsfreq);
 
-    file_umax=sprintf('E:/piv_output/velophasemeanfield/phasemean_umax_%d_%d_%02u.dat',flow_rate,date,num);
-    file_uinfdown=sprintf('E:/piv_output/velophasemeanfield/phasemean_uinfdown_%d_%d_%02u.dat',flow_rate,date,num);
-    file_umin=sprintf('E:/piv_output/velophasemeanfield/phasemean_umin_%d_%d_%02u.dat',flow_rate,date,num);
-    file_uinfup=sprintf('E:/piv_output/velophasemeanfield/phasemean_uinfup_%d_%d_%02u.dat',flow_rate,date,num);
-    file_vmax=sprintf('E:/piv_output/velophasemeanfield/phasemean_vmax_%d_%d_%02u.dat',flow_rate,date,num);
-    file_vinfdown=sprintf('E:/piv_output/velophasemeanfield/phasemean_vinfdown_%d_%d_%02u.dat',flow_rate,date,num);
-    file_vmin=sprintf('E:/piv_output/velophasemeanfield/phasemean_vmin_%d_%d_%02u.dat',flow_rate,date,num);
-    file_vinfup=sprintf('E:/piv_output/velophasemeanfield/phasemean_vinfup_%d_%d_%02u.dat',flow_rate,date,num);
-    file_wmax=sprintf('E:/piv_output/velophasemeanfield/phasemean_wmax_%d_%d_%02u.dat',flow_rate,date,num);
-    file_winfdown=sprintf('E:/piv_output/velophasemeanfield/phasemean_winfdown_%d_%d_%02u.dat',flow_rate,date,num);
-    file_wmin=sprintf('E:/piv_output/velophasemeanfield/phasemean_wmin_%d_%d_%02u.dat',flow_rate,date,num);
-    file_winfup=sprintf('E:/piv_output/velophasemeanfield/phasemean_winfup_%d_%d_%02u.dat',flow_rate,date,num);
+    file_umax=sprintf('I:/Analysis/piv_output/velophasemeanfield/phasemean_umax_%d_%d_%02u.dat',flow_rate,date,num);
+    file_uinfdown=sprintf('I:/Analysis/piv_output/velophasemeanfield/phasemean_uinfdown_%d_%d_%02u.dat',flow_rate,date,num);
+    file_umin=sprintf('I:/Analysis/piv_output/velophasemeanfield/phasemean_umin_%d_%d_%02u.dat',flow_rate,date,num);
+    file_uinfup=sprintf('I:/Analysis/piv_output/velophasemeanfield/phasemean_uinfup_%d_%d_%02u.dat',flow_rate,date,num);
+    file_vmax=sprintf('I:/Analysis/piv_output/velophasemeanfield/phasemean_vmax_%d_%d_%02u.dat',flow_rate,date,num);
+    file_vinfdown=sprintf('I:/Analysis/piv_output/velophasemeanfield/phasemean_vinfdown_%d_%d_%02u.dat',flow_rate,date,num);
+    file_vmin=sprintf('I:/Analysis/piv_output/velophasemeanfield/phasemean_vmin_%d_%d_%02u.dat',flow_rate,date,num);
+    file_vinfup=sprintf('I:/Analysis/piv_output/velophasemeanfield/phasemean_vinfup_%d_%d_%02u.dat',flow_rate,date,num);
+    file_wmax=sprintf('I:/Analysis/piv_output/velophasemeanfield/phasemean_wmax_%d_%d_%02u.dat',flow_rate,date,num);
+    file_winfdown=sprintf('I:/Analysis/piv_output/velophasemeanfield/phasemean_winfdown_%d_%d_%02u.dat',flow_rate,date,num);
+    file_wmin=sprintf('I:/Analysis/piv_output/velophasemeanfield/phasemean_wmin_%d_%d_%02u.dat',flow_rate,date,num);
+    file_winfup=sprintf('I:/Analysis/piv_output/velophasemeanfield/phasemean_winfup_%d_%d_%02u.dat',flow_rate,date,num);
 
 %% Parameters 2
 
     nx = 191;
-    ny = 121;
-    ny_calc = 98; % ATTENTION, CUT
+%     ny = 121;
+    ny = 123;
+%     ny_start = 4;
+%     ny_end = 101;
+    ny_start = 8;
+    ny_end = 105;
+    ny_calc = ny_end - ny_start +1;
     nzall = 21838;
     Fs_spiv= 20e3;
     Fs_press= 20e3;
-    pres_samp_time = 10;  % [sec]
+    pres_samp_time = 15;  % [sec]
     div =10;
 
 %% Matrix
@@ -47,9 +65,14 @@
     Pixels=nx*ny;
     pres_datasize =Fs_press*pres_samp_time;
     taxis = Sts_press:Sts_press:pres_samp_time;
-    cam_start_time = trig_time - Sts_spiv*nzall
-    cam_start_data = floor(trig_time/Sts_press)-nzall
-    before_transition_data = floor(nzall -(trig_time - trans_start_time)/Sts_spiv)
+%     cam_start_time = trig_time - Sts_spiv*nzall
+%     cam_start_data = floor(trig_time/Sts_press)-nzall
+%     before_transition_data = floor(nzall -(trig_time - trans_start_time)/Sts_spiv)
+%     while_transition_data = floor((trans_fin_time - trans_start_time)/Sts_spiv)
+%     calc_data = floor((trans_fin_time - trans_start_time)/(div*Sts_spiv))
+    cam_start_time = trig_time
+    cam_start_data = floor(trig_time/Sts_press)
+    before_transition_data = floor((trans_start_time - trig_time)/Sts_spiv)
     while_transition_data = floor((trans_fin_time - trans_start_time)/Sts_spiv)
     calc_data = floor((trans_fin_time - trans_start_time)/(div*Sts_spiv))
     velo=zeros(nx,ny);
@@ -171,7 +194,7 @@
            I=(fread(fid1,Pixels,'double'));
            velo=reshape(I,N);
            velo=permute(reshape(velo,N),[2 1]);
-           u(:,:,i)=velo(4:101,:);
+           u(:,:,i)=velo(ny_start:ny_end,:);
       end
 
       umeantemp1=zeros(ny_calc,nx);
@@ -245,7 +268,7 @@
 
       fileID=fopen(file_umin,'w');
       fwrite(fileID,saveu,'double');
-     fclose(fileID);
+      fclose(fileID);
 
 %% Calculation, PHASE MEAN, umax
 
@@ -480,7 +503,7 @@
            I=(fread(fid1,Pixels,'double'));
            velo=reshape(I,N);
            velo=permute(reshape(velo,N),[2 1]);
-           v(:,:,i)=velo(4:101,:);
+           v(:,:,i)=velo(ny_start:ny_end,:);
       end
 
       vmeantemp1=zeros(ny_calc,nx);
@@ -789,7 +812,7 @@
            I=(fread(fid1,Pixels,'double'));
            velo=reshape(I,N);
            velo=permute(reshape(velo,N),[2 1]);
-           w(:,:,i)=velo(4:101,:);
+           w(:,:,i)=velo(ny_start:ny_end,:);
       end
 
       wmeantemp1=zeros(ny_calc,nx);
