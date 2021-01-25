@@ -4,13 +4,13 @@
 
 %% PARAMETERS
 
-    name_mode = 6; % 1. p_sequence, 2. p_cER, 3. specific Hz, 4. air, 5. BG , 6. cold_specific
-    date = 20201215;
+    name_mode = 7; % 1. p_sequence, 2. p_cER, 3. specific Hz, 4. air, 5. BG , 6. cold_specific, 7. comb_specific
+    date = 20201223;
     recnum = 1;
     sw_num = 45; % [-], vane angle, only for name_mode = 2
     flow_rate = 500; % [L/min], only for name_mode = 2, 4, 6
-    eq_ratio = 0.80; % [-], only for name_mode = 2
-    duct_l = 1185; % [mm], only for name_mode = 2, 4, 5, 6
+    eq_ratio = 0.80; % [-], only for name_mode = 2, 7
+    duct_l = 582; % [mm], only for name_mode = 2, 4, 5, 6
 %     specific_f = 61; % [Hz], only for name_mode = 3, 6 %%%
     speaker_v = 1; % [V], only for name_mode = 3, 6
     speaker_t = 15; % [s], only for name_mode = 3
@@ -24,18 +24,19 @@
 
     fft_dbl_type = 2; % 1. ^v^v 2. ^vv^ 3. ^v
     hpsfreq = 20; % [Hz]
-    lpsfreq = 3000; % [Hz]
+    lpsfreq = 300; % [Hz]
     RMS_width = 0.2; % [sec]
     cam_frames = 21838;
 
 %     for specific_f = [61 68 70 73 80 85 143 147 149 155 171 188 194 203 232] %%%
-    for specific_f = [64 68 85 155 188 203] %%%
+%     for specific_f = [64 68 85 155 188 203] %%%
+    for specific_f = [146 189] %%%
 
         for num = 1:1:recnum
 
 %% READ DATA
 
-            dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
+            dir = sprintf('I:/Analysis/pressure/%d/calc/',date);
 %             dir = sprintf('G:/Analysis/pressure/%d/calc/p%d/',date,part);
 %             dir = sprintf('C:/Users/yatagi/Desktop/sw%d_cER/%d/calc/',sw_num,date);
 
@@ -51,6 +52,8 @@
                 rfn = sprintf('pressure_d%d_BG_%0.2d.xlsx',duct_l,num);
             elseif name_mode == 6
                 rfn = sprintf('pressure_speaker_cold_piv_%dHz_%dV_d%d_%d.xlsx',specific_f,speaker_v,duct_l,flow_rate);
+            elseif name_mode == 7
+                rfn = sprintf('pressure_speaker_%.2f_piv_%dHz_%dV_d%d_%d.xlsx',eq_ratio,specific_f,speaker_v,duct_l,flow_rate);
             end
             trig = xlsread(append(dir,rfn), sprintf('A2:A%d',fs*samp_time+1));
             upv = xlsread(append(dir,rfn), sprintf('B2:B%d',fs*samp_time+1));
@@ -89,6 +92,16 @@
                 fndbps = sprintf('PDown_d%d_BG_hps%d_lps%d_%d.dat',duct_l,hpsfreq,lpsfreq,num);
                 fnurms = sprintf('PUpper_primerms_d%d_BG_hps%d_lps%d_%d.dat',duct_l,hpsfreq,lpsfreq,num);
                 fndrms = sprintf('PDown_primerms_d%d_BG_hps%d_lps%d_%d.dat',duct_l,hpsfreq,lpsfreq,num);
+            elseif name_mode == 6
+                fnubps = sprintf('PUpper_%d_cold_piv_%dHz_d%d_hps%d_lps%d_%d.dat',flow_rate,specific_f,duct_l,hpsfreq,lpsfreq,num);
+                fndbps = sprintf('PDown_%d_cold_piv_%dHz_d%d_hps%d_lps%d_%d.dat',flow_rate,specific_f,duct_l,hpsfreq,lpsfreq,num);
+                fnurms = sprintf('PUpper_primerms_%d_cold_piv_%dHz_d%d_hps%d_lps%d_%d.dat',flow_rate,specific_f,duct_l,hpsfreq,lpsfreq,num);
+                fndrms = sprintf('PDown_primerms_%d_cold_piv_%dHz_d%d_hps%d_lps%d_%d.dat',flow_rate,specific_f,duct_l,hpsfreq,lpsfreq,num);
+            elseif name_mode == 7
+                fnubps = sprintf('PUpper_%d_%.2f_piv_%dHz_d%d_hps%d_lps%d_%d.dat',flow_rate,eq_ratio,specific_f,duct_l,hpsfreq,lpsfreq,num);
+                fndbps = sprintf('PDown_%d_%.2f_piv_%dHz_d%d_hps%d_lps%d_%d.dat',flow_rate,eq_ratio,specific_f,duct_l,hpsfreq,lpsfreq,num);
+                fnurms = sprintf('PUpper_primerms_%d_%.2f_piv_%dHz_d%d_hps%d_lps%d_%d.dat',flow_rate,eq_ratio,specific_f,duct_l,hpsfreq,lpsfreq,num);
+                fndrms = sprintf('PDown_primerms_%d_%.2f_piv_%dHz_d%d_hps%d_lps%d_%d.dat',flow_rate,eq_ratio,specific_f,duct_l,hpsfreq,lpsfreq,num);
             end
             fn_signal_axis = append(dir,fn_signal_axis);
             fn_rms_axis = append(dir,fn_rms_axis);
@@ -238,9 +251,9 @@
             hold off
             pbaspect([sqrt(2) 1 1]);
 
-%             pause;
+            pause;
 %             clear all
-            close all
+%             close all
             clc
 
         end
