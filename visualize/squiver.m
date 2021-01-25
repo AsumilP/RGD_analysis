@@ -1,5 +1,5 @@
 function squiver_pres(u,v,w,nx,ny,nx_start,nx_end,ny_start,ny_end,nincrement,...
-                      dx,dy,wmin,wmax,quivermode,idx,skip_frame)
+                      dx,dy,wmin,wmax,quivermode)
 
   pos1 = [0.10 0.37 0.83 0.60]; % left bottom width height
   pos2 = [0.135 0.12 0.70 0.12]; % left bottom width height
