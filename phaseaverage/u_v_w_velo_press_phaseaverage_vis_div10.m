@@ -6,14 +6,14 @@
 
     ndata=1;
     flow_rate=500;
-    date='20201215';
-    cond=8;
+    date='20201214';
+    cond=11;
     read_mode=2;
     quiv_vis=0;
     av_all_vis=1;
      
-    dir_i='H:/velophasemeanfield_calc/mode/';
-    dir_o='H:/velophasemeanfield_calc/mode/figure/';
+    dir_i='I:/Analysis/piv_output/velophasemeanfield_calc/mode/';
+    dir_o='I:/Analysis/piv_output/velophasemeanfield_calc/mode/figure/';
 
 %% Parameters 2
 
