@@ -54,9 +54,9 @@ function streamline_vis(u,v,w,nx,ny,nx_start,nx_end,ny_start,ny_end,...
   xticks([-60 -40 -20 0 20 40 60])
   set(gca,'xTickLabel', char('-60','-40','-20','0','20','40','60'))
   ytickformat('%.f')
-  yticks([ymin+(ymax-70) ymin+(ymax-60) ymin+(ymax-50) ymin+(ymax-40) ...
-          ymin+(ymax-30) ymin+(ymax-20) ymin+(ymax-10) ymin+ymax])
-  set(gca,'YTickLabel', char('70','60','50','40','30','20','10','0'))
+  yticks([ymax-58.6 ymax-48.6 ymax-38.6 ymax-28.6 ...
+          ymax-18.6 ymax-8.6 ymax])
+  set(gca,'YTickLabel', char('70','60','50','40','30','20','10'))
   c=colorbar;
   c.Ticks=[0 5 10 15 20];
   c.TickLabels={'0.0','5.0','10','15','20'};
