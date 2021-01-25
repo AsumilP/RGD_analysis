@@ -6,8 +6,8 @@
 
     ndata=1;
     flow_rate=500;
-    date='20201214';
-    cond=11;
+    date='20201215';
+    cond=8;
     read_mode=2;
     quiv_vis=0;
     av_all_vis=1;
@@ -81,7 +81,7 @@
              if read_mode == 1
                  saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_max_%d_quiv_',num2str(ns),'.png'),flow_rate)))
              elseif read_mode == 2
-                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_max_%d_quiv_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_max_%d_quiv_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
              end
              close;
          end
@@ -100,7 +100,7 @@
              if read_mode == 1
                  saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_infdown_%d_quiv_',num2str(ns),'.png'),flow_rate)))
              elseif read_mode == 2
-                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_infdown_%d_quiv_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_infdown_%d_quiv_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
              end
              close;
          end
@@ -119,7 +119,7 @@
              if read_mode == 1
                  saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_min_%d_quiv_',num2str(ns),'.png'),flow_rate)))
              elseif read_mode == 2
-                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_min_%d_quiv_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_min_%d_quiv_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
              end
              close;
          end
@@ -138,7 +138,7 @@
              if read_mode == 1
                  saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_infup_%d_quiv_',num2str(ns),'.png'),flow_rate)))
              elseif read_mode == 2
-                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_infup_%d_quiv_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_infup_%d_quiv_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
              end
              close;
          end
@@ -158,7 +158,7 @@
              if read_mode == 1
                  saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_max_%d_quiv_',num2str(ns),'.png'),flow_rate)))
              elseif read_mode == 2
-                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_max_%d_quiv_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_max_%d_quiv_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
              end
              close;
              %
@@ -175,7 +175,7 @@
              if read_mode == 1
                  saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_infdown_%d_quiv_',num2str(ns),'.png'),flow_rate)))
              elseif read_mode == 2
-                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_infdown_%d_quiv_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_infdown_%d_quiv_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
              end
              close;
              
@@ -192,7 +192,7 @@
              if read_mode == 1
                  saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_min_%d_quiv_',num2str(ns),'.png'),flow_rate)))
              elseif read_mode == 2
-                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_min_%d_quiv_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_min_%d_quiv_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
              end
              close;
              
@@ -209,7 +209,7 @@
              if read_mode == 1
                  saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_infup_%d_quiv_',num2str(ns),'.png'),flow_rate)))
              elseif read_mode == 2
-                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_infup_%d_quiv_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+                 saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_infup_%d_quiv_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
              end
              close;          
              
@@ -233,7 +233,7 @@
          if read_mode == 1
              saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_max_%d_strmln_',num2str(ns),'.png'),flow_rate)))
          elseif read_mode == 2
-             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_max_%d_strmln_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_max_%d_strmln_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
          end
          close;
      end
@@ -252,7 +252,7 @@
          if read_mode == 1
              saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_infdown_%d_strmln_',num2str(ns),'.png'),flow_rate)))
          elseif read_mode == 2
-             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_infdown_%d_strmln_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_infdown_%d_strmln_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
          end
          close;
      end
@@ -271,7 +271,7 @@
          if read_mode == 1
              saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_min_%d_strmln_',num2str(ns),'.png'),flow_rate)))
          elseif read_mode == 2
-             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_min_%d_strmln_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_min_%d_strmln_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
          end
          close;
      end
@@ -290,7 +290,7 @@
          if read_mode == 1
              saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_infup_%d_strmln_',num2str(ns),'.png'),flow_rate)))
          elseif read_mode == 2
-             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_infup_%d_strmln_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_infup_%d_strmln_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
          end
          close;
      end
@@ -310,7 +310,7 @@
          if read_mode == 1
              saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_max_%d_strmln_',num2str(ns),'.png'),flow_rate)))
          elseif read_mode == 2
-             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_max_%d_strmln_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_max_%d_strmln_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
          end
          close;
          
@@ -327,7 +327,7 @@
          if read_mode == 1
              saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_infdown_%d_strmln_',num2str(ns),'.png'),flow_rate)))
          elseif read_mode == 2
-             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_infdown_%d_strmln_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_infdown_%d_strmln_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
          end
          close;
          
@@ -344,7 +344,7 @@
          if read_mode == 1
              saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_min_%d_strmln_',num2str(ns),'.png'),flow_rate)))
          elseif read_mode == 2
-             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_min_%d_strmln_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_min_%d_strmln_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
          end
          close;
          
@@ -361,7 +361,7 @@
          if read_mode == 1
              saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_infup_%d_strmln_',num2str(ns),'.png'),flow_rate)))
          elseif read_mode == 2
-             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_infup_%d_strmln_',date,'_%d_',num2str(ns),'.png'),flow_rate,cond)))
+             saveas(gcf,strcat(dir_o,sprintf(strcat('phasemean_all_infup_%d_strmln_',date,'_%02u_',num2str(ns),'.png'),flow_rate,cond)))
          end
          close;
          
