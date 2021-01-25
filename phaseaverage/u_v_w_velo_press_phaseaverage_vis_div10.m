@@ -6,8 +6,8 @@
 
     ndata=1;
     flow_rate=500;
-    date='20201214';
-    cond=11;
+    date='20201223';
+    cond=7;
     read_mode=2;
     quiv_vis=0;
     av_all_vis=1;
