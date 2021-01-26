@@ -40,7 +40,7 @@ function streamline_vis(u,v,w,nx,ny,nx_start,nx_end,ny_start,ny_end,...
   u_vis = u(ny_start:ny_end,nx_start:nx_end);
   v_vis = v(ny_start:ny_end,nx_start:nx_end);
   w_vis = w(ny_start:ny_end,nx_start:nx_end);
-  speed = sqrt(u.^2+v.^2+w.^2);
+  speed = sqrt(u_vis.^2+v_vis.^2+w_vis.^2);
 
   %% Streamline plot
   % h1 = subplot('Position',pos1);
@@ -70,7 +70,7 @@ function streamline_vis(u,v,w,nx,ny,nx_start,nx_end,ny_start,ny_end,...
   set(gca,'FontName','Times New Roman','FontSize',25)
   hold on
 
-  hlines=streamslice(sx,sy,u,v,3,'arrows');
+  hlines=streamslice(sx,sy,u_vis,v_vis,3,'arrows');
   set(hlines,'Color','w','LineWidth',3)
 
   % xlim([xmin xmax])
