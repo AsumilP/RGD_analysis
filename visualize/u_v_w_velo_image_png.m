@@ -4,8 +4,8 @@
 
 %% Parameters 1
 
-    date=20201223;
-    num=7;
+    date=20201219;
+    num=2;
     first_frame=1;
     frames=1;
     skip_frame=0;
