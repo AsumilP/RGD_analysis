@@ -8,13 +8,13 @@ close all
 %     increment = 6;
     increment = 25;
     id = 2; %1: norm, 2: norm (considering damp)
-    date = '20190821'; %1
-    cond = 1;
+    date = '20190825'; %1
+    cond = 4;
 %     step = 'trans3';
     step = 'v';
 %     div = 'u3_3';
     div = '01_13';
-    serach_freq = 284;
+    serach_freq = 227;
 
     div_theta = 10;
     col_min = -1;
