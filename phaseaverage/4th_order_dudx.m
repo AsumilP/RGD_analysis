@@ -1,4 +1,5 @@
 function [dudx, dudy] = 4th_order_dudx(u,dx,dy,nx,ny)
+% attention! dx and dy have [m] order!
 
     for j=1:ny
         for i=1:nx
@@ -15,7 +16,7 @@ function [dudx, dudy] = 4th_order_dudx(u,dx,dy,nx,ny)
             end
         end
     end
-    
+
     for i=1:nx
         for j=1:ny
             if j==1
@@ -31,5 +32,5 @@ function [dudx, dudy] = 4th_order_dudx(u,dx,dy,nx,ny)
             end
         end
     end
-    
+
 end
