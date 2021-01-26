@@ -9,8 +9,8 @@
     recnum = 1;
     sw_num = 45; % [-], vane angle, only for name_mode = 2
     flow_rate = 500; % [L/min], only for name_mode = 2, 4, 6
-    eq_ratio = 0.80; % [-], only for name_mode = 2, 7
-    duct_l = 582; % [mm], only for name_mode = 2, 4, 5, 6
+    eq_ratio = 0.76; % [-], only for name_mode = 2, 7
+    duct_l = 1185; % [mm], only for name_mode = 2, 4, 5, 6, 7
 %     specific_f = 61; % [Hz], only for name_mode = 3, 6 %%%
     speaker_v = 1; % [V], only for name_mode = 3, 6
     speaker_t = 15; % [s], only for name_mode = 3
@@ -30,7 +30,7 @@
 
 %     for specific_f = [61 68 70 73 80 85 143 147 149 155 171 188 194 203 232] %%%
 %     for specific_f = [64 68 85 155 188 203] %%%
-    for specific_f = [146 189] %%%
+    for specific_f = [68 155 188 64 85 203] %%%
 
         for num = 1:1:recnum
 
