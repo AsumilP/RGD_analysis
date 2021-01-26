@@ -37,11 +37,7 @@
     dy=img_res_y*vec_spc_y;
 %     dx=img_res_x*vec_spc_x*10^-3;
 %     dy=img_res_y*vec_spc_y*10^-3;
-    omega=zeros(ny_calc,nx);
-    dudx=zeros(ny_calc,nx);
-    dvdx=zeros(ny_calc,nx);
-    dudy=zeros(ny_calc,nx);
-    dvdy=zeros(ny_calc,nx);
+    omega=zeros(nx,ny_calc);
     strain_u=zeros(ny_calc,nx);
     strain_v=zeros(ny_calc,nx);
     eig11=zeros(ny_calc,nx);
@@ -367,87 +363,9 @@
          
      end
      
-%% CALC, Strain, Kolmogorov Scale
-% 
-% %% infdown, 400
-% 
-%         for ns=1:10
-% % du/dx
-%             for j=1:ny_calc
-%                 for i=1:nx
-%                     if i==1
-%                         dudx(j,i)=(-25*uinfdown_400av(j,1,ns)+48*uinfdown_400av(j,2,ns)-36*uinfdown_400av(j,3,ns)+16*uinfdown_400av(j,4,ns)-3*uinfdown_400av(j,5,ns))/(12*dx);
-%                     elseif i==2
-%                         dudx(j,i)=(-3*uinfdown_400av(j,1,ns)-10*uinfdown_400av(j,2,ns)+18*uinfdown_400av(j,3,ns)-6*uinfdown_400av(j,4,ns)+uinfdown_400av(j,5,ns))/(12*dx);
-%                     elseif i==nx-1
-%                         dudx(j,i)=(3*uinfdown_400av(j,nx,ns)+10*uinfdown_400av(j,nx-1,ns)-18*uinfdown_400av(j,nx-2,ns)+6*uinfdown_400av(j,nx-3,ns)-uinfdown_400av(j,nx-4,ns))/(12*dx);
-%                     elseif i==nx
-%                         dudx(j,i)=(25*uinfdown_400av(j,nx,ns)-48*uinfdown_400av(j,nx-1,ns)+36*uinfdown_400av(j,nx-2,ns)-16*uinfdown_400av(j,nx-3,ns)+3*uinfdown_400av(j,nx-4,ns))/(12*dx);
-%                     else
-%                         dudx(j,i)=(uinfdown_400av(j,i-2,ns)-8*uinfdown_400av(j,i-1,ns)+8*uinfdown_400av(j,i+1,ns)-uinfdown_400av(j,i+2,ns))/(12*dx);
-%                     end
-%                 end
-%             end
-% 
-% % dv/dx
-%             for j=1:ny_calc
-%                 for i=1:nx
-%                     if i==1
-%                         dvdx(j,i)=(-25*vinfdown_400av(j,1,ns)+48*vinfdown_400av(j,2,ns)-36*vinfdown_400av(j,3,ns)+16*vinfdown_400av(j,4,ns)-3*vinfdown_400av(j,5,ns))/(12*dx);
-%                     elseif i==2
-%                         dvdx(j,i)=(-3*vinfdown_400av(j,1,ns)-10*vinfdown_400av(j,2,ns)+18*vinfdown_400av(j,3,ns)-6*vinfdown_400av(j,4,ns)+vinfdown_400av(j,5,ns))/(12*dx);
-%                     elseif i==nx-1
-%                         dvdx(j,i)=(3*vinfdown_400av(j,nx,ns)+10*vinfdown_400av(j,nx-1,ns)-18*vinfdown_400av(j,nx-2,ns)+6*vinfdown_400av(j,nx-3,ns)-vinfdown_400av(j,nx-4,ns))/(12*dx);
-%                     elseif i==nx
-%                         dvdx(j,i)=(25*vinfdown_400av(j,nx,ns)-48*vinfdown_400av(j,nx-1,ns)+36*vinfdown_400av(j,nx-2,ns)-16*vinfdown_400av(j,nx-3,ns)+3*vinfdown_400av(j,nx-4,ns))/(12*dx);
-%                     else
-%                         dvdx(j,i)=(vinfdown_400av(j,i-2,ns)-8*vinfdown_400av(j,i-1,ns)+8*vinfdown_400av(j,i+1,ns)-vinfdown_400av(j,i+2,ns))/(12*dx);
-%                     end
-%                 end
-%             end
-% 
-% % du/dy
-%             for i=1:nx
-%                 for j=1:ny_calc
-%                     if j==1
-%                         dudy(j,i)=-(-25*uinfdown_400av(1,i,ns)+48*uinfdown_400av(2,i,ns)-36*uinfdown_400av(3,i,ns)+16*uinfdown_400av(4,i,ns)-3*uinfdown_400av(5,i,ns))/(12*dy);
-%                     elseif j==2
-%                         dudy(j,i)=-(-3*uinfdown_400av(1,i,ns)-10*uinfdown_400av(2,i,ns)+18*uinfdown_400av(3,i,ns)-6*uinfdown_400av(4,i,ns)+uinfdown_400av(5,i,ns))/(12*dy);
-%                     elseif j==ny_calc-1
-%                         dudy(j,i)=-(3*uinfdown_400av(ny_calc,i,ns)+10*uinfdown_400av(ny_calc-1,i,ns)-18*uinfdown_400av(ny_calc-2,i,ns)+6*uinfdown_400av(ny_calc-3,i,ns)-uinfdown_400av(ny_calc-4,i,ns))/(12*dy);
-%                     elseif j==ny_calc
-%                         dudy(j,i)=-(25*uinfdown_400av(ny_calc,i,ns)-48*uinfdown_400av(ny_calc-1,i,ns)+36*uinfdown_400av(ny_calc-2,i,ns)-16*uinfdown_400av(ny_calc-3,i,ns)+3*uinfdown_400av(ny_calc-4,i,ns))/(12*dy);
-%                     else
-%                         dudy(j,i)=-(uinfdown_400av(j-2,i,ns)-8*uinfdown_400av(j-1,i,ns)+8*uinfdown_400av(j+1,i,ns)-uinfdown_400av(j+2,i,ns))/(12*dy);
-%                     end
-%                 end
-%             end
-% 
-% % dv/dy
-%             for i=1:nx
-%                 for j=1:ny_calc
-%                     if j==1
-%                         dvdy(j,i)=-(-25*vinfdown_400av(1,i,ns)+48*vinfdown_400av(2,i,ns)-36*vinfdown_400av(3,i,ns)+16*vinfdown_400av(4,i,ns)-3*vinfdown_400av(5,i,ns))/(12*dy);
-%                     elseif j==2
-%                         dvdy(j,i)=-(-3*vinfdown_400av(1,i,ns)-10*vinfdown_400av(2,i,ns)+18*vinfdown_400av(3,i,ns)-6*vinfdown_400av(4,i,ns)+vinfdown_400av(5,i,ns))/(12*dy);
-%                     elseif j==ny_calc-1
-%                         dvdy(j,i)=-(3*vinfdown_400av(ny_calc,i,ns)+10*vinfdown_400av(ny_calc-1,i,ns)-18*vinfdown_400av(ny_calc-2,i,ns)+6*vinfdown_400av(ny_calc-3,i,ns)-vinfdown_400av(ny_calc-4,i,ns))/(12*dy);
-%                     elseif j==ny_calc
-%                         dvdy(j,i)=-(25*vinfdown_400av(ny_calc,i,ns)-48*vinfdown_400av(ny_calc-1,i,ns)+36*vinfdown_400av(ny_calc-2,i,ns)-16*vinfdown_400av(ny_calc-3,i,ns)+3*vinfdown_400av(ny_calc-4,i,ns))/(12*dy);
-%                     else
-%                         dvdy(j,i)=-(vinfdown_400av(j-2,i,ns)-8*vinfdown_400av(j-1,i,ns)+8*vinfdown_400av(j+1,i,ns)-vinfdown_400av(j+2,i,ns))/(12*dy);
-%                     end
-%                 end
-%             end
-% 
-% % omega
-%             for j=1:ny_calc
-%                 for i=1:nx
-%                     omega(j,i)=dvdx(j,i)-dudy(j,i);
-%                 end
-%             end
-% 
-% % Sij, strain
+
+
+%% Sij, strain
 %             for j=1:ny_calc
 %                 for i=1:nx
 %                     Sij=[dudx(j,i) 0.5*(dudy(j,i)+dvdx(j,i)); 0.5*(dudy(j,i)+dvdx(j,i)) dvdy(j,i)];
