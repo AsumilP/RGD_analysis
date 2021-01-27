@@ -6,8 +6,8 @@
 
     ndata=1;
     flow_rate=500;
-    date='20201217';
-    cond=6;
+    date='20201223';
+    cond=7;
     read_mode=2;
     av_all_vis=1;
     
@@ -18,16 +18,16 @@
 
     nx=1024; % [px]
     ny=1024; % [px]
-    origin_x=500; % [px]
-    origin_y=640; % [px]
-    origin_height=46; %[mm]
-    img_res_x=120*10^(-3); % [mm/px]
-    img_res_y=120*10^(-3); % [mm/px]
 %     origin_x=500; % [px]
-%     origin_y=792; % [px]
-%     origin_height=20; %[mm]
-%     img_res_x=150*10^(-3); % [mm/px]
-%     img_res_y=150*10^(-3); % [mm/px]
+%     origin_y=640; % [px]
+%     origin_height=46; %[mm]
+%     img_res_x=120*10^(-3); % [mm/px]
+%     img_res_y=120*10^(-3); % [mm/px]
+    origin_x=500; % [px]
+    origin_y=792; % [px]
+    origin_height=20; %[mm]
+    img_res_x=150*10^(-3); % [mm/px]
+    img_res_y=150*10^(-3); % [mm/px]
     col_min=0;
     col_max=3000;
     col_max_dif=500;
