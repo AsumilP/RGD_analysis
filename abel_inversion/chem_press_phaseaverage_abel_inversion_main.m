@@ -42,11 +42,18 @@
 
 %% READ and AVERAGE
 
-     [max_av]=read_phaseaveraged_data_div10(flow_rate,'max',ndata,nx,ny,date,cond,read_mode,dir_i);
-     [infdown_av]=read_phaseaveraged_data_div10(flow_rate,'infdown',ndata,nx,ny,date,cond,read_mode,dir_i);
-     [min_av]=read_phaseaveraged_data_div10(flow_rate,'min',ndata,nx,ny,date,cond,read_mode,dir_i);
-     [infup_av]=read_phaseaveraged_data_div10(flow_rate,'infup',ndata,nx,ny,date,cond,read_mode,dir_i);
+     [max_av_read]=read_phaseaveraged_data_div10(flow_rate,'max',ndata,nx,ny,date,cond,read_mode,dir_i);
+     [infdown_av_read]=read_phaseaveraged_data_div10(flow_rate,'infdown',ndata,nx,ny,date,cond,read_mode,dir_i);
+     [min_av_read]=read_phaseaveraged_data_div10(flow_rate,'min',ndata,nx,ny,date,cond,read_mode,dir_i);
+     [infup_av_read]=read_phaseaveraged_data_div10(flow_rate,'infup',ndata,nx,ny,date,cond,read_mode,dir_i);
      
+     for j=1:1:10
+         max_av(:,:,j)=transpose(max_av_read(:,:,j));
+         infdown_av(:,:,j)=transpose(infdown_av_read(:,:,j));
+         min_av(:,:,j)=transpose(min_av_read(:,:,j));
+         infup_av(:,:,j)=transpose(infup_av_read(:,:,j));
+     end
+        
 %% Calc. abel inversion & SAVE
 % MAX
 
@@ -60,11 +67,11 @@
          end
          
          if read_mode == 1
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_max_%d_chem_',num2str(ns),'.dat'),flow_rate)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_max_%d_chem_abel_',num2str(ns),'.dat'),flow_rate)),'w');
              fwrite(fileID,abel_max,'double');
              fclose(fileID);
           elseif read_mode == 2
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_max_%d_chem_',date,'_%02u_',num2str(ns),'.dat'),flow_rate,cond)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_max_%d_chem_abel_',date,'_%02u_',num2str(ns),'.dat'),flow_rate,cond)),'w');
              fwrite(fileID,abel_max,'double');
              fclose(fileID);
          end
@@ -77,11 +84,11 @@
          end
          
          if read_mode == 1
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infdown_%d_chem_',num2str(ns),'.dat'),flow_rate)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infdown_%d_chem_abel_',num2str(ns),'.dat'),flow_rate)),'w');
              fwrite(fileID,abel_infdown,'double');
              fclose(fileID);
           elseif read_mode == 2
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infdown_%d_chem_',date,'_%02u_',num2str(ns),'.dat'),flow_rate,cond)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infdown_%d_chem_abel_',date,'_%02u_',num2str(ns),'.dat'),flow_rate,cond)),'w');
              fwrite(fileID,abel_infdown,'double');
              fclose(fileID);
          end
@@ -94,11 +101,11 @@
          end
          
          if read_mode == 1
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_min_%d_chem_',num2str(ns),'.dat'),flow_rate)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_min_%d_chem_abel_',num2str(ns),'.dat'),flow_rate)),'w');
              fwrite(fileID,abel_min,'double');
              fclose(fileID);
           elseif read_mode == 2
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_min_%d_chem_',date,'_%02u_',num2str(ns),'.dat'),flow_rate,cond)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_min_%d_chem_abel_',date,'_%02u_',num2str(ns),'.dat'),flow_rate,cond)),'w');
              fwrite(fileID,abel_min,'double');
              fclose(fileID);
          end
@@ -111,11 +118,11 @@
          end
          
          if read_mode == 1
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infup_%d_chem_',num2str(ns),'.dat'),flow_rate)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infup_%d_chem_abel_',num2str(ns),'.dat'),flow_rate)),'w');
              fwrite(fileID,abel_infup,'double');
              fclose(fileID);
           elseif read_mode == 2
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infup_%d_chem_',date,'_%02u_',num2str(ns),'.dat'),flow_rate,cond)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infup_%d_chem_abel_',date,'_%02u_',num2str(ns),'.dat'),flow_rate,cond)),'w');
              fwrite(fileID,abel_infup,'double');
              fclose(fileID);
          end
@@ -137,11 +144,11 @@
          end
          
          if read_mode == 1
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_max_%d_chem_all.dat'),flow_rate)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_max_%d_chem_abel_all.dat'),flow_rate)),'w');
              fwrite(fileID,abel_max,'double');
              fclose(fileID);
           elseif read_mode == 2
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_max_%d_chem_',date,'_%02u_all.dat'),flow_rate,cond)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_max_%d_chem_abel_',date,'_%02u_all.dat'),flow_rate,cond)),'w');
              fwrite(fileID,abel_max,'double');
              fclose(fileID);
          end
@@ -152,11 +159,11 @@
          end
          
          if read_mode == 1
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infdown_%d_chem_all.dat'),flow_rate)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infdown_%d_chem_abel_all.dat'),flow_rate)),'w');
              fwrite(fileID,abel_infdown,'double');
              fclose(fileID);
           elseif read_mode == 2
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infdown_%d_chem_',date,'_%02u_all.dat'),flow_rate,cond)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infdown_%d_chem_abel_',date,'_%02u_all.dat'),flow_rate,cond)),'w');
              fwrite(fileID,abel_infdown,'double');
              fclose(fileID);
          end
@@ -167,11 +174,11 @@
          end
          
          if read_mode == 1
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_min_%d_chem_all.dat'),flow_rate)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_min_%d_chem_abel_all.dat'),flow_rate)),'w');
              fwrite(fileID,abel_min,'double');
              fclose(fileID);
           elseif read_mode == 2
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_min_%d_chem_',date,'_%02u_all.dat'),flow_rate,cond)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_min_%d_chem_abel_',date,'_%02u_all.dat'),flow_rate,cond)),'w');
              fwrite(fileID,abel_min,'double');
              fclose(fileID);
          end
@@ -182,11 +189,11 @@
          end
          
          if read_mode == 1
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infup_%d_chem_all.dat'),flow_rate)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infup_%d_chem_abel_all.dat'),flow_rate)),'w');
              fwrite(fileID,abel_infup,'double');
              fclose(fileID);
           elseif read_mode == 2
-             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infup_%d_chem_',date,'_%02u_all.dat'),flow_rate,cond)),'w');
+             fileID=fopen(strcat(dir_o,sprintf(strcat('phasemean_infup_%d_chem_abel_',date,'_%02u_all.dat'),flow_rate,cond)),'w');
              fwrite(fileID,abel_infup,'double');
              fclose(fileID);
          end
