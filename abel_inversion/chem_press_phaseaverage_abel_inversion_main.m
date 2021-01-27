@@ -6,8 +6,8 @@
 
     ndata=1;
     flow_rate=500;
-    date='20201223';
-    cond=7;
+    date='20201217';
+    cond=6;
     read_mode=2;
     av_all=1;
 
@@ -37,6 +37,7 @@
     visy_start=0; %[mm]
     visy_end=120; %[mm]
     vis='hot';
+    origin_height_px=origin_height/img_res_y; %[px]
     abel_xrange=origin_x+1:2*origin_x;
 
 %% READ and AVERAGE
