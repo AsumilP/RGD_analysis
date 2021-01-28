@@ -6,31 +6,31 @@
 
     ndata=1;
     flow_rate=500;
-    date='20201217';
+    date='20201223';
 %     cond=6;
     read_mode=2;
     av_all=1;
 
-    dir_i='C:/Users/yatagi/Desktop/chem_phasemean/mode/';
-    dir_o='C:/Users/yatagi/Desktop/chem_phasemean/mode/calc_abel/';
-    fig_savedirectory='C:/Users/yatagi/Desktop/chem_phasemean/mode/calc_abel/figure/';
+    dir_i='D:/Analysis/chem_output/chem_phasemean/mode/';
+    dir_o='D:/Analysis/chem_output/chem_phasemean_calc/mode/calc_abel/';
+    fig_savedirectory='D:/Analysis/chem_output/chem_phasemean_calc/mode/calc_abel/figure/';
     
-    for cond = [7 8 9 10 11]
+    for cond = [4 5 6 7]
 
 %% Parameters 2
 
         nx=1024; % [px]
         ny=1024; % [px]
-        origin_x=500; % [px]
-        origin_y=640; % [px]
-        origin_height=46; %[mm]
-        img_res_x=120*10^(-3); % [mm/px]
-        img_res_y=120*10^(-3); % [mm/px]
 %         origin_x=500; % [px]
-%         origin_y=792; % [px]
-%         origin_height=20; %[mm]
-%         img_res_x=150*10^(-3); % [mm/px]
-%         img_res_y=150*10^(-3); % [mm/px]
+%         origin_y=640; % [px]
+%         origin_height=46; %[mm]
+%         img_res_x=120*10^(-3); % [mm/px]
+%         img_res_y=120*10^(-3); % [mm/px]
+        origin_x=500; % [px]
+        origin_y=792; % [px]
+        origin_height=20; %[mm]
+        img_res_x=150*10^(-3); % [mm/px]
+        img_res_y=150*10^(-3); % [mm/px]
         col_min=0;
         col_max=7;
 %         col_max_dif=3;
