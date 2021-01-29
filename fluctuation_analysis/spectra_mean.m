@@ -4,7 +4,7 @@
 
 %% PARAMETERS
 
-    signal_type = 7; % 1. p_sequence_trans, 2. p_cER, 3. speaker_chirp, 4. p_noinput, 5. air, 6. BG , 7.p_specific_f
+    signal_type = 2; % 1. p_sequence_trans, 2. p_cER, 3. speaker_chirp, 4. p_noinput, 5. air, 6. BG , 7.p_specific_f
     up_or_dwn = 2; % 1. upperstream, 2. downstream, when signal_type = 1 or 2 or 3
 
     fft_dbl_type = 2; % 1. ^v^v 2. ^vv^ 3. ^v
@@ -13,12 +13,12 @@
     fft_mean_type = 1;
     fft_mean_tlength = 1; % [s]
 
-    date = 20201203;
+    date = 20201116;
     num_start = 1;
-    num_end = 5;
-    flow_rate = 350; % [L/min], signal_type = 1,2
-    eq_ratio = 0.80; % signal_type = 1,2
-    lduct = 1185; % [mm], signal_type = 2,3
+    num_end = 1;
+    flow_rate = 470; % [L/min], signal_type = 1,2
+    eq_ratio = 0.70; % signal_type = 1,2
+    lduct = 582; % [mm], signal_type = 2,3
     speaker_voltage = 1; % [V], signal_type = 3
     speaker_duration = 15; % [s], signal_type = 3
 %     speaker_lf = 0; %%% [Hz], signal_type = 3, output_filename, specific_f for signal_type = 7
@@ -33,7 +33,7 @@
 
     figex = '.png'; % fig, png
     
-    for speaker_lf = [61 68 70 73 80 85 143 147 149 155 171 188 194 203 232] %%%
+%     for speaker_lf = [61 68 70 73 80 85 143 147 149 155 171 188 194 203 232] %%%
 
 %% PARAMETERS, fixed
 
@@ -66,7 +66,7 @@
                 if signal_type == 1
                     if up_or_dwn == 1
 
-                        dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
+                        dir = sprintf('I:/Analysis/pressure/%d/calc/',date);
                         fnubps = sprintf('PUpper_hps%d_lps%d_%d_%02u.dat',hpsfreq,lpsfreq,date,num);
                         fnupsb = sprintf('PUpper_PS_b_%d_%.2f_tlen%g_%d_%02u.dat',flow_rate,eq_ratio,fft_mean_tlength,date,num);
                         fnupsa = sprintf('PUpper_PS_a_%d_%.2f_tlen%g_%d_%02u.dat',flow_rate,eq_ratio,fft_mean_tlength,date,num);
@@ -82,7 +82,7 @@
 
                     elseif up_or_dwn == 2
 
-                        dir = sprintf('H:/Analysis/pressure/%d/calc/',date);
+                        dir = sprintf('I:/Analysis/pressure/%d/calc/',date);
                         fndbps = sprintf('PDown_hps%d_lps%d_%d_%02u.dat',hpsfreq,lpsfreq,date,num);
                         fndpsb = sprintf('PDown_PS_b_%d_%.2f_tlen%g_%d_%02u.dat',flow_rate,eq_ratio,fft_mean_tlength,date,num);
                         fndpsa = sprintf('PDown_PS_a_%d_%.2f_tlen%g_%d_%02u.dat',flow_rate,eq_ratio,fft_mean_tlength,date,num);
@@ -101,7 +101,7 @@
                 elseif signal_type == 2
                     if up_or_dwn == 1
 
-                        dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
+                        dir = sprintf('I:/Analysis/pressure/%d/calc/',date);
                         fnubps = sprintf('PUpper_d%d_hps%d_lps%d_%d_%.2f_cER.dat',lduct,hpsfreq,lpsfreq,flow_rate,eq_ratio);
                         fnups = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_%d_%02u_cER.dat',lduct,hpsfreq,lpsfreq,flow_rate,eq_ratio,fft_mean_tlength,date,num);
                         fnups_av = sprintf('PUpper_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_%d_av_cER.dat',lduct,hpsfreq,lpsfreq,flow_rate,eq_ratio,fft_mean_tlength,date);
@@ -114,7 +114,7 @@
 
                     elseif up_or_dwn == 2
 
-                        dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
+                        dir = sprintf('I:/Analysis/pressure/%d/calc/',date);
                         fndbps = sprintf('PDown_d%d_hps%d_lps%d_%d_%.2f_cER.dat',lduct,hpsfreq,lpsfreq,flow_rate,eq_ratio);
                         fndps = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_%d_%02u_cER.dat',lduct,hpsfreq,lpsfreq,flow_rate,eq_ratio,fft_mean_tlength,date,num);
                         fndps_av = sprintf('PDown_PS_d%d_hps%d_lps%d_%d_%.2f_tlen%g_%d_av_cER.dat',lduct,hpsfreq,lpsfreq,flow_rate,eq_ratio,fft_mean_tlength,date);
@@ -385,7 +385,7 @@
                 close;
 
             end
-        end
+%         end
 %     end %%%
 
 %% SAVE & FIGURE, Averaged
