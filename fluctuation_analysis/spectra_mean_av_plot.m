@@ -3,10 +3,10 @@
     clc
 
 %% PARAMETERS
-    data_species = 1; % 1, 2, 3, 4, 5, 6
-    signal_type = 6; % 1. p_sequence, 2. p_cER, 3. speaker_chirp, 4. specific_f, 5. air, 6. BG
+    data_species = 2; % 1, 2, 3, 4, 5, 6
+    signal_type = 2; % 1. p_sequence, 2. p_cER, 3. speaker_chirp, 4. specific_f, 5. air, 6. BG
     noise_sub = 0; %1. Yes, 0: No
-    up_or_dwn = 1; % 1. upperstream 2. downstream, when signal_type = 1,2,3,4,5
+    up_or_dwn = 2; % 1. upperstream 2. downstream, when signal_type = 1,2,3,4,5
 
 %%
     ndata_noise = 10;
@@ -51,27 +51,27 @@
 %%
     elseif data_species == 2
 
-      ndata1 = 30;
-      flow_rate1 = 0; % [L/min]
-      eq_ratio1 = 0.00;
-      hpsfreq1 = 0; % [Hz], signal_type = 1,2,3,4
-      lpsfreq1 = 0; % [Hz], signal_type = 1,2,3,4
+      ndata1 = 1;
+      flow_rate1 = 500; % [L/min]
+      eq_ratio1 = 0.74;
+      hpsfreq1 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq1 = 3000; % [Hz], signal_type = 1,2,3,4
       speaker_duration1 = 7.5; % [s], signal_type = 3,4
       specific_f1 = 0; % [s], signal_type = 4
       part1 = 1; % signal_type = 4
-      lduct1 = 1185; % [mm], signal_type = 3,4
+      lduct1 = 582; % [mm], signal_type = 3,4
 
-      ndata2 = 30;
-      flow_rate2 = 0; % [L/min]
-      eq_ratio2 = 0.00;
-      hpsfreq2 = 0; % [Hz], signal_type = 1,2,3,4
-      lpsfreq2 = 0; % [Hz], signal_type = 1,2,3,4
+      ndata2 = 1;
+      flow_rate2 = 500; % [L/min]
+      eq_ratio2 = 0.80;
+      hpsfreq2 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq2 = 3000; % [Hz], signal_type = 1,2,3,4
       speaker_duration2 = 7.5; % [s], signal_type = 3,4
       specific_f2 = 0; % [s], signal_type = 4
       part2 = 1; % signal_type = 4
-      lduct2 = 1185; % [mm], signal_type = 3,4
+      lduct2 = 582; % [mm], signal_type = 3,4
 
-      date = 20200908;
+      date = 20201029;
       fft_mean_tlength = 1; % [s]
       speaker_voltage = 1; % [V], signal_type = 3,4
       speaker_lf = 0; % [Hz], signal_type = 3
@@ -79,7 +79,7 @@
       fs = 20e3;
       div_nlength = fs*fft_mean_tlength;
 
-      dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
+      dir = sprintf('I:/Analysis/pressure/%d/calc/',date);
       % dir = sprintf('E:/chem_output/chem_intensity/%d/',date);
       % dir = sprintf('E:/piv_output/v_oscillation/');
 
@@ -116,7 +116,7 @@
       part3 = 1; % signal_type = 4
       lduct3 = 1185; % [mm], signal_type = 3,4
 
-      date = 20200908;
+      date = 20201029;
       fft_mean_tlength = 1; % [s]
       speaker_voltage = 1; % [V], signal_type = 3,4
       speaker_lf = 0; % [Hz], signal_type = 3
@@ -133,47 +133,47 @@
 %%
     elseif data_species == 4
 
-      ndata1 = 30;
-      flow_rate1 = 0; % [L/min]
-      eq_ratio1 = 0;
+      ndata1 = 1;
+      flow_rate1 = 500; % [L/min]
+      eq_ratio1 = 0.74;
       hpsfreq1 = 20; % [Hz], signal_type = 1,2,3,4
-      lpsfreq1 = 300; % [Hz], signal_type = 1,2,3,4
+      lpsfreq1 = 3000; % [Hz], signal_type = 1,2,3,4
       speaker_duration1 = 15; % [s], signal_type = 3,4
       specific_f1 = 0; % [s], signal_type = 4
       part1 = 1; % signal_type = 4
       lduct1 = 582; % [mm], signal_type = 3,4
 
-      ndata2 = 30;
-      flow_rate2 = 0; % [L/min]
-      eq_ratio2 = 0;
-      hpsfreq2 = 0; % [Hz], signal_type = 1,2,3,4
-      lpsfreq2 = 0; % [Hz], signal_type = 1,2,3,4
+      ndata2 = 1;
+      flow_rate2 = 500; % [L/min]
+      eq_ratio2 = 0.76;
+      hpsfreq2 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq2 = 3000; % [Hz], signal_type = 1,2,3,4
       speaker_duration2 = 15; % [s], signal_type = 3,4
       specific_f2 = 0; % [s], signal_type = 4
       part2 = 1; % signal_type = 4
-      lduct2 = 883; % [mm], signal_type = 3,4
+      lduct2 = 582; % [mm], signal_type = 3,4
 
-      ndata3 = 30;
-      flow_rate3 = 0; % [L/min]
-      eq_ratio3 = 0;
-      hpsfreq3 = 0; % [Hz], signal_type = 1,2,3,4
-      lpsfreq3 = 0; % [Hz], signal_type = 1,2,3,4
+      ndata3 = 1;
+      flow_rate3 = 500; % [L/min]
+      eq_ratio3 = 0.78;
+      hpsfreq3 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq3 = 3000; % [Hz], signal_type = 1,2,3,4
       speaker_duration3 = 15; % [s], signal_type = 3,4
       specific_f3 = 0; % [s], signal_type = 4
       part3 = 1; % signal_type = 4
-      lduct3 = 1185; % [mm], signal_type = 3,4
+      lduct3 = 582; % [mm], signal_type = 3,4
 
-      ndata4 = 30;
-      flow_rate4 = 0; % [L/min]
-      eq_ratio4 = 0;
-      hpsfreq4 = 0; % [Hz], signal_type = 1,2,3,4
-      lpsfreq4 = 0; % [Hz], signal_type = 1,2,3,4
+      ndata4 = 1;
+      flow_rate4 = 500; % [L/min]
+      eq_ratio4 = 0.80;
+      hpsfreq4 = 20; % [Hz], signal_type = 1,2,3,4
+      lpsfreq4 = 3000; % [Hz], signal_type = 1,2,3,4
       speaker_duration4 = 15; % [s], signal_type = 3,4
       specific_f4 = 0; % [s], signal_type = 4
       part4 = 1; % signal_type = 4
-      lduct4 = 0; % [mm], signal_type = 3,4
+      lduct4 = 582; % [mm], signal_type = 3,4
 
-      date = 20200908;
+      date = 20201029;
       fft_mean_tlength = 1; % [s]
       speaker_voltage = 1; % [V], signal_type = 3,4
       speaker_lf = 0; % [Hz], signal_type = 3
@@ -181,9 +181,9 @@
       fs = 20e3;
       div_nlength = fs*fft_mean_tlength;
 
-      % dir = sprintf('G:/Analysis/pressure/%d/calc/',date);
+      dir = sprintf('I:/Analysis/pressure/%d/calc/',date);
       % dir = sprintf('G:/Analysis/pressure/PS_trans_calc/');
-      dir = sprintf('G:/Analysis/pressure/PS_chirp_calc/');
+      % dir = sprintf('G:/Analysis/pressure/PS_chirp_calc/');
       % dir = sprintf('E:/chem_output/chem_intensity/%d/',date);
       % dir = sprintf('E:/piv_output/v_oscillation/');
 
@@ -2700,7 +2700,8 @@
      ax.YColor = 'black';
      % ax.XScale = 'log';
      % ax.YScale = 'log';
-     ax.XLim = [hpsfreq1 lpsfreq1];
+%      ax.XLim = [hpsfreq1 lpsfreq1];
+     ax.XLim = [hpsfreq1 300];
      ax.YLim = [0.1 10000];
      ax.FontSize = 20;
      ax.FontName = 'Times New Roman';
@@ -2717,7 +2718,8 @@
      if data_species == 2
 
 %        loglog(faxis,psb_av2,'-sb','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:5:length(psb_av2))
-       loglog(faxis,psb_av2,'-sb','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(psb_av2))
+%        loglog(faxis,psb_av2,'-sb','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(psb_av2))
+       loglog(faxis,psb_av2,'-sk','MarkerSize',8,'MarkerFaceColor','w','MarkerIndices',1:1:length(psb_av2))
        hold on
        if signal_type == 1
 %            loglog(faxis,psa_av2,'-<b','MarkerSize',8,'MarkerFaceColor','b','MarkerIndices',1:5:length(psa_av2))
@@ -2852,7 +2854,7 @@
      end
 
 %      legend('Downstream, 450mm','FontSize',20,'Location','northwest')
-     legend('Upperstream, 450mm','FontSize',20,'Location','northwest')
+%      legend('Upperstream, 450mm','FontSize',20,'Location','northwest')
 %      legend('582mm','883mm','1185mm','FontSize',20,'Location','northwest')
      % legend('582mm','883mm','1185mm','0mm','FontSize',20,'Location','northwest')
 %      legend('61Hz','68Hz','70Hz','73Hz','80Hz','FontSize',20,'Location','northwest')
@@ -2864,6 +2866,7 @@
      % legend('350L/min, 0.70','350L/min, 0.72','350L/min, 0.74','350L/min, 0.76','350L/min, 0.78','350L/min, 0.80','FontSize',15,'Location','northeast')
      % legend('450L/min, 0.70','450L/min, 0.72','450L/min, 0.74','450L/min, 0.76','450L/min, 0.78','450L/min, 0.80','FontSize',15,'Location','northeast')
      % legend('500L/min, 0.70','500L/min, 0.72','500L/min, 0.74','500L/min, 0.76','500L/min, 0.78','500L/min, 0.80','FontSize',15,'Location','northeast')
+     legend('500L/min, 0.74','500L/min, 0.80','FontSize',15,'Location','northwest')
      hold on
 %      plot(spk_freq(1:6),spk_PS(1:6)/30,'-dk','MarkerSize',8,'MarkerFaceColor','k','MarkerIndices',1:1:length(spk_PS))
 %      hold on
