@@ -4,12 +4,12 @@
 
 %% PARAMETERS
 
-    name_mode = 7; % 1. p_sequence, 2. p_cER, 3. specific Hz, 4. air, 5. BG , 6. cold_specific, 7. comb_specific
+    name_mode = 2; % 1. p_sequence, 2. p_cER, 3. specific Hz, 4. air, 5. BG , 6. cold_specific, 7. comb_specific
     date = 20201223;
     recnum = 1;
     sw_num = 45; % [-], vane angle, only for name_mode = 2
-    flow_rate = 500; % [L/min], only for name_mode = 2, 4, 6
-    eq_ratio = 0.76; % [-], only for name_mode = 2, 7
+    flow_rate = 250; % [L/min], only for name_mode = 2, 4, 6
+    eq_ratio = 0.70; % [-], only for name_mode = 2, 7
     duct_l = 1185; % [mm], only for name_mode = 2, 4, 5, 6, 7
 %     specific_f = 61; % [Hz], only for name_mode = 3, 6 %%%
     speaker_v = 1; % [V], only for name_mode = 3, 6
@@ -30,13 +30,14 @@
 
 %     for specific_f = [61 68 70 73 80 85 143 147 149 155 171 188 194 203 232] %%%
 %     for specific_f = [64 68 85 155 188 203] %%%
-    for specific_f = [68 155 188 64 85 203] %%%
+%     for specific_f = [68 155 188 64 85 203] %%%
 
         for num = 1:1:recnum
 
 %% READ DATA
 
-            dir = sprintf('I:/Analysis/pressure/%d/calc/',date);
+%             dir = sprintf('I:/Analysis/pressure/%d/calc/',date);
+            dir = sprintf('J:/');
 %             dir = sprintf('G:/Analysis/pressure/%d/calc/p%d/',date,part);
 %             dir = sprintf('C:/Users/yatagi/Desktop/sw%d_cER/%d/calc/',sw_num,date);
 
@@ -184,9 +185,11 @@
 % BAND-PASS, P_DOWN
             figure('Position', [50 50 960 735],'Color','white');
             plot(taxis,ppd,'vk')
+%             plot(taxis,ppd,'-k','MarkerIndices',1:50:length(ppd))
 
             ax = gca;
             xtickformat('%d')
+%             xtickformat('%.2f')
             ytickformat('%.2f')
 
             ax.XColor = 'k';
@@ -199,7 +202,9 @@
             ax.XMinorTick = 'on';
             ax.YMinorTick = 'on';
             ax.XLim = [0 samp_time];
+%             ax.XLim = [0 1];
             ax.YLim = [-0.60 0.60];
+%             ax.YLim = [-0.40 0.40];
 
             xlabel('\it \fontname{Times New Roman} t \rm[sec]')
             ylabel('\it \fontname{Times New Roman} p'' \rm[kPa]')
@@ -207,12 +212,14 @@
             hold on
 
             plot(taxis,ppu,'^r')
+%             plot(taxis,ppu,'-r','MarkerIndices',1:50:length(ppu))
             hold on
 
             plot([trig_time trig_time],[-0.60 0.60],'g','LineWidth',1.5)
             hold on
 
             plot([cam_start_time cam_start_time],[-0.60 0.60],'g','LineWidth',1.5)
+            legend('Downstream','Upperstream','FontSize',20,'Location','northwest')
             hold off
             pbaspect([sqrt(2) 1 1]);
 
@@ -257,4 +264,4 @@
             clc
 
         end
-    end %%%
+%     end %%%
