@@ -16,7 +16,7 @@ clc
 
   flow_rate = 500;
   er = 0.66;
-  specific_f = 0;
+  specific_f = 85;
   sw = 45;
   duct_l = 1185;
   step = 'chem';
@@ -32,21 +32,21 @@ clc
 %% FILE INFORMATION
 %
   date_1 = '20201217'; %1
-  cond_1 = 2;
+  cond_1 = 10;
   div_1='01_05';
 %   div_1='u1_3';
 %   div_1='v1_3';
 %   div_1='1_3';
 
   date_2 = '20201217'; %2
-  cond_2 = 2;
+  cond_2 = 10;
   div_2 = '02_05';
 %   div_2 = 'u2_3';
 %   div_2 = 'v2_3';
 %   div_2 = '2_3';
 
   date_3 = '20201217'; %3
-  cond_3 = 2;
+  cond_3 = 10;
   div_3 = '03_05';
 %   div_3 = 'u3_3';
 %   div_3 = 'v3_3';
