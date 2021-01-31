@@ -5,17 +5,21 @@ close all
 %% Parameters 1
 
     dt = 100*10^(-6); %[s]
-    increment = 3;
+    increment = 13;
     id = 2; %1: norm, 2: norm (considering damp)
-    date = '20190821'; %1
-    cond = 3;
-    step = 'trans3';
-    div = '3_3';
-    serach_freq = 175;
+    date = '20201223'; %1
+    cond = 7;
+    step = 'chem';
+    div = '02_05';
+    serach_freq = 292;
 
     div_theta = 10;
     col_min = -100;
     col_max = 100;
+    visx_start=-60;
+    visx_end=60;
+    visy_start=0;
+    visy_end=120;
 %     vis='gray';
 
 %% Parameters 2
@@ -23,10 +27,10 @@ close all
     nx = 1024;
     ny = 1024;
     origin_x = 500; % [px]
-    origin_y = 640; % [px]
-    origin_height = 46; %[mm]
-    img_res_x = 120*10^(-3); % [mm/px]
-    img_res_y = 120*10^(-3); % [mm/px]
+    origin_y = 792; % [px]
+    origin_height = 20; %[mm]
+    img_res_x = 150*10^(-3); % [mm/px]
+    img_res_y = 150*10^(-3); % [mm/px]
     origin_height_px=origin_height/img_res_y; %[px]
     xmin=-origin_x*img_res_x; %[mm]
     xmax=xmin+img_res_x*2*origin_x;
@@ -36,13 +40,15 @@ close all
     wx(2,1) = xmax;
     wy(1,1) = ymin;
     wy(2,1) = ymax;
+    l_nx = visx_end-visx_start;
+    l_ny = visy_end-visy_start;
 
 %% READ FILES
 
     ifilename_fg = 'f_and_g.txt';
     ifilename_norm = 'norm.txt';
 
-    filepath = strcat('D:/Analysis/chem_output/chem_dmd/',date,'/%02u/averaging/',step,'/',div,'/mode/');
+    filepath = strcat('G:/chem_dmd/',date,'/%02u/averaging/',step,'/',div,'/mode/');
     ifilename = sprintf(strcat(filepath,ifilename_fg),cond);
     fileID = fopen(ifilename,'r');
     fg = fscanf(fileID,'%f',[2 Inf]);
@@ -61,7 +67,7 @@ close all
     mn = 0;
 
     for i = 1:1:length(norm)
-      if abs(fg_v(i,1)-serach_freq) < floor(1/(2*T))
+      if abs(fg_v(i,1)-serach_freq) < 1/(2*T)
         mn = mn + 1;
         mode_number(mn) = i
       end
@@ -167,7 +173,7 @@ close all
       % ax.XScale = 'log';
       % ax.YScale = 'log';
       ax.XLim = [20 300];
-      ax.YLim = [10^4 10^6];
+      ax.YLim = [10^2 10^6];
       ax.FontSize = 20;
       ax.FontName =  'Times New Roman';
       ax.TitleFontSizeMultiplier = 2;
@@ -227,7 +233,7 @@ close all
         fig = figure;
         fig.Position=[1 1 800 800];
         fig.Color='white';
-        IMAGE = imagesc(wx,wy,B(:,:),[col_min col_max]);
+        IMAGE = imagesc(wx,wy,B(1:origin_height_px+origin_y,1:2*origin_x),[col_min col_max]);
         % IMAGE = imagesc(C,[col_min col_max]);
         ax = gca;
         load('MyColormap_for_w','mymap')
@@ -245,19 +251,18 @@ close all
         % c.Ticks=[-10 -5 0 5 10]; % Chem
         % c.TickLabels={'-10','-5','0','5','10'};
         c.TickLabelInterpreter='latex';
-        c.Label.FontSize = 20;
+        c.Label.FontSize = 25;
         c.Label.String = '\it \fontname{Times New Roman} Re(\Psi)';
         c.Location = 'eastoutside';
         c.AxisLocation='out';
 
         xlabel('\it \fontname{Times New Roman} x \rm[mm]')
         ylabel('\it \fontname{Times New Roman} y \rm[mm]')
-        set(gca,'XMinorTick','on','YMinorTick','on','FontName','Times New Roman','FontSize',20,'LineWidth',2.0,'Color','k')
+        set(gca,'XMinorTick','on','YMinorTick','on','FontName','Times New Roman','FontSize',25,'LineWidth',2.0,'Color','k')
 
-        xlim([-60 60])
-        ylim([ymin ymax])
-        
-        pbaspect([1 1 1]);
+       xlim([visx_start visx_end])
+       ylim([ymax-visy_end ymax-visy_start])
+       pbaspect([l_nx/l_ny 1 1]);
 
         frame = getframe(fig);
         im{j} = frame2im(frame);
