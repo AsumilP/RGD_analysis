@@ -12,7 +12,7 @@ clc
 %   increment = 3;
   
   id = 2; %1: norm, 2: norm (considering damp)
-  average_width = 20;
+  average_width = 5;
 
   flow_rate = 500;
   er = 0.66;
