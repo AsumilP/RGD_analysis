@@ -7,11 +7,11 @@ close all
     dt = 100*10^(-6); %[s]
     increment = 13;
     id = 2; %1: norm, 2: norm (considering damp)
-    date = '20201223'; %1
+    date = '20201217'; %1
     cond = 7;
     step = 'chem';
     div = '02_05';
-    serach_freq = 292;
+    serach_freq = 256;
 
     div_theta = 10;
     col_min = -100;
