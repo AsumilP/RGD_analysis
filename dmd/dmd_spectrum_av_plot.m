@@ -5,24 +5,24 @@
 %% PARAMETERS
 
     flow_rate1 = 500; % [L/min]
-    equivalence_ratio1 = 0.80;
+    equivalence_ratio1 = 0.66;
     specific_f1 = 0;
-    sw1 = 60;
-    duct_l1 = 582;
+    sw1 = 45;
+    duct_l1 = 1185;
 %     step1 = 'trans1';
     
     flow_rate2 = 500; % [L/min]
-    equivalence_ratio2 = 0.80;
-    specific_f2 = 146;
-    sw2 = 60;
-    duct_l2 = 582;
+    equivalence_ratio2 = 0.66;
+    specific_f2 = 155;
+    sw2 = 45;
+    duct_l2 = 1185;
 %     step2 = 'trans2';
     
     flow_rate3 = 500; % [L/min]
-    equivalence_ratio3 = 0.80;
-    specific_f3 = 189;
-    sw3 = 60;
-    duct_l3 = 582;
+    equivalence_ratio3 = 0.66;
+    specific_f3 = 203;
+    sw3 = 45;
+    duct_l3 = 1185;
 %     step3 = 'trans3';
     
 %     flow_rate4 = 500; % [L/min]
@@ -154,7 +154,7 @@
      ax.YScale = 'log';
      ax.XLim = [20 400];
 %      ax.YLim = [4 200];
-     ax.YLim = [10^3 2*10^4];
+     ax.YLim = [10^3 2*10^5];
 %      ax.YLim = [2 20];
 %      ax.YLim = [1 20];
      ax.FontSize = 20;
@@ -201,7 +201,7 @@
 %      legend('156Hz','FontSize',16,'Location','northwest')
 %      legend('189Hz','No excitation','FontSize',16,'Location','northwest')
 %      legend('500L/min','450L/min','400L/min','250L/min','FontSize',16,'Location','northwest')
-     legend('146Hz','189Hz','No excitaion','FontSize',16,'Location','northwest')
+     legend('155Hz','203Hz','No excitaion','FontSize',16,'Location','northwest')
 %      legend('500L/min, 0.66, 85Hz','400L/min, 0.66, 85Hz','FontSize',16,'Location','northwest')
      hold off
      pbaspect([sqrt(2) 1 1]);
