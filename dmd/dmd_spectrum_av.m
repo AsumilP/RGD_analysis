@@ -16,7 +16,7 @@ clc
 
   flow_rate = 500;
   er = 0.66;
-  specific_f = 203;
+  specific_f = 0;
   sw = 45;
   duct_l = 1185;
   step = 'chem';
@@ -26,27 +26,27 @@ clc
 %   type = 'chem';
   num_data = 3;
 
-  filepath_out = strcat('C:/Users/yatagi/Desktop/chem_dmd/dmd_averaged/');
+  filepath_out = strcat('G://chem_dmd/dmd_averaged/');
 %   filepath_out = strcat('D:/Analysis/chem_output/chem_dmd/dmd_averaged/');
 
 %% FILE INFORMATION
 %
   date_1 = '20201217'; %1
-  cond_1 = 11;
+  cond_1 = 2;
   div_1='01_05';
 %   div_1='u1_3';
 %   div_1='v1_3';
 %   div_1='1_3';
 
   date_2 = '20201217'; %2
-  cond_2 = 11;
+  cond_2 = 2;
   div_2 = '02_05';
 %   div_2 = 'u2_3';
 %   div_2 = 'v2_3';
 %   div_2 = '2_3';
 
   date_3 = '20201217'; %3
-  cond_3 = 11;
+  cond_3 = 2;
   div_3 = '03_05';
 %   div_3 = 'u3_3';
 %   div_3 = 'v3_3';
@@ -255,7 +255,7 @@ clc
   ifilename_norm = 'norm.txt';
 
 % 1
-  filepath_1 = strcat('C:/Users/yatagi/Desktop/chem_dmd/',date_1,'/%02u/averaging/',step,'/',div_1,'/mode/');
+  filepath_1 = strcat('G://chem_dmd/',date_1,'/%02u/averaging/',step,'/',div_1,'/mode/');
 %   filepath_1 = strcat('D:/Analysis/chem_output/chem_dmd/',date_1,'/%02u/averaging/',step,'/',div_1,'/mode/');
   ifilename_1 = sprintf(strcat(filepath_1,ifilename_fg),cond_1);
   fileID = fopen(ifilename_1,'r');
@@ -269,7 +269,7 @@ clc
   fclose(fileID);
 
 % 2
-  filepath_2 = strcat('C:/Users/yatagi/Desktop/chem_dmd/',date_2,'/%02u/averaging/',step,'/',div_2,'/mode/');
+  filepath_2 = strcat('G://chem_dmd/',date_2,'/%02u/averaging/',step,'/',div_2,'/mode/');
 %   filepath_2 = strcat('D:/Analysis/chem_output/chem_dmd/',date_2,'/%02u/averaging/',step,'/',div_2,'/mode/');
   ifilename_2 = sprintf(strcat(filepath_2,ifilename_fg),cond_2);
   fileID = fopen(ifilename_2,'r');
@@ -283,7 +283,7 @@ clc
   fclose(fileID);
 
 % 3
-  filepath_3 = strcat('C:/Users/yatagi/Desktop/chem_dmd/',date_3,'/%02u/averaging/',step,'/',div_3,'/mode/');
+  filepath_3 = strcat('G://chem_dmd/',date_3,'/%02u/averaging/',step,'/',div_3,'/mode/');
 %   filepath_3 = strcat('D:/Analysis/chem_output/chem_dmd/',date_3,'/%02u/averaging/',step,'/',div_3,'/mode/');
   ifilename_3 = sprintf(strcat(filepath_3,ifilename_fg),cond_3);
   fileID = fopen(ifilename_3,'r');
@@ -297,7 +297,7 @@ clc
   fclose(fileID);
 
 % % 4
-%   filepath_4 = strcat('C:/Users/yatagi/Desktop/chem_dmd/',date_4,'/%02u/averaging/',step,'/',div_4,'/mode/');
+%   filepath_4 = strcat('G://chem_dmd/',date_4,'/%02u/averaging/',step,'/',div_4,'/mode/');
 % %   filepath_4 = strcat('D:/Analysis/chem_output/chem_dmd/',date_4,'/%02u/averaging/',step,'/',div_4,'/mode/');
 %   ifilename_4 = sprintf(strcat(filepath_4,ifilename_fg),cond_4);
 %   fileID = fopen(ifilename_4,'r');
@@ -311,7 +311,7 @@ clc
 %   fclose(fileID);
 % 
 % % 5
-%   filepath_5 = strcat('C:/Users/yatagi/Desktop/chem_dmd/',date_5,'/%02u/averaging/',step,'/',div_5,'/mode/');
+%   filepath_5 = strcat('G://chem_dmd/',date_5,'/%02u/averaging/',step,'/',div_5,'/mode/');
 % %   filepath_5 = strcat('D:/Analysis/chem_output/chem_dmd/',date_5,'/%02u/averaging/',step,'/',div_5,'/mode/');
 %   ifilename_5 = sprintf(strcat(filepath_5,ifilename_fg),cond_5);
 %   fileID = fopen(ifilename_5,'r');
@@ -325,7 +325,7 @@ clc
 %   fclose(fileID);
 
 % % 6
-%   filepath_6 = strcat('C:/Users/yatagi/Desktop/chem_dmd/',date_6,'/%02u/averaging/',step,'/',div_6,'/mode/');
+%   filepath_6 = strcat('G://chem_dmd/',date_6,'/%02u/averaging/',step,'/',div_6,'/mode/');
 % %   filepath_6 = strcat('D:/Analysis/chem_output/chem_dmd/',date_6,'/%02u/averaging/',step,'/',div_6,'/mode/');
 %   ifilename_6 = sprintf(strcat(filepath_6,ifilename_fg),cond_6);
 %   fileID = fopen(ifilename_6,'r');
@@ -339,7 +339,7 @@ clc
 %   fclose(fileID);
 % 
 % % 7
-%   filepath_7 = strcat('C:/Users/yatagi/Desktop/chem_dmd/',date_7,'/%02u/averaging/',step,'/',div_7,'/mode/');
+%   filepath_7 = strcat('G://chem_dmd/',date_7,'/%02u/averaging/',step,'/',div_7,'/mode/');
 % %   filepath_7 = strcat('D:/Analysis/chem_output/chem_dmd/',date_7,'/%02u/averaging/',step,'/',div_7,'/mode/');
 %   ifilename_7 = sprintf(strcat(filepath_7,ifilename_fg),cond_7);
 %   fileID = fopen(ifilename_7,'r');
@@ -353,7 +353,7 @@ clc
 %   fclose(fileID);
 % 
 % % 8
-%   filepath_8 = strcat('C:/Users/yatagi/Desktop/chem_dmd/',date_8,'/%02u/averaging/',step,'/',div_8,'/mode/');
+%   filepath_8 = strcat('G://chem_dmd/',date_8,'/%02u/averaging/',step,'/',div_8,'/mode/');
 % %   filepath_8 = strcat('D:/Analysis/chem_output/chem_dmd/',date_8,'/%02u/averaging/',step,'/',div_8,'/mode/');
 %   ifilename_8 = sprintf(strcat(filepath_8,ifilename_fg),cond_8);
 %   fileID = fopen(ifilename_8,'r');
@@ -367,7 +367,7 @@ clc
 %   fclose(fileID);
 % 
 % % 9
-%   filepath_9 = strcat('C:/Users/yatagi/Desktop/chem_dmd/',date_9,'/%02u/averaging/',step,'/',div_9,'/mode/');
+%   filepath_9 = strcat('G://chem_dmd/',date_9,'/%02u/averaging/',step,'/',div_9,'/mode/');
 % %   filepath_9 = strcat('D:/Analysis/chem_output/chem_dmd/',date_9,'/%02u/averaging/',step,'/',div_9,'/mode/');
 %   ifilename_9 = sprintf(strcat(filepath_9,ifilename_fg),cond_9);
 %   fileID = fopen(ifilename_9,'r');
@@ -381,7 +381,7 @@ clc
 %   fclose(fileID);
 % 
 % % 10
-%   filepath_10 = strcat('C:/Users/yatagi/Desktop/chem_dmd/',date_10,'/%02u/averaging/',step,'/',div_10,'/mode/');
+%   filepath_10 = strcat('G://chem_dmd/',date_10,'/%02u/averaging/',step,'/',div_10,'/mode/');
 % %   filepath_10 = strcat('D:/Analysis/chem_output/chem_dmd/',date_10,'/%02u/averaging/',step,'/',div_10,'/mode/');
 %   ifilename_10 = sprintf(strcat(filepath_10,ifilename_fg),cond_10);
 %   fileID = fopen(ifilename_10,'r');
@@ -395,7 +395,7 @@ clc
 %   fclose(fileID);
 % 
 % % 11
-%   filepath_11 = strcat('C:/Users/yatagi/Desktop/chem_dmd/',date_11,'/%02u/averaging/',step,'/',div_11,'/mode/');
+%   filepath_11 = strcat('G://chem_dmd/',date_11,'/%02u/averaging/',step,'/',div_11,'/mode/');
 % %   filepath_11 = strcat('D:/Analysis/chem_output/chem_dmd/',date_11,'/%02u/averaging/',step,'/',div_11,'/mode/');
 %   ifilename_11 = sprintf(strcat(filepath_11,ifilename_fg),cond_11);
 %   fileID = fopen(ifilename_11,'r');
@@ -409,7 +409,7 @@ clc
 %   fclose(fileID);
 % 
 % % 12
-%   filepath_12 = strcat('C:/Users/yatagi/Desktop/chem_dmd/',date_12,'/%02u/averaging/',step,'/',div_12,'/mode/');
+%   filepath_12 = strcat('G://chem_dmd/',date_12,'/%02u/averaging/',step,'/',div_12,'/mode/');
 % %   filepath_12 = strcat('D:/Analysis/chem_output/chem_dmd/',date_12,'/%02u/averaging/',step,'/',div_12,'/mode/');
 %   ifilename_12 = sprintf(strcat(filepath_12,ifilename_fg),cond_12);
 %   fileID = fopen(ifilename_12,'r');
@@ -423,7 +423,7 @@ clc
 %   fclose(fileID);
 % 
 % % 13
-%   filepath_13 = strcat('C:/Users/yatagi/Desktop/chem_dmd/',date_13,'/%02u/averaging/',step,'/',div_13,'/mode/');
+%   filepath_13 = strcat('G://chem_dmd/',date_13,'/%02u/averaging/',step,'/',div_13,'/mode/');
 % %   filepath_13 = strcat('D:/Analysis/chem_output/chem_dmd/',date_13,'/%02u/averaging/',step,'/',div_13,'/mode/');
 %   ifilename_13 = sprintf(strcat(filepath_13,ifilename_fg),cond_13);
 %   fileID = fopen(ifilename_13,'r');
@@ -437,7 +437,7 @@ clc
 %   fclose(fileID);
 
 % % 14
-% %   filepath_14 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_14,'/%02u/averaging/',step,'/',div_14,'/mode/');
+% %   filepath_14 = strcat('G://Analysis/piv_output/dmd/',date_14,'/%02u/averaging/',step,'/',div_14,'/mode/');
 %   filepath_14 = strcat('D:/Analysis/chem_output/chem_dmd/',date_14,'/%02u/averaging/',step,'/',div_14,'/mode/');
 %   ifilename_14 = sprintf(strcat(filepath_14,ifilename_fg),cond_14);
 %   fileID = fopen(ifilename_14,'r');
@@ -451,7 +451,7 @@ clc
 %   fclose(fileID);
 % 
 % % 15
-% %   filepath_15 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_15,'/%02u/averaging/',step,'/',div_15,'/mode/');
+% %   filepath_15 = strcat('G://Analysis/piv_output/dmd/',date_15,'/%02u/averaging/',step,'/',div_15,'/mode/');
 %   filepath_15 = strcat('D:/Analysis/chem_output/chem_dmd/',date_15,'/%02u/averaging/',step,'/',div_15,'/mode/');
 %   ifilename_15 = sprintf(strcat(filepath_15,ifilename_fg),cond_15);
 %   fileID = fopen(ifilename_15,'r');
@@ -465,7 +465,7 @@ clc
 %   fclose(fileID);
 % 
 % % 16
-% %   filepath_16 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_16,'/%02u/averaging/',step,'/',div_16,'/mode/');
+% %   filepath_16 = strcat('G://Analysis/piv_output/dmd/',date_16,'/%02u/averaging/',step,'/',div_16,'/mode/');
 %   filepath_16 = strcat('D:/Analysis/chem_output/chem_dmd/',date_16,'/%02u/averaging/',step,'/',div_16,'/mode/');
 %   ifilename_16 = sprintf(strcat(filepath_16,ifilename_fg),cond_16);
 %   fileID = fopen(ifilename_16,'r');
@@ -479,7 +479,7 @@ clc
 %   fclose(fileID);
 % 
 % % 17
-% %   filepath_17 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_17,'/%02u/averaging/',step,'/',div_17,'/mode/');
+% %   filepath_17 = strcat('G://Analysis/piv_output/dmd/',date_17,'/%02u/averaging/',step,'/',div_17,'/mode/');
 %   filepath_17 = strcat('D:/Analysis/chem_output/chem_dmd/',date_17,'/%02u/averaging/',step,'/',div_17,'/mode/');
 %   ifilename_17 = sprintf(strcat(filepath_17,ifilename_fg),cond_17);
 %   fileID = fopen(ifilename_17,'r');
@@ -493,7 +493,7 @@ clc
 %   fclose(fileID);
 % 
 % % 18
-% %   filepath_18 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_18,'/%02u/averaging/',step,'/',div_18,'/mode/');
+% %   filepath_18 = strcat('G://Analysis/piv_output/dmd/',date_18,'/%02u/averaging/',step,'/',div_18,'/mode/');
 %   filepath_18 = strcat('D:/Analysis/chem_output/chem_dmd/',date_18,'/%02u/averaging/',step,'/',div_18,'/mode/');
 %   ifilename_18 = sprintf(strcat(filepath_18,ifilename_fg),cond_18);
 %   fileID = fopen(ifilename_18,'r');
@@ -507,7 +507,7 @@ clc
 %   fclose(fileID);
 % 
 % % 19
-% %   filepath_19 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_19,'/%02u/averaging/',step,'/',div_19,'/mode/');
+% %   filepath_19 = strcat('G://Analysis/piv_output/dmd/',date_19,'/%02u/averaging/',step,'/',div_19,'/mode/');
 %   filepath_19 = strcat('D:/Analysis/chem_output/chem_dmd/',date_19,'/%02u/averaging/',step,'/',div_19,'/mode/');
 %   ifilename_19 = sprintf(strcat(filepath_19,ifilename_fg),cond_19);
 %   fileID = fopen(ifilename_19,'r');
@@ -521,7 +521,7 @@ clc
 %   fclose(fileID);
 % 
 % % 20
-% %   filepath_20 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_20,'/%02u/averaging/',step,'/',div_20,'/mode/');
+% %   filepath_20 = strcat('G://Analysis/piv_output/dmd/',date_20,'/%02u/averaging/',step,'/',div_20,'/mode/');
 %   filepath_20 = strcat('D:/Analysis/chem_output/chem_dmd/',date_20,'/%02u/averaging/',step,'/',div_20,'/mode/');
 %   ifilename_20 = sprintf(strcat(filepath_20,ifilename_fg),cond_20);
 %   fileID = fopen(ifilename_20,'r');
@@ -535,7 +535,7 @@ clc
 %   fclose(fileID);
 % 
 % % 21
-% %   filepath_21 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_21,'/%02u/averaging/',step,'/',div_21,'/mode/');
+% %   filepath_21 = strcat('G://Analysis/piv_output/dmd/',date_21,'/%02u/averaging/',step,'/',div_21,'/mode/');
 %   filepath_21 = strcat('D:/Analysis/chem_output/chem_dmd/',date_21,'/%02u/averaging/',step,'/',div_21,'/mode/');
 %   ifilename_21 = sprintf(strcat(filepath_21,ifilename_fg),cond_21);
 %   fileID = fopen(ifilename_21,'r');
@@ -549,7 +549,7 @@ clc
 %   fclose(fileID);
 % 
 % % 22
-% %   filepath_22 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_22,'/%02u/averaging/',step,'/',div_22,'/mode/');
+% %   filepath_22 = strcat('G://Analysis/piv_output/dmd/',date_22,'/%02u/averaging/',step,'/',div_22,'/mode/');
 %   filepath_22 = strcat('D:/Analysis/chem_output/chem_dmd/',date_22,'/%02u/averaging/',step,'/',div_22,'/mode/');
 %   ifilename_22 = sprintf(strcat(filepath_22,ifilename_fg),cond_22);
 %   fileID = fopen(ifilename_22,'r');
@@ -563,7 +563,7 @@ clc
 %   fclose(fileID);
 % 
 % % 23
-% %   filepath_23 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_23,'/%02u/averaging/',step,'/',div_23,'/mode/');
+% %   filepath_23 = strcat('G://Analysis/piv_output/dmd/',date_23,'/%02u/averaging/',step,'/',div_23,'/mode/');
 %   filepath_23 = strcat('D:/Analysis/chem_output/chem_dmd/',date_23,'/%02u/averaging/',step,'/',div_23,'/mode/');
 %   ifilename_23 = sprintf(strcat(filepath_23,ifilename_fg),cond_23);
 %   fileID = fopen(ifilename_23,'r');
@@ -577,7 +577,7 @@ clc
 %   fclose(fileID);
 % 
 % % 24
-% %   filepath_24 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_24,'/%02u/averaging/',step,'/',div_24,'/mode/');
+% %   filepath_24 = strcat('G://Analysis/piv_output/dmd/',date_24,'/%02u/averaging/',step,'/',div_24,'/mode/');
 %   filepath_24 = strcat('D:/Analysis/chem_output/chem_dmd/',date_24,'/%02u/averaging/',step,'/',div_24,'/mode/');
 %   ifilename_24 = sprintf(strcat(filepath_24,ifilename_fg),cond_24);
 %   fileID = fopen(ifilename_24,'r');
@@ -591,7 +591,7 @@ clc
 %   fclose(fileID);
 
 % % 25
-%   filepath_25 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_25,'/%02u/averaging/',step,'/',div_25,'/mode/');
+%   filepath_25 = strcat('G://Analysis/piv_output/dmd/',date_25,'/%02u/averaging/',step,'/',div_25,'/mode/');
 %   ifilename_25 = sprintf(strcat(filepath_25,ifilename_fg),cond_25);
 %   fileID = fopen(ifilename_25,'r');
 %   fg = fscanf(fileID,'%f',[2 Inf]);
@@ -604,7 +604,7 @@ clc
 %   fclose(fileID);
 % 
 % % 26
-%   filepath_26 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_26,'/%02u/averaging/',step,'/',div_26,'/mode/');
+%   filepath_26 = strcat('G://Analysis/piv_output/dmd/',date_26,'/%02u/averaging/',step,'/',div_26,'/mode/');
 %   ifilename_26 = sprintf(strcat(filepath_26,ifilename_fg),cond_26);
 %   fileID = fopen(ifilename_26,'r');
 %   fg = fscanf(fileID,'%f',[2 Inf]);
@@ -617,7 +617,7 @@ clc
 %   fclose(fileID);
 % 
 % % 27
-%   filepath_27 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_27,'/%02u/averaging/',step,'/',div_27,'/mode/');
+%   filepath_27 = strcat('G://Analysis/piv_output/dmd/',date_27,'/%02u/averaging/',step,'/',div_27,'/mode/');
 %   ifilename_27 = sprintf(strcat(filepath_27,ifilename_fg),cond_27);
 %   fileID = fopen(ifilename_27,'r');
 %   fg = fscanf(fileID,'%f',[2 Inf]);
@@ -630,7 +630,7 @@ clc
 %   fclose(fileID);
 % 
 % % 28
-%   filepath_28 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_28,'/%02u/averaging/',step,'/',div_28,'/mode/');
+%   filepath_28 = strcat('G://Analysis/piv_output/dmd/',date_28,'/%02u/averaging/',step,'/',div_28,'/mode/');
 %   ifilename_28 = sprintf(strcat(filepath_28,ifilename_fg),cond_28);
 %   fileID = fopen(ifilename_28,'r');
 %   fg = fscanf(fileID,'%f',[2 Inf]);
@@ -643,7 +643,7 @@ clc
 %   fclose(fileID);
 % 
 % % 29
-%   filepath_29 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_29,'/%02u/averaging/',step,'/',div_29,'/mode/');
+%   filepath_29 = strcat('G://Analysis/piv_output/dmd/',date_29,'/%02u/averaging/',step,'/',div_29,'/mode/');
 %   ifilename_29 = sprintf(strcat(filepath_29,ifilename_fg),cond_29);
 %   fileID = fopen(ifilename_29,'r');
 %   fg = fscanf(fileID,'%f',[2 Inf]);
@@ -656,7 +656,7 @@ clc
 %   fclose(fileID);
 % 
 % % 30
-%   filepath_30 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_30,'/%02u/averaging/',step,'/',div_30,'/mode/');
+%   filepath_30 = strcat('G://Analysis/piv_output/dmd/',date_30,'/%02u/averaging/',step,'/',div_30,'/mode/');
 %   ifilename_30 = sprintf(strcat(filepath_30,ifilename_fg),cond_30);
 %   fileID = fopen(ifilename_30,'r');
 %   fg = fscanf(fileID,'%f',[2 Inf]);
@@ -669,7 +669,7 @@ clc
 %   fclose(fileID);
 % 
 % % 31
-%   filepath_31 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_31,'/%02u/averaging/',step,'/',div_31,'/mode/');
+%   filepath_31 = strcat('G://Analysis/piv_output/dmd/',date_31,'/%02u/averaging/',step,'/',div_31,'/mode/');
 %   ifilename_31 = sprintf(strcat(filepath_31,ifilename_fg),cond_31);
 %   fileID = fopen(ifilename_31,'r');
 %   fg = fscanf(fileID,'%f',[2 Inf]);
@@ -682,7 +682,7 @@ clc
 %   fclose(fileID);
 % 
 % % 32
-%   filepath_32 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_32,'/%02u/averaging/',step,'/',div_32,'/mode/');
+%   filepath_32 = strcat('G://Analysis/piv_output/dmd/',date_32,'/%02u/averaging/',step,'/',div_32,'/mode/');
 %   ifilename_32 = sprintf(strcat(filepath_32,ifilename_fg),cond_32);
 %   fileID = fopen(ifilename_32,'r');
 %   fg = fscanf(fileID,'%f',[2 Inf]);
@@ -695,7 +695,7 @@ clc
 %   fclose(fileID);
 % 
 % % 33
-%   filepath_33 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_33,'/%02u/averaging/',step,'/',div_33,'/mode/');
+%   filepath_33 = strcat('G://Analysis/piv_output/dmd/',date_33,'/%02u/averaging/',step,'/',div_33,'/mode/');
 %   ifilename_33 = sprintf(strcat(filepath_33,ifilename_fg),cond_33);
 %   fileID = fopen(ifilename_33,'r');
 %   fg = fscanf(fileID,'%f',[2 Inf]);
@@ -708,7 +708,7 @@ clc
 %   fclose(fileID);
 % 
 % % 34
-%   filepath_34 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_34,'/%02u/averaging/',step,'/',div_34,'/mode/');
+%   filepath_34 = strcat('G://Analysis/piv_output/dmd/',date_34,'/%02u/averaging/',step,'/',div_34,'/mode/');
 %   ifilename_34 = sprintf(strcat(filepath_34,ifilename_fg),cond_34);
 %   fileID = fopen(ifilename_34,'r');
 %   fg = fscanf(fileID,'%f',[2 Inf]);
@@ -721,7 +721,7 @@ clc
 %   fclose(fileID);
 % 
 % % 35
-%   filepath_35 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_35,'/%02u/averaging/',step,'/',div_35,'/mode/');
+%   filepath_35 = strcat('G://Analysis/piv_output/dmd/',date_35,'/%02u/averaging/',step,'/',div_35,'/mode/');
 %   ifilename_35 = sprintf(strcat(filepath_35,ifilename_fg),cond_35);
 %   fileID = fopen(ifilename_35,'r');
 %   fg = fscanf(fileID,'%f',[2 Inf]);
@@ -734,7 +734,7 @@ clc
 %   fclose(fileID);
 % 
 % % 36
-%   filepath_36 = strcat('C:/Users/yatagi/Desktop/Analysis/piv_output/dmd/',date_36,'/%02u/averaging/',step,'/',div_36,'/mode/');
+%   filepath_36 = strcat('G://Analysis/piv_output/dmd/',date_36,'/%02u/averaging/',step,'/',div_36,'/mode/');
 %   ifilename_36 = sprintf(strcat(filepath_36,ifilename_fg),cond_36);
 %   fileID = fopen(ifilename_36,'r');
 %   fg = fscanf(fileID,'%f',[2 Inf]);
