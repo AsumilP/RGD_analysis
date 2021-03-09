@@ -5,23 +5,23 @@
 %% Parameters 1
 
     type=1; % 1.trans, 2.all
-    flow_rate=500;
-    equivalence_ratio=0.80;%%%
-    specific_f=189;%%%
-    duct_l=582;
+    flow_rate=400;
+    equivalence_ratio=0.68;%%%
+    specific_f=0;%%%
+    duct_l=1185;
     hpsfreq=20;
     lpsfreq=300;
-    date=20201223;
-    num=7;
+    date=20190819;
+    num=3;
 
     %CHEM.
     dir_i=sprintf('D:/Analysis/chem_output/chem_rmv/%d/',date);
     if type == 1
-      dir_o=sprintf('D:/Analysis/chem_output/chem_phasemean/trans/');
-      dir_f=sprintf('D:/Analysis/chem_output/chem_phasemean/trans/figure/%d_%02u/',date,num);
+      dir_o=sprintf('E:/Analysis/chem_output/chem_phasemean/trans/');
+      dir_f=sprintf('E:/Analysis/chem_output/chem_phasemean/trans/figure/%d_%02u/',date,num);
     elseif type == 2
-      dir_o=sprintf('D:/Analysis/chem_output/chem_phasemean/mode/');
-      dir_f=sprintf('D:/Analysis/chem_output/chem_phasemean/mode/figure/%d_%02u/',date,num);
+      dir_o=sprintf('E:/Analysis/chem_output/chem_phasemean/mode/');
+      dir_f=sprintf('E:/Analysis/chem_output/chem_phasemean/mode/figure/%d_%02u/',date,num);
     end
 
     %PLIF
@@ -38,9 +38,9 @@
 
 %% Parameters 2
 
-    calc_start_time=1.0638; % mode=1, trans_start_time
-    calc_fin_time=1.3517; % mode=1, trans_fin_time
-    trig_time=1.6553; % mode=1
+    calc_start_time=3.5123; % mode=1, trans_start_time
+    calc_fin_time=3.8974; % mode=1, trans_fin_time
+    trig_time=4.1197; % mode=1
     % calc_start_time=3.0647; % mode=2
     % calc_fin_time=calc_start_time+1.09195; % mode=2
     % trig_time=calc_start_time; % mode=2
@@ -160,7 +160,7 @@
 
 %% Search phases
 
-    [p_fil,locs_presmax,pks_pres,locs_inflectdown,locs_presmin,locs_inflectup] = serach_phase(dir_p,fn_p,pres_datasize)
+    [p_fil,locs_presmax,pks_pres,locs_inflectdown,locs_presmin,locs_inflectup] = search_phase(dir_p,fn_p,pres_datasize);
 
 %% check phases
 
@@ -171,29 +171,29 @@
     chemplif_pick_phase_dist(dir_i,fn_i,dir_o,fn_max,locs_presmax,cam_start_data,before_transition_data,...
              before_transition_data_chem,calc_start_time,calc_data,Sts_press,Sts,nx,ny,maxcnt_st1,...
              maxcnt_st2,maxcnt_st3,maxcnt_st4,maxcnt_st5,maxcnt_st6,maxcnt_st7,maxcnt_st8,maxcnt_st9,...
-             maxcnt_st10,flow_rate,vissw,svsw,origin_x,origin_y,origin_height,img_res_x,img_res_y,...
-             visx_end,visy_start,visy_end,col_min,col_max,vis)
+             maxcnt_st10,vissw,svsw,origin_x,origin_y,origin_height,img_res_x,img_res_y,visx_start,...
+             visx_end,visy_start,visy_end,col_min,col_max,vis,dir_f)
 
 %% Calculation, PHASE MEAN, inflectdown
 
     chemplif_pick_phase_dist(dir_i,fn_i,dir_o,fn_infdown,locs_inflectdown,cam_start_data,before_transition_data,...
              before_transition_data_chem,calc_start_time,calc_data,Sts_press,Sts,nx,ny,infdowncnt_st1,...
              infdowncnt_st2,infdowncnt_st3,infdowncnt_st4,infdowncnt_st5,infdowncnt_st6,infdowncnt_st7,...
-             infdowncnt_st8,infdowncnt_st9,infdowncnt_st10,flow_rate,vissw,svsw,origin_x,origin_y,...
-             origin_height,img_res_x,img_res_y,visx_end,visy_start,visy_end,col_min,col_max,vis)
+             infdowncnt_st8,infdowncnt_st9,infdowncnt_st10,vissw,svsw,origin_x,origin_y,...
+             origin_height,img_res_x,img_res_y,visx_start,visx_end,visy_start,visy_end,col_min,col_max,vis,dir_f)
 
 %% Calculation, PHASE MEAN, min
 
     chemplif_pick_phase_dist(dir_i,fn_i,dir_o,fn_min,locs_presmin,cam_start_data,before_transition_data,...
              before_transition_data_chem,calc_start_time,calc_data,Sts_press,Sts,nx,ny,mincnt_st1,...
              mincnt_st2,mincnt_st3,mincnt_st4,mincnt_st5,mincnt_st6,mincnt_st7,mincnt_st8,mincnt_st9,...
-             mincnt_st10,flow_rate,vissw,svsw,origin_x,origin_y,origin_height,img_res_x,img_res_y,...
-             visx_end,visy_start,visy_end,col_min,col_max,vis)
+             mincnt_st10,vissw,svsw,origin_x,origin_y,origin_height,img_res_x,img_res_y,visx_start,...
+             visx_end,visy_start,visy_end,col_min,col_max,vis,dir_f)
 
 %% Calculation, PHASE MEAN, inflectup
 
     chemplif_pick_phase_dist(dir_i,fn_i,dir_o,fn_infup,locs_inflectup,cam_start_data,before_transition_data,...
              before_transition_data_chem,calc_start_time,calc_data,Sts_press,Sts,nx,ny,infupcnt_st1,...
              infupcnt_st2,infupcnt_st3,infupcnt_st4,infupcnt_st5,infupcnt_st6,infupcnt_st7,...
-             infupcnt_st8,infupcnt_st9,infupcnt_st10,flow_rate,vissw,svsw,origin_x,origin_y,...
-             origin_height,img_res_x,img_res_y,visx_end,visy_start,visy_end,col_min,col_max,vis)
+             infupcnt_st8,infupcnt_st9,infupcnt_st10,vissw,svsw,origin_x,origin_y,...
+             origin_height,img_res_x,img_res_y,visx_start,visx_end,visy_start,visy_end,col_min,col_max,vis,dir_f)
