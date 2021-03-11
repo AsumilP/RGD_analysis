@@ -55,8 +55,6 @@ function chemplif_pick_phase_dist(dir_i,fn_i,dir_o,fn_av,locs,cam_start_data,...
         fclose(fileID);
       end
 
-%savetemp,figvis
-
     elseif (locs(t)-cam_start_data >before_transition_data+calc_data) && (locs(t)-cam_start_data <= before_transition_data+2*calc_data)
 
       fid = fopen(strcat(dir_i,fn_i),'r');
