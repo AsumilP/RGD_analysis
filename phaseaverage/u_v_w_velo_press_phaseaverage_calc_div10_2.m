@@ -5,18 +5,18 @@
 %% Parameters 1
 
     type=1; % 1.trans, 2.all
-    flow_rate=500;
+    flow_rate=400;
     equivalence_ratio=0.68;%%%
     specific_f=0;%%%
     duct_l=1185;
     hpsfreq=20;
     lpsfreq=300;
-    date=20190821;
-    num=3;
+    date=20190823;
+    num=6;
 
     %SPIV
-    dir_i=sprintf('I:/Analysis/piv_output/velofield/%d/comblps',date);
-    % dir_i=sprintf('I:/Analysis/piv_output/velofield/%d/combined',date);
+    dir_i=sprintf('I:/Analysis/piv_output/velofield/%d/comblps/',date);
+    % dir_i=sprintf('I:/Analysis/piv_output/velofield/%d/combined/',date);
     if type == 1
       dir_o=sprintf('E:/Analysis/piv_output/velophasemeanfield/trans/');
       dir_f=sprintf('E:/Analysis/piv_output/velophasemeanfield/trans/figure/%d_%02u/',date,num);
@@ -29,9 +29,9 @@
 
 %% Parameters 2
 
-    calc_start_time=1.7444; % mode=1, trans_start_time
-    calc_fin_time=1.9723; % mode=1, trans_fin_time
-    trig_time=2.3932; % mode=1
+    calc_start_time=3.2679; % mode=1, trans_start_time
+    calc_fin_time=3.6742; % mode=1, trans_fin_time
+    trig_time=3.9844; % mode=1
     % calc_start_time=3.0647; % mode=2
     % calc_fin_time=calc_start_time+1.09195; % mode=2
     % trig_time=calc_start_time; % mode=2
@@ -178,31 +178,31 @@
 %% Calculation, PHASE MEAN, max
 
     velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_umax,fn_vmax,fn_wmax,fn_max,...
-             locs_presmax,cam_start_data,before_transition_data,calc_start_time,...
-             calc_data,nx,ny,ny_calc,maxcnt_st1,maxcnt_st2,maxcnt_st3,maxcnt_st4,maxcnt_st5,...
+             locs_presmax,cam_start_data,before_transition_data,calc_data,nx,ny,ny_calc,...
+             maxcnt_st1,maxcnt_st2,maxcnt_st3,maxcnt_st4,maxcnt_st5,...
              maxcnt_st6,maxcnt_st7,maxcnt_st8,maxcnt_st9,maxcnt_st10,vissw,svsw,...
-             nincrement,dx,dy,wmin,wmax,quivermode,dir_f)
+             nincrement,dx,dy,wmin,wmax,quivermode,dir_f,ny_start,ny_end)
 
 %% Calculation, PHASE MEAN, inflectdown
 
     velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uinfdown,fn_vinfdown,fn_winfdown,fn_infdown,...
-             locs_inflectdown,cam_start_data,before_transition_data,calc_start_time,...
-             calc_data,nx,ny,ny_calc,infdowncnt_st1,infdowncnt_st2,infdowncnt_st3,infdowncnt_st4,infdowncnt_st5,...
+             locs_inflectdown,cam_start_data,before_transition_data,calc_data,nx,ny,ny_calc,...
+             infdowncnt_st1,infdowncnt_st2,infdowncnt_st3,infdowncnt_st4,infdowncnt_st5,...
              infdowncnt_st6,infdowncnt_st7,infdowncnt_st8,infdowncnt_st9,infdowncnt_st10,vissw,svsw,...
-             nincrement,dx,dy,wmin,wmax,quivermode,dir_f)
+             nincrement,dx,dy,wmin,wmax,quivermode,dir_f,ny_start,ny_end)
 
 %% Calculation, PHASE MEAN, min
 
     velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_umin,fn_vmin,fn_wmin,fn_min,...
-             locs_presmin,cam_start_data,before_transition_data,calc_start_time,...
-             calc_data,nx,ny,ny_calc,mincnt_st1,mincnt_st2,mincnt_st3,mincnt_st4,mincnt_st5,...
+             locs_presmin,cam_start_data,before_transition_data,calc_data,nx,ny,ny_calc,...
+             mincnt_st1,mincnt_st2,mincnt_st3,mincnt_st4,mincnt_st5,...
              mincnt_st6,mincnt_st7,mincnt_st8,mincnt_st9,mincnt_st10,vissw,svsw,...
-             nincrement,dx,dy,wmin,wmax,quivermode,dir_f)
+             nincrement,dx,dy,wmin,wmax,quivermode,dir_f,ny_start,ny_end)
 
 %% Calculation, PHASE MEAN, inflectup
 
     velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uinfup,fn_vinfup,fn_winfup,fn_infup,...
-             locs_inflectup,cam_start_data,before_transition_data,calc_start_time,...
-             calc_data,nx,ny,ny_calc,infupcnt_st1,infupcnt_st2,infupcnt_st3,infupcnt_st4,infupcnt_st5,...
+             locs_inflectup,cam_start_data,before_transition_data,calc_data,nx,ny,ny_calc,...
+             infupcnt_st1,infupcnt_st2,infupcnt_st3,infupcnt_st4,infupcnt_st5,...
              infupcnt_st6,infupcnt_st7,infupcnt_st8,infupcnt_st9,infupcnt_st10,vissw,svsw,...
-             nincrement,dx,dy,wmin,wmax,quivermode,dir_f)
+             nincrement,dx,dy,wmin,wmax,quivermode,dir_f,ny_start,ny_end)
