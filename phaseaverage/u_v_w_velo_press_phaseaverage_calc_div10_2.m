@@ -109,6 +109,8 @@
     Sts_press=1/Fs_press; % [sec]
     pres_datasize=Fs_press*pres_samp_time;
     taxis=Sts_press:Sts_press:pres_samp_time;
+    dx=img_res_x*vec_spc_x; % [mm]
+    dy=img_res_y*vec_spc_y; % [mm]
     if type == 1
       cam_start_time = trig_time - Sts_spiv*nzall
       cam_start_data=floor(trig_time/Sts_press)-nzall
@@ -134,6 +136,10 @@
       fn_winfdown=sprintf('phasemean_winfdown_%d_%d_%02u',flow_rate,date,num);
       fn_wmin=sprintf('phasemean_wmin_%d_%d_%02u',flow_rate,date,num);
       fn_winfup=sprintf('phasemean_winfup_%d_%d_%02u',flow_rate,date,num);
+      fn_max=sprintf('phasemean_max_%d_%d_%02u',flow_rate,date,num);
+      fn_infdown=sprintf('phasemean_infdown_%d_%d_%02u',flow_rate,date,num);
+      fn_min=sprintf('phasemean_min_%d_%d_%02u',flow_rate,date,num);
+      fn_infup=sprintf('phasemean_infup_%d_%d_%02u',flow_rate,date,num);
     elseif type == 2
       cam_start_time = trig_time
       cam_start_data = floor(trig_time/Sts_press)
