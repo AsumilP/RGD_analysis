@@ -1,8 +1,8 @@
 function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
-         fn_wav,fn_fav,locs,cam_start_data,before_transition_data,calc_start_time,...
-         calc_data,nx,ny,ny_calc,cnt_st1,cnt_st2,cnt_st3,cnt_st4,cnt_st5,cnt_st6,...
-         cnt_st7,cnt_st8,cnt_st9,cnt_st10,vissw,svsw,nincrement,dx,dy,wmin,wmax,...
-         quivermode,dir_f)
+         fn_wav,fn_fav,locs,cam_start_data,before_transition_data,calc_data,...
+         nx,ny,ny_calc,cnt_st1,cnt_st2,cnt_st3,cnt_st4,cnt_st5,cnt_st6,cnt_st7,...
+         cnt_st8,cnt_st9,cnt_st10,vissw,svsw,nincrement,dx,dy,wmin,wmax,...
+         quivermode,dir_f,ny_start,ny_end)
 
   meantempu1=zeros(ny_calc,nx);
   meantempu2=zeros(ny_calc,nx);
@@ -50,22 +50,22 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
 
       fid=fopen(strcat(dir_i,fn_ui),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I1=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I1,[nx,ny]),[2 1]);
       u=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_vi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I2=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I2,[nx,ny]),[2 1]);
       v=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_wi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I3=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I3,[nx,ny]),[2 1]);
       w=image(ny_start:ny_end,:);
       fclose(fid);
 
@@ -79,11 +79,7 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
         fig.Color='white';
         fig.Position=[1 1 800*(1+sqrt(5))/2 800];
 
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        squiver(up,-vp,wp,nx,ny_calc,1,nx,1,ny_calc,nincrement,...
+        squiver(I1,-I2,I3,nx,ny,1,nx,ny_start,ny_end,nincrement,...
                 dx,dy,wmin,wmax,quivermode)
 
         saveas(gcf,strcat(dir_f,fn_fav,'_0-0.1T_',num2str(cnt_st1+nn1-1),'.png'))
@@ -91,20 +87,16 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
       end
 
       if svsw == 1
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
         fileID=fopen(strcat(dir_f,fn_uav,'_0-0.1T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,up,'double');
+        fwrite(fileID,I1,'double');
         fclose(fileID);
 
         fileID=fopen(strcat(dir_f,fn_vav,'_0-0.1T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,vp,'double');
+        fwrite(fileID,I2,'double');
         fclose(fileID);
 
         fileID=fopen(strcat(dir_f,fn_wav,'_0-0.1T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,wp,'double');
+        fwrite(fileID,I3,'double');
         fclose(fileID);
       end
 
@@ -112,22 +104,22 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
 
       fid=fopen(strcat(dir_i,fn_ui),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I1=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I1,[nx,ny]),[2 1]);
       u=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_vi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I2=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I2,[nx,ny]),[2 1]);
       v=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_wi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I3=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I3,[nx,ny]),[2 1]);
       w=image(ny_start:ny_end,:);
       fclose(fid);
 
@@ -141,32 +133,24 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
         fig.Color='white';
         fig.Position=[1 1 800*(1+sqrt(5))/2 800];
 
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        squiver(up,-vp,wp,nx,ny_calc,1,nx,1,ny_calc,nincrement,...
+        squiver(I1,-I2,I3,nx,ny,1,nx,ny_start,ny_end,nincrement,...
                 dx,dy,wmin,wmax,quivermode)
 
-        saveas(gcf,strcat(dir_f,fn_fav,'_0.1T-0.2T_',num2str(cnt_st1+nn1-1),'.png'))
+        saveas(gcf,strcat(dir_f,fn_fav,'_0.1T-0.2T_',num2str(cnt_st2+nn2-1),'.png'))
         close;
       end
 
       if svsw == 1
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        fileID=fopen(strcat(dir_f,fn_uav,'_0.1T-0.2T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,up,'double');
+        fileID=fopen(strcat(dir_f,fn_uav,'_0.1T-0.2T_',num2str(cnt_st2+nn2-1),'.dat'),'w');
+        fwrite(fileID,I1,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_vav,'_0.1T-0.2T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,vp,'double');
+        fileID=fopen(strcat(dir_f,fn_vav,'_0.1T-0.2T_',num2str(cnt_st2+nn2-1),'.dat'),'w');
+        fwrite(fileID,I2,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_wav,'_0.1T-0.2T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,wp,'double');
+        fileID=fopen(strcat(dir_f,fn_wav,'_0.1T-0.2T_',num2str(cnt_st2+nn2-1),'.dat'),'w');
+        fwrite(fileID,I3,'double');
         fclose(fileID);
       end
 
@@ -174,22 +158,22 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
 
       fid=fopen(strcat(dir_i,fn_ui),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I1=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I1,[nx,ny]),[2 1]);
       u=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_vi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I2=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I2,[nx,ny]),[2 1]);
       v=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_wi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I3=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I3,[nx,ny]),[2 1]);
       w=image(ny_start:ny_end,:);
       fclose(fid);
 
@@ -203,32 +187,24 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
         fig.Color='white';
         fig.Position=[1 1 800*(1+sqrt(5))/2 800];
 
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        squiver(up,-vp,wp,nx,ny_calc,1,nx,1,ny_calc,nincrement,...
+        squiver(I1,-I2,I3,nx,ny,1,nx,ny_start,ny_end,nincrement,...
                 dx,dy,wmin,wmax,quivermode)
 
-        saveas(gcf,strcat(dir_f,fn_fav,'_0.2T-0.3T_',num2str(cnt_st1+nn1-1),'.png'))
+        saveas(gcf,strcat(dir_f,fn_fav,'_0.2T-0.3T_',num2str(cnt_st3+nn3-1),'.png'))
         close;
       end
 
       if svsw == 1
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        fileID=fopen(strcat(dir_f,fn_uav,'_0.2T-0.3T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,up,'double');
+        fileID=fopen(strcat(dir_f,fn_uav,'_0.2T-0.3T_',num2str(cnt_st3+nn3-1),'.dat'),'w');
+        fwrite(fileID,I1,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_vav,'_0.2T-0.3T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,vp,'double');
+        fileID=fopen(strcat(dir_f,fn_vav,'_0.2T-0.3T_',num2str(cnt_st3+nn3-1),'.dat'),'w');
+        fwrite(fileID,I2,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_wav,'_0.2T-0.3T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,wp,'double');
+        fileID=fopen(strcat(dir_f,fn_wav,'_0.2T-0.3T_',num2str(cnt_st3+nn3-1),'.dat'),'w');
+        fwrite(fileID,I3,'double');
         fclose(fileID);
       end
 
@@ -236,22 +212,22 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
 
       fid=fopen(strcat(dir_i,fn_ui),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I1=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I1,[nx,ny]),[2 1]);
       u=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_vi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I2=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I2,[nx,ny]),[2 1]);
       v=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_wi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I3=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I3,[nx,ny]),[2 1]);
       w=image(ny_start:ny_end,:);
       fclose(fid);
 
@@ -265,32 +241,24 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
         fig.Color='white';
         fig.Position=[1 1 800*(1+sqrt(5))/2 800];
 
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        squiver(up,-vp,wp,nx,ny_calc,1,nx,1,ny_calc,nincrement,...
+        squiver(I1,-I2,I3,nx,ny,1,nx,ny_start,ny_end,nincrement,...
                 dx,dy,wmin,wmax,quivermode)
 
-        saveas(gcf,strcat(dir_f,fn_fav,'_0.3T-0.4T_',num2str(cnt_st1+nn1-1),'.png'))
+        saveas(gcf,strcat(dir_f,fn_fav,'_0.3T-0.4T_',num2str(cnt_st4+nn4-1),'.png'))
         close;
       end
 
       if svsw == 1
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        fileID=fopen(strcat(dir_f,fn_uav,'_0.3T-0.4T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,up,'double');
+        fileID=fopen(strcat(dir_f,fn_uav,'_0.3T-0.4T_',num2str(cnt_st4+nn4-1),'.dat'),'w');
+        fwrite(fileID,I1,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_vav,'_0.3T-0.4T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,vp,'double');
+        fileID=fopen(strcat(dir_f,fn_vav,'_0.3T-0.4T_',num2str(cnt_st4+nn4-1),'.dat'),'w');
+        fwrite(fileID,I2,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_wav,'_0.3T-0.4T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,wp,'double');
+        fileID=fopen(strcat(dir_f,fn_wav,'_0.3T-0.4T_',num2str(cnt_st4+nn4-1),'.dat'),'w');
+        fwrite(fileID,I3,'double');
         fclose(fileID);
       end
 
@@ -298,22 +266,22 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
 
       fid=fopen(strcat(dir_i,fn_ui),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I1=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I1,[nx,ny]),[2 1]);
       u=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_vi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I2=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I2,[nx,ny]),[2 1]);
       v=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_wi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I3=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I3,[nx,ny]),[2 1]);
       w=image(ny_start:ny_end,:);
       fclose(fid);
 
@@ -327,32 +295,24 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
         fig.Color='white';
         fig.Position=[1 1 800*(1+sqrt(5))/2 800];
 
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        squiver(up,-vp,wp,nx,ny_calc,1,nx,1,ny_calc,nincrement,...
+        squiver(I1,-I2,I3,nx,ny,1,nx,ny_start,ny_end,nincrement,...
                 dx,dy,wmin,wmax,quivermode)
 
-        saveas(gcf,strcat(dir_f,fn_fav,'_0.4T-0.5T_',num2str(cnt_st1+nn1-1),'.png'))
+        saveas(gcf,strcat(dir_f,fn_fav,'_0.4T-0.5T_',num2str(cnt_st5+nn5-1),'.png'))
         close;
       end
 
       if svsw == 1
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        fileID=fopen(strcat(dir_f,fn_uav,'_0.4T-0.5T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,up,'double');
+        fileID=fopen(strcat(dir_f,fn_uav,'_0.4T-0.5T_',num2str(cnt_st5+nn5-1),'.dat'),'w');
+        fwrite(fileID,I1,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_vav,'_0.4T-0.5T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,vp,'double');
+        fileID=fopen(strcat(dir_f,fn_vav,'_0.4T-0.5T_',num2str(cnt_st5+nn5-1),'.dat'),'w');
+        fwrite(fileID,I2,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_wav,'_0.4T-0.5T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,wp,'double');
+        fileID=fopen(strcat(dir_f,fn_wav,'_0.4T-0.5T_',num2str(cnt_st5+nn5-1),'.dat'),'w');
+        fwrite(fileID,I3,'double');
         fclose(fileID);
       end
 
@@ -360,22 +320,22 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
 
       fid=fopen(strcat(dir_i,fn_ui),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I1=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I1,[nx,ny]),[2 1]);
       u=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_vi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I2=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I2,[nx,ny]),[2 1]);
       v=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_wi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I3=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I3,[nx,ny]),[2 1]);
       w=image(ny_start:ny_end,:);
       fclose(fid);
 
@@ -389,32 +349,24 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
         fig.Color='white';
         fig.Position=[1 1 800*(1+sqrt(5))/2 800];
 
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        squiver(up,-vp,wp,nx,ny_calc,1,nx,1,ny_calc,nincrement,...
+        squiver(I1,-I2,I3,nx,ny,1,nx,ny_start,ny_end,nincrement,...
                 dx,dy,wmin,wmax,quivermode)
 
-        saveas(gcf,strcat(dir_f,fn_fav,'_0.5T-0.6T_',num2str(cnt_st1+nn1-1),'.png'))
+        saveas(gcf,strcat(dir_f,fn_fav,'_0.5T-0.6T_',num2str(cnt_st6+nn6-1),'.png'))
         close;
       end
 
       if svsw == 1
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        fileID=fopen(strcat(dir_f,fn_uav,'_0.5T-0.6T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,up,'double');
+        fileID=fopen(strcat(dir_f,fn_uav,'_0.5T-0.6T_',num2str(cnt_st6+nn6-1),'.dat'),'w');
+        fwrite(fileID,I1,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_vav,'_0.5T-0.6T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,vp,'double');
+        fileID=fopen(strcat(dir_f,fn_vav,'_0.5T-0.6T_',num2str(cnt_st6+nn6-1),'.dat'),'w');
+        fwrite(fileID,I2,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_wav,'_0.5T-0.6T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,wp,'double');
+        fileID=fopen(strcat(dir_f,fn_wav,'_0.5T-0.6T_',num2str(cnt_st6+nn6-1),'.dat'),'w');
+        fwrite(fileID,I3,'double');
         fclose(fileID);
       end
 
@@ -422,22 +374,22 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
 
       fid=fopen(strcat(dir_i,fn_ui),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I1=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I1,[nx,ny]),[2 1]);
       u=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_vi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I2=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I2,[nx,ny]),[2 1]);
       v=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_wi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I3=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I3,[nx,ny]),[2 1]);
       w=image(ny_start:ny_end,:);
       fclose(fid);
 
@@ -451,32 +403,24 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
         fig.Color='white';
         fig.Position=[1 1 800*(1+sqrt(5))/2 800];
 
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        squiver(up,-vp,wp,nx,ny_calc,1,nx,1,ny_calc,nincrement,...
+        squiver(I1,-I2,I3,nx,ny,1,nx,ny_start,ny_end,nincrement,...
                 dx,dy,wmin,wmax,quivermode)
 
-        saveas(gcf,strcat(dir_f,fn_fav,'_0.6T-0.7T_',num2str(cnt_st1+nn1-1),'.png'))
+        saveas(gcf,strcat(dir_f,fn_fav,'_0.6T-0.7T_',num2str(cnt_st7+nn7-1),'.png'))
         close;
       end
 
       if svsw == 1
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        fileID=fopen(strcat(dir_f,fn_uav,'_0.6T-0.7T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,up,'double');
+        fileID=fopen(strcat(dir_f,fn_uav,'_0.6T-0.7T_',num2str(cnt_st7+nn7-1),'.dat'),'w');
+        fwrite(fileID,I1,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_vav,'_0.6T-0.7T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,vp,'double');
+        fileID=fopen(strcat(dir_f,fn_vav,'_0.6T-0.7T_',num2str(cnt_st7+nn7-1),'.dat'),'w');
+        fwrite(fileID,I2,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_wav,'_0.6T-0.7T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,wp,'double');
+        fileID=fopen(strcat(dir_f,fn_wav,'_0.6T-0.7T_',num2str(cnt_st7+nn7-1),'.dat'),'w');
+        fwrite(fileID,I3,'double');
         fclose(fileID);
       end
 
@@ -484,22 +428,22 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
 
       fid=fopen(strcat(dir_i,fn_ui),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I1=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I1,[nx,ny]),[2 1]);
       u=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_vi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I2=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I2,[nx,ny]),[2 1]);
       v=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_wi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I3=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I3,[nx,ny]),[2 1]);
       w=image(ny_start:ny_end,:);
       fclose(fid);
 
@@ -513,32 +457,24 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
         fig.Color='white';
         fig.Position=[1 1 800*(1+sqrt(5))/2 800];
 
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        squiver(up,-vp,wp,nx,ny_calc,1,nx,1,ny_calc,nincrement,...
+        squiver(I1,-I2,I3,nx,ny,1,nx,ny_start,ny_end,nincrement,...
                 dx,dy,wmin,wmax,quivermode)
 
-        saveas(gcf,strcat(dir_f,fn_fav,'_0.7T-0.8T_',num2str(cnt_st1+nn1-1),'.png'))
+        saveas(gcf,strcat(dir_f,fn_fav,'_0.7T-0.8T_',num2str(cnt_st8+nn8-1),'.png'))
         close;
       end
 
       if svsw == 1
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        fileID=fopen(strcat(dir_f,fn_uav,'_0.7T-0.8T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,up,'double');
+        fileID=fopen(strcat(dir_f,fn_uav,'_0.7T-0.8T_',num2str(cnt_st8+nn8-1),'.dat'),'w');
+        fwrite(fileID,I1,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_vav,'_0.7T-0.8T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,vp,'double');
+        fileID=fopen(strcat(dir_f,fn_vav,'_0.7T-0.8T_',num2str(cnt_st8+nn8-1),'.dat'),'w');
+        fwrite(fileID,I2,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_wav,'_0.7T-0.8T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,wp,'double');
+        fileID=fopen(strcat(dir_f,fn_wav,'_0.7T-0.8T_',num2str(cnt_st8+nn8-1),'.dat'),'w');
+        fwrite(fileID,I3,'double');
         fclose(fileID);
       end
 
@@ -546,22 +482,22 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
 
       fid=fopen(strcat(dir_i,fn_ui),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I1=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I1,[nx,ny]),[2 1]);
       u=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_vi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I2=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I2,[nx,ny]),[2 1]);
       v=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_wi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I3=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I3,[nx,ny]),[2 1]);
       w=image(ny_start:ny_end,:);
       fclose(fid);
 
@@ -575,32 +511,24 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
         fig.Color='white';
         fig.Position=[1 1 800*(1+sqrt(5))/2 800];
 
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        squiver(up,-vp,wp,nx,ny_calc,1,nx,1,ny_calc,nincrement,...
+        squiver(I1,-I2,I3,nx,ny,1,nx,ny_start,ny_end,nincrement,...
                 dx,dy,wmin,wmax,quivermode)
 
-        saveas(gcf,strcat(dir_f,fn_fav,'_0.8T-0.9T_',num2str(cnt_st1+nn1-1),'.png'))
+        saveas(gcf,strcat(dir_f,fn_fav,'_0.8T-0.9T_',num2str(cnt_st9+nn9-1),'.png'))
         close;
       end
 
       if svsw == 1
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        fileID=fopen(strcat(dir_f,fn_uav,'_0.8T-0.9T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,up,'double');
+        fileID=fopen(strcat(dir_f,fn_uav,'_0.8T-0.9T_',num2str(cnt_st9+nn9-1),'.dat'),'w');
+        fwrite(fileID,I1,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_vav,'_0.8T-0.9T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,vp,'double');
+        fileID=fopen(strcat(dir_f,fn_vav,'_0.8T-0.9T_',num2str(cnt_st9+nn9-1),'.dat'),'w');
+        fwrite(fileID,I2,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_wav,'_0.8T-0.9T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,wp,'double');
+        fileID=fopen(strcat(dir_f,fn_wav,'_0.8T-0.9T_',num2str(cnt_st9+nn9-1),'.dat'),'w');
+        fwrite(fileID,I3,'double');
         fclose(fileID);
       end
 
@@ -608,22 +536,22 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
 
       fid=fopen(strcat(dir_i,fn_ui),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I1=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I1,[nx,ny]),[2 1]);
       u=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_vi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I2=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I2,[nx,ny]),[2 1]);
       v=image(ny_start:ny_end,:);
       fclose(fid);
 
       fid=fopen(strcat(dir_i,fn_wi),'r');
       skip_frames(fid,locs(t)-cam_start_data,nx*ny,2,1);
-      I=(fread(fid,nx*ny,'double'));
-      image=permute(reshape(I,[nx,ny]),[2 1]);
+      I3=(fread(fid,nx*ny,'double'));
+      image=permute(reshape(I3,[nx,ny]),[2 1]);
       w=image(ny_start:ny_end,:);
       fclose(fid);
 
@@ -637,32 +565,24 @@ function velo_pick_phase_dist(dir_i,fn_ui,fn_vi,fn_wi,dir_o,fn_uav,fn_vav,...
         fig.Color='white';
         fig.Position=[1 1 800*(1+sqrt(5))/2 800];
 
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        squiver(up,-vp,wp,nx,ny_calc,1,nx,1,ny_calc,nincrement,...
+        squiver(I1,-I2,I3,nx,ny,1,nx,ny_start,ny_end,nincrement,...
                 dx,dy,wmin,wmax,quivermode)
 
-        saveas(gcf,strcat(dir_f,fn_fav,'_0.9T-T_',num2str(cnt_st1+nn1-1),'.png'))
+        saveas(gcf,strcat(dir_f,fn_fav,'_0.9T-T_',num2str(cnt_st10+nn10-1),'.png'))
         close;
       end
 
       if svsw == 1
-        up=reshape(u,[nx*ny_calc 1]);
-        vp=reshape(v,[nx*ny_calc 1]);
-        wp=reshape(w,[nx*ny_calc 1]);
-
-        fileID=fopen(strcat(dir_f,fn_uav,'_0.9T-T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,up,'double');
+        fileID=fopen(strcat(dir_f,fn_uav,'_0.9T-T_',num2str(cnt_st10+nn10-1),'.dat'),'w');
+        fwrite(fileID,I1,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_vav,'_0.9T-T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,vp,'double');
+        fileID=fopen(strcat(dir_f,fn_vav,'_0.9T-T_',num2str(cnt_st10+nn10-1),'.dat'),'w');
+        fwrite(fileID,I2,'double');
         fclose(fileID);
 
-        fileID=fopen(strcat(dir_f,fn_wav,'_0.9T-T_',num2str(cnt_st1+nn1-1),'.dat'),'w');
-        fwrite(fileID,wp,'double');
+        fileID=fopen(strcat(dir_f,fn_wav,'_0.9T-T_',num2str(cnt_st10+nn10-1),'.dat'),'w');
+        fwrite(fileID,I3,'double');
         fclose(fileID);
       end
 
